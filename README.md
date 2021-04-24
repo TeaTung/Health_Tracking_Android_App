@@ -14,6 +14,7 @@ hoặc
 > git clone http://github.com/TeaTung/Health_Tracking_Android_App.git
 
 ![image](https://user-images.githubusercontent.com/67773933/115963852-8193a800-a54b-11eb-9fbd-e3a0b9833212.png)
+
 #Bước 2: Kiểm tra các branch có trên máy và remote.
 
 > git branch -a
@@ -29,6 +30,7 @@ hoặc
 > git chekout develop
 
 ![image](https://user-images.githubusercontent.com/67773933/115964039-b2281180-a54c-11eb-8bda-a3512ae6bc67.png)
+
 Kể từ đây, mọi thao tác push và tạo pull request sẽ được push vào branch develop, không được phép thao tác thẳng lên master/main.
 
 #Bước 5: Thực hiện checkout từ branch develop sang một branch feature để code phần của mình.
