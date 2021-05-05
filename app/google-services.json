@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "974985033420",
+    "project_id": "le-thanh-tam-1618659324570",
+    "storage_bucket": "le-thanh-tam-1618659324570.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:974985033420:android:1102a5cc26ddb9a5a27469",
+        "android_client_info": {
+          "package_name": "com.example.healthtracking"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "974985033420-00lj5ni7dsa8higlbc7s2j02uqet1q0f.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA_oAEARBx9zw82u7mZiVbSfqjeFdeN1WQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "974985033420-00lj5ni7dsa8higlbc7s2j02uqet1q0f.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
