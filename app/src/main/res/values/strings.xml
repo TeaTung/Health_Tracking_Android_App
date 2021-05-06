@@ -5,5 +5,12 @@
     <!-- TODO: setup facebook login-->
     <string name="facebook_app_id">146329190722464</string>
     <string name="fb_login_protocol_scheme">fb146329190722464</string>
+    <string name="titleA">FireFit</string>
+    <string name="titleB">Luyện tập</string>
+    <string name="titleC">Chế độ ăn</string>
+    <string name="contentA">Sức khỏe tốt và trí tuệ minh mẫn là hai điều hạnh phúc nhất của cuộc đời. FireFit là chiếc app sẽ giúp bạn đạt được nó.</string>
+    <string name="contentB">FireFit giúp bạn theo dõi luyện tập thông qua các cảm biến của điện thoại cũng như các bài luyện tập do bạn tự nhập.</string>
+    <string name="contentC">FireFit sẽ giúp bạn ghi nhận và tính toán lượng calo thông qua các bài luyện tập và khẩu phần ăn.</string>
+
 
 </resources>
