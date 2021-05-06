@@ -11,6 +11,7 @@ import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -21,8 +22,9 @@ import com.google.firebase.auth.FirebaseAuth;
 public class SignUpMainActivity extends AppCompatActivity {
 
     EditText editTextEmail, editTextPassword, editTextConfirmPassword;
-    Button buttonSignUp, buttonSignIn;
+    Button buttonSignIn;
     FirebaseAuth mAuth;
+    TextView buttonSignUp;
     ProgressDialog progressDialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
