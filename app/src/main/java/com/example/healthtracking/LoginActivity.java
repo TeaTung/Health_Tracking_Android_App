@@ -64,6 +64,7 @@ public class LoginActivity extends AppCompatActivity {
         textViewSignUp.setOnClickListener(this::onClick);
         textViewForgetPW.setOnClickListener(this::onClick);
 
+
     }
 
     public void onClick(View v) {
