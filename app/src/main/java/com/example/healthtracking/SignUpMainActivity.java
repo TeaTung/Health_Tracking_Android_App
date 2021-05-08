@@ -22,9 +22,9 @@ import com.google.firebase.auth.FirebaseAuth;
 public class SignUpMainActivity extends AppCompatActivity {
 
     EditText editTextEmail, editTextPassword, editTextConfirmPassword;
-    Button buttonSignIn;
+    Button buttonSignUp;
     FirebaseAuth mAuth;
-    TextView buttonSignUp;
+    TextView textViewBack;
     ProgressDialog progressDialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +39,7 @@ public class SignUpMainActivity extends AppCompatActivity {
             }
         });
 
-        buttonSignIn.setOnClickListener(new View.OnClickListener() {
+        textViewBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 FirebaseAuth.getInstance().signOut();
@@ -54,8 +54,8 @@ public class SignUpMainActivity extends AppCompatActivity {
         editTextEmail = (EditText) findViewById(R.id.editTextEmail);
         editTextPassword = (EditText) findViewById(R.id.editTextPassword);
         editTextConfirmPassword = (EditText) findViewById(R.id.editTextConfirmPassword);
+        textViewBack = (TextView) findViewById(R.id.textViewBack);
         buttonSignUp = (Button) findViewById(R.id.buttonSignUp);
-        buttonSignIn = (Button) findViewById(R.id.buttonSignIn);
     }
 
     public  void Register()

@@ -84,24 +84,9 @@ public class LoginActivity extends AppCompatActivity {
         }
         else  if (v.getId() == R.id.textViewForgetPassword)
         {
-            String email = editTextEmail.getText().toString().trim();
-
-            if (TextUtils.isEmpty(email)) {
-                Toast.makeText(getApplicationContext(), "Nhập email của ban!", Toast.LENGTH_SHORT).show();
-                return;
-            }
-
-            mAuth.sendPasswordResetEmail(email)
-                    .addOnCompleteListener(new OnCompleteListener() {
-                        @Override
-                        public void onComplete(@NonNull Task task) {
-                            if (task.isSuccessful()) {
-                                Toast.makeText(LoginActivity.this, "Kiểm tra email để đặt lại mật khẩu!", Toast.LENGTH_SHORT).show();
-                            } else {
-                                Toast.makeText(LoginActivity.this, "Qúa trình gửi mail thất bại", Toast.LENGTH_SHORT).show();
-                            }
-                        }
-                    });
+            Intent intent = new Intent(LoginActivity.this, ForgetActivity.class);
+            startActivity(intent);
+            finish();
         }
 
     }
