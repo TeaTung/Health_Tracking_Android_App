@@ -7,7 +7,6 @@ import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,7 +19,6 @@ import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
 import com.facebook.FacebookSdk;
 import com.facebook.appevents.AppEventsLogger;
-import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -39,19 +37,18 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 import com.google.firebase.database.DatabaseReference;
 
-import java.util.Arrays;
-
 
 public class LoginActivity extends AppCompatActivity {
 
     private DatabaseReference mDatabase;
     CallbackManager mCallbackManager;
+    LoginButton buttonLoginFB;
+    SignInButton buttonSignInGG;
     EditText editTextEmail, editTextPassword, editTextConfirmPassword;
     TextView textViewSignUp, textViewForgetPW;
+    Button  buttonSignIn;
     FirebaseAuth mAuth;
     GoogleSignInClient mGoogleSignInClient;
-    ImageView btnSignInWithFb;
-    ImageView btnSignInWithGg;
     int RC_SIGN_IN;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,10 +58,11 @@ public class LoginActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         Facebook();
         Google();
-        btnSignInWithGg.setOnClickListener(this::onClick);
+        buttonSignIn.setOnClickListener(this::onClick);
+        buttonLoginFB.setOnClickListener(this::onClick);
+        buttonSignInGG.setOnClickListener(this::onClick);
         textViewSignUp.setOnClickListener(this::onClick);
         textViewForgetPW.setOnClickListener(this::onClick);
-        btnSignInWithFb.setOnClickListener(this::onClick);
 
 
     }
@@ -74,31 +72,9 @@ public class LoginActivity extends AppCompatActivity {
         {
             LoginEmail();
         }
-        else if (v.getId() == R.id.btnSignInWithGg)
+        else  if (v.getId() == R.id.signinGGbutton)
         {
             signIn();
-        }
-        else if(v.getId() == R.id.btnSignInWithFb)
-        {
-            LoginManager.getInstance().logInWithReadPermissions(LoginActivity .this,
-                                         Arrays.asList("email", "public_profile"));
-            LoginManager.getInstance().registerCallback(mCallbackManager, new FacebookCallback<LoginResult>() {
-                @Override
-                public void onSuccess (LoginResult loginResult){
-
-                    handleFacebookAccessToken(loginResult.getAccessToken());
-                }
-
-                @Override
-                public void onCancel () {
-
-                }
-
-                @Override
-                public void onError (FacebookException error){
-
-                }
-            });
         }
         else  if (v.getId() ==R.id.textViewSignup)
         {
@@ -108,24 +84,9 @@ public class LoginActivity extends AppCompatActivity {
         }
         else  if (v.getId() == R.id.textViewForgetPassword)
         {
-            String email = editTextEmail.getText().toString().trim();
-
-            if (TextUtils.isEmpty(email)) {
-                Toast.makeText(getApplicationContext(), "Nhập email của ban!", Toast.LENGTH_SHORT).show();
-                return;
-            }
-
-            mAuth.sendPasswordResetEmail(email)
-                    .addOnCompleteListener(new OnCompleteListener() {
-                        @Override
-                        public void onComplete(@NonNull Task task) {
-                            if (task.isSuccessful()) {
-                                Toast.makeText(LoginActivity.this, "Kiểm tra email để đặt lại mật khẩu!", Toast.LENGTH_SHORT).show();
-                            } else {
-                                Toast.makeText(LoginActivity.this, "Qúa trình gửi mail thất bại", Toast.LENGTH_SHORT).show();
-                            }
-                        }
-                    });
+            Intent intent = new Intent(LoginActivity.this, ForgetActivity.class);
+            startActivity(intent);
+            finish();
         }
 
     }
@@ -147,13 +108,32 @@ public class LoginActivity extends AppCompatActivity {
         editTextConfirmPassword = (EditText) findViewById(R.id.editTextConfirmPassword);
         textViewSignUp = (TextView) findViewById(R.id.textViewSignup);
         textViewForgetPW = (TextView) findViewById(R.id.textViewForgetPassword);
-        btnSignInWithFb = (ImageView) findViewById(R.id.btnSignInWithFb);
-        btnSignInWithGg = (ImageView) findViewById(R.id.btnSignInWithGg);
+        buttonSignIn = (Button) findViewById(R.id.buttonSignIn);
+        buttonLoginFB = (LoginButton) findViewById(R.id.loginFB_button);
+        buttonSignInGG = (SignInButton) findViewById(R.id.signinGGbutton);
     }
     private void Facebook() {
         FacebookSdk.sdkInitialize(getApplicationContext());
         AppEventsLogger.activateApp(this);
         mCallbackManager = CallbackManager.Factory.create();
+        buttonLoginFB.setReadPermissions("email", "public_profile");
+        buttonLoginFB.registerCallback(mCallbackManager, new FacebookCallback<LoginResult>() {
+            @Override
+            public void onSuccess(LoginResult loginResult) {
+
+                handleFacebookAccessToken(loginResult.getAccessToken());
+            }
+
+            @Override
+            public void onCancel() {
+
+            }
+
+            @Override
+            public void onError(FacebookException error) {
+
+            }
+        });
     }
 
     private  void Google()

@@ -13,6 +13,7 @@
         android:theme="@style/Theme.HealthTracking">
         <activity android:name=".MenuActivity"></activity>
         <activity android:name=".SignUpMainActivity" />
+        <activity android:name=".ForgetActivity" />
         <activity android:name=".InformationActivity" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".OnBoarding" />

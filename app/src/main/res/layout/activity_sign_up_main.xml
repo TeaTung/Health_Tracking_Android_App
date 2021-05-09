@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -12,14 +11,15 @@
         android:id="@+id/textViewSignup3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
         android:fontFamily="sans-serif-condensed"
         android:text="- HOẶC ĐĂNG KÝ VỚI -"
         android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.546"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonSignIn" />
+        app:layout_constraintTop_toTopOf="@+id/topView2"
+        app:layout_constraintVertical_bias="0.843" />
 
     <ImageView
         android:id="@+id/imageView9"
@@ -47,7 +47,9 @@
         android:layout_width="match_parent"
         android:layout_height="90dp"
         android:background="@color/blue"
-        app:layout_constraintTop_toTopOf="parent" />
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="-6dp"
+        tools:ignore="MissingConstraints" />
 
     <ImageView
         android:id="@+id/imageView8"
@@ -117,17 +119,18 @@
         android:id="@+id/editTextEmail"
         android:layout_width="350sp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
         android:background="@drawable/round_border"
         android:ems="10"
         android:hint="Email"
         android:inputType="textEmailAddress"
         android:padding="16sp"
+        app:layout_constraintTop_toBottomOf="@+id/imageView8"
         tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="30dp"
-        tools:layout_editor_absoluteY="224dp" />
+        tools:layout_editor_absoluteX="30dp" />
 
     <TextView
-        android:id="@+id/buttonSignIn"
+        android:id="@+id/textViewBack"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -135,9 +138,9 @@
         android:text="Đã có tài khoản?"
         android:textColor="#021B59"
         android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonSignUp" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonSignUp"
+        tools:layout_editor_absoluteX="147dp"
+        tools:ignore="MissingConstraints" />
 
     <Button
         android:id="@+id/buttonSignUp"
