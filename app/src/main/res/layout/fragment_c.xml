@@ -41,10 +41,11 @@
         android:id="@+id/imageView5"
         android:layout_width="387dp"
         android:layout_height="711dp"
+        android:layout_marginTop="46dp"
         android:src="@drawable/onboarding_third"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="52dp" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 
     <TextView
         android:id="@+id/textView2"
@@ -57,9 +58,9 @@
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="56dp"
+        android:layout_marginStart="52dp"
         android:layout_marginTop="400dp"
-        android:text="Ăn uống"
+        android:text="@string/titleC"
         android:textColor="#575656"
         android:textSize="36dp"
         android:textStyle="bold"
@@ -72,7 +73,7 @@
         android:layout_height="172dp"
         android:layout_marginTop="6dp"
         android:fontFamily="sans-serif-light"
-        android:text="FireFit sẽ giúp bạn ghi nhận và tính toán lượng calo thông qua các bài luyện tập và khẩu phần ăn."
+        android:text="@string/contentC"
         android:textColor="#636262"
         android:textSize="20dp"
         app:layout_constraintStart_toStartOf="@+id/textView3"
@@ -84,7 +85,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="28dp"
         android:layout_marginBottom="20dp"
-        android:text="Start"
+        android:text="Bắt đầu"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
