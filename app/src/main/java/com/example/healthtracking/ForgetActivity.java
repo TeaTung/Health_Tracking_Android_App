@@ -1,5 +1,6 @@
 package com.example.healthtracking;
 
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
@@ -104,4 +105,5 @@ public class ForgetActivity extends AppCompatActivity {
         });
         return b[0];
     }
-    }
+}
+
