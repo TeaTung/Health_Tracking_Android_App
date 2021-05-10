@@ -7,6 +7,7 @@ import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,6 +20,7 @@ import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
 import com.facebook.FacebookSdk;
 import com.facebook.appevents.AppEventsLogger;
+import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -37,18 +39,21 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 import com.google.firebase.database.DatabaseReference;
 
+import java.util.Arrays;
+
 
 public class LoginActivity extends AppCompatActivity {
 
     private DatabaseReference mDatabase;
     CallbackManager mCallbackManager;
-    LoginButton buttonLoginFB;
-    SignInButton buttonSignInGG;
     EditText editTextEmail, editTextPassword, editTextConfirmPassword;
     TextView textViewSignUp, textViewForgetPW;
     Button  buttonSignIn;
     FirebaseAuth mAuth;
     GoogleSignInClient mGoogleSignInClient;
+    ImageView imgLoginWithGg;
+    ImageView imgLoginWithFb;
+
     int RC_SIGN_IN;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,12 +64,10 @@ public class LoginActivity extends AppCompatActivity {
         Facebook();
         Google();
         buttonSignIn.setOnClickListener(this::onClick);
-        buttonLoginFB.setOnClickListener(this::onClick);
-        buttonSignInGG.setOnClickListener(this::onClick);
         textViewSignUp.setOnClickListener(this::onClick);
         textViewForgetPW.setOnClickListener(this::onClick);
-
-
+        imgLoginWithFb.setOnClickListener(this::onClick);
+        imgLoginWithGg.setOnClickListener(this::onClick);
     }
 
     public void onClick(View v) {
@@ -72,9 +75,31 @@ public class LoginActivity extends AppCompatActivity {
         {
             LoginEmail();
         }
-        else  if (v.getId() == R.id.signinGGbutton)
+        else  if (v.getId() == R.id.imgLoginWithGg)
         {
             signIn();
+        }
+        else  if (v.getId() == R.id.imgLoginWithFb)
+        {
+            LoginManager.getInstance().logInWithReadPermissions(LoginActivity .this,
+                    Arrays.asList("email", "public_profile"));
+            LoginManager.getInstance().registerCallback(mCallbackManager, new FacebookCallback<LoginResult>() {
+                @Override
+                public void onSuccess (LoginResult loginResult){
+
+                    handleFacebookAccessToken(loginResult.getAccessToken());
+                }
+
+                @Override
+                public void onCancel () {
+
+                }
+
+                @Override
+                public void onError (FacebookException error){
+
+                }
+            });
         }
         else  if (v.getId() ==R.id.textViewSignup)
         {
@@ -109,31 +134,13 @@ public class LoginActivity extends AppCompatActivity {
         textViewSignUp = (TextView) findViewById(R.id.textViewSignup);
         textViewForgetPW = (TextView) findViewById(R.id.textViewForgetPassword);
         buttonSignIn = (Button) findViewById(R.id.buttonSignIn);
-        buttonLoginFB = (LoginButton) findViewById(R.id.loginFB_button);
-        buttonSignInGG = (SignInButton) findViewById(R.id.signinGGbutton);
+        imgLoginWithGg = (ImageView) findViewById(R.id.imgLoginWithGg);
+        imgLoginWithFb = (ImageView) findViewById(R.id.imgLoginWithFb);
     }
     private void Facebook() {
         FacebookSdk.sdkInitialize(getApplicationContext());
         AppEventsLogger.activateApp(this);
         mCallbackManager = CallbackManager.Factory.create();
-        buttonLoginFB.setReadPermissions("email", "public_profile");
-        buttonLoginFB.registerCallback(mCallbackManager, new FacebookCallback<LoginResult>() {
-            @Override
-            public void onSuccess(LoginResult loginResult) {
-
-                handleFacebookAccessToken(loginResult.getAccessToken());
-            }
-
-            @Override
-            public void onCancel() {
-
-            }
-
-            @Override
-            public void onError(FacebookException error) {
-
-            }
-        });
     }
 
     private  void Google()
