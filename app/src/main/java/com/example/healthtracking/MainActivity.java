@@ -11,6 +11,7 @@ import android.util.Base64;
 import android.util.Log;
 
 import com.example.healthtracking.ClassData.UserSetting;
+import com.google.android.gms.fitness.FitnessOptions;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -22,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         changeUserSetting();
+        FitnessOptions
 
     }
 
