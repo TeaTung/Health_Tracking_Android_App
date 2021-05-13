@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Patterns;
@@ -14,6 +15,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.healthtracking.ClassData.UserSetting;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -104,6 +106,7 @@ public class SignUpMainActivity extends AppCompatActivity {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
                     progress.dismiss();
+                    setSharedPreference(email);
                     Toast.makeText(SignUpMainActivity.this, "Tạo tài khoản thành công", Toast.LENGTH_LONG).show();
                 }
                 else {
@@ -117,5 +120,12 @@ public class SignUpMainActivity extends AppCompatActivity {
     public  boolean isValidEmail(CharSequence target)
     {
         return (!TextUtils.isEmpty(target) && Patterns.EMAIL_ADDRESS.matcher(target).matches());
+    }
+
+    public void setSharedPreference(String email){
+        SharedPreferences sharedPreferences = getSharedPreferences("sharedPrefs",MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("EMAIL",email);
+        editor.apply();
     }
 }
