@@ -11,15 +11,13 @@
         android:id="@+id/textViewSignup3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
         android:fontFamily="sans-serif-condensed"
         android:text="- HOẶC ĐĂNG KÝ VỚI -"
         android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.546"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/topView2"
-        app:layout_constraintVertical_bias="0.843" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewBack" />
 
     <ImageView
         android:id="@+id/imageView9"
@@ -47,9 +45,9 @@
         android:layout_width="match_parent"
         android:layout_height="90dp"
         android:background="@color/blue"
+        tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="-6dp"
-        tools:ignore="MissingConstraints" />
+        tools:layout_editor_absoluteY="-6dp" />
 
     <ImageView
         android:id="@+id/imageView8"
@@ -93,13 +91,16 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:background="@drawable/round_border"
+        android:drawableStart="@drawable/ic_pass"
+        android:drawablePadding="16sp"
         android:ems="10"
         android:hint="Confirm password"
         android:inputType="textPassword"
         android:padding="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextPassword"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="30dp" />
+        tools:ignore="MissingConstraints" />
 
     <EditText
         android:id="@+id/editTextPassword"
@@ -107,13 +108,16 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:background="@drawable/round_border"
+        android:drawableStart="@drawable/ic_pass"
+        android:drawablePadding="16sp"
         android:ems="10"
         android:hint="Password"
         android:inputType="textPassword"
         android:padding="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextEmail"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="30dp" />
+        tools:ignore="MissingConstraints" />
 
     <EditText
         android:id="@+id/editTextEmail"
@@ -121,13 +125,16 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="60dp"
         android:background="@drawable/round_border"
+        android:drawableStart="@drawable/ic_email"
+        android:drawablePadding="16sp"
         android:ems="10"
         android:hint="Email"
         android:inputType="textEmailAddress"
         android:padding="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView8"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="30dp" />
+        tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/textViewBack"
@@ -139,8 +146,8 @@
         android:textColor="#021B59"
         android:textSize="16sp"
         app:layout_constraintTop_toBottomOf="@+id/buttonSignUp"
-        tools:layout_editor_absoluteX="147dp"
-        tools:ignore="MissingConstraints" />
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="147dp" />
 
     <Button
         android:id="@+id/buttonSignUp"
