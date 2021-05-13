@@ -88,26 +88,27 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayout"
         style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu"
+        android:id="@+id/textInputLayout"
         android:layout_width="160dp"
         android:layout_height="55dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="32dp"
         app:boxBackgroundColor="@color/white"
         app:boxBackgroundMode="outline"
         app:layout_constraintStart_toStartOf="@+id/nameEt"
         app:layout_constraintTop_toBottomOf="@+id/nameEt">
 
-        <com.google.android.material.textfield.TextInputEditText
+        <com.google.android.material.textfield.MaterialAutoCompleteTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Năm sinh" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="160dp"
         android:layout_height="55dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="32dp"
         app:boxBackgroundColor="@color/white"
         app:boxBackgroundMode="outline"
         app:layout_constraintEnd_toEndOf="@+id/textInputLayout2"
@@ -115,14 +116,15 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
-            android:layout_height="55dp"
+            android:layout_height="wrap_content"
             android:hint="Cân nặng" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="160dp"
         android:layout_height="55dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="32dp"
         app:boxBackgroundColor="@color/white"
         app:boxBackgroundMode="outline"
         app:layout_constraintStart_toStartOf="@+id/textInputLayout"
@@ -130,7 +132,7 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
-            android:layout_height="55dp"
+            android:layout_height="wrap_content"
             android:hint="Chiều cao" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -139,13 +141,13 @@
         android:id="@+id/textInputLayout2"
         android:layout_width="160dp"
         android:layout_height="55dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="32dp"
         app:boxBackgroundColor="@color/white"
         app:boxBackgroundMode="outline"
         app:layout_constraintEnd_toEndOf="@+id/nameEt"
         app:layout_constraintTop_toBottomOf="@+id/nameEt">
 
-        <com.google.android.material.textfield.TextInputEditText
+        <com.google.android.material.textfield.MaterialAutoCompleteTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Giới tính" />
