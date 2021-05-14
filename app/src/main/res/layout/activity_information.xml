@@ -10,7 +10,7 @@
         android:id="@+id/buttonStart"
         android:layout_width="350sp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="50dp"
+        android:layout_marginBottom="80dp"
         android:background="@drawable/round_border_button"
         android:text="Đăng ký"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -70,20 +70,19 @@
         android:id="@+id/nameEt"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="350dp"
-        android:layout_height="55dp"
+        android:layout_height="82sp"
         android:layout_marginTop="52dp"
         app:counterMaxLength="50"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView"
-        >
+        app:layout_constraintTop_toBottomOf="@+id/imageView">
 
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/editTextName"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="55sp"
             android:drawableStart="@drawable/ic_person"
             android:drawablePadding="16sp"
             android:hint="Tên" />
@@ -91,11 +90,11 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu"
         android:id="@+id/textInputLayout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu"
         android:layout_width="160dp"
-        android:layout_height="55dp"
-        android:layout_marginTop="32dp"
+        android:layout_height="82sp"
+        android:layout_marginTop="8dp"
         app:boxBackgroundColor="@color/white"
         app:boxBackgroundMode="outline"
         app:layout_constraintStart_toStartOf="@+id/nameEt"
@@ -104,7 +103,7 @@
         <com.google.android.material.textfield.MaterialAutoCompleteTextView
             android:id="@+id/textViewYear"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="55sp"
             android:cursorVisible="false"
             android:editable="false"
             android:hint="Năm sinh" />
@@ -113,45 +112,56 @@
     <com.google.android.material.textfield.TextInputLayout
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="160dp"
-        android:layout_height="55dp"
-        android:layout_marginTop="32dp"
+        android:layout_height="82dp"
+        android:layout_marginTop="8dp"
         app:boxBackgroundColor="@color/white"
         app:boxBackgroundMode="outline"
+        app:boxCollapsedPaddingTop="16sp"
+        app:helperText="Đơn vị kg"
+        app:helperTextEnabled="true"
+        app:helperTextTextColor="@color/blue"
         app:layout_constraintEnd_toEndOf="@+id/textInputLayout2"
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout2">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/editTextWeight"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="number"
-            android:hint="Cân nặng" />
+            android:layout_height="55sp"
+            android:drawableStart="@drawable/ic_weight"
+            android:drawablePadding="16sp"
+            android:hint="Cân nặng"
+            android:inputType="number" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="160dp"
-        android:layout_height="55dp"
-        android:layout_marginTop="32dp"
+        android:layout_height="82dp"
+        android:layout_marginTop="8dp"
         app:boxBackgroundColor="@color/white"
         app:boxBackgroundMode="outline"
+        app:helperText="Đơn vị cm"
+        app:helperTextEnabled="true"
+        app:helperTextTextColor="@color/blue"
         app:layout_constraintStart_toStartOf="@+id/textInputLayout"
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/editTextHeight"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="number"
-            android:hint="Chiều cao" />
+            android:layout_height="55sp"
+            android:drawableStart="@drawable/ic_height"
+            android:drawablePadding="16sp"
+            android:hint="Chiều cao"
+            android:inputType="number" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu"
         android:id="@+id/textInputLayout2"
+        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu"
         android:layout_width="160dp"
-        android:layout_height="55dp"
-        android:layout_marginTop="32dp"
+        android:layout_height="82dp"
+        android:layout_marginTop="8dp"
         app:boxBackgroundColor="@color/white"
         app:boxBackgroundMode="outline"
         app:layout_constraintEnd_toEndOf="@+id/nameEt"
@@ -160,7 +170,7 @@
         <com.google.android.material.textfield.MaterialAutoCompleteTextView
             android:id="@+id/spinnerSex"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="55sp"
             android:cursorVisible="false"
             android:editable="false"
             android:hint="Giới tính" />
