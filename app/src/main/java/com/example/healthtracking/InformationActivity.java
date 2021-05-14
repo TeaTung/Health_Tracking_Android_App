@@ -30,10 +30,10 @@ public class InformationActivity extends AppCompatActivity {
     private DatabaseReference mDatabase;
     TextInputEditText edittextname,edittextheight, edittextweight;
     MaterialAutoCompleteTextView textViewyear, spinnersex;
-   // Spinner spinnersex;
+    // Spinner spinnersex;
     Button button;
     String arr[]={"Nam", "Nữ"};
-   String Sex;
+    String Sex;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +41,7 @@ public class InformationActivity extends AppCompatActivity {
         setContentView(R.layout.activity_information);
         Anhxa();
         ChooseSex();
+        changeUserSetting();
         textViewyear.setOnClickListener(this::onClick);
         button.setOnClickListener(this::onClick);
 
@@ -124,13 +125,11 @@ public class InformationActivity extends AppCompatActivity {
             user.practice.put(date.toString(),onedayofPractice1);
             // textView.setText(getIntent().getStringExtra("UID").toString());
             mDatabase.child(getIntent().getStringExtra("UID")).setValue(user);
-            changeUserSetting();
+
             Intent intent = new Intent(InformationActivity.this, MainActivity.class);
             intent.putExtra("UID", getIntent().getStringExtra("UID"));
             startActivity(intent);
             finish();
-
-
         }
     }
 
@@ -138,7 +137,7 @@ public class InformationActivity extends AppCompatActivity {
         SharedPreferences sharedPreferences = getSharedPreferences("sharedPrefs",MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
-        editor.putBoolean("IS_INFOR",true);
+        editor.putBoolean("WAS_INFORMATION",true);
         editor.apply();
     }
 

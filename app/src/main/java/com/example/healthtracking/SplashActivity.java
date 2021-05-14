@@ -43,16 +43,16 @@ public class SplashActivity extends AppCompatActivity {
 
 
         new Handler().postDelayed((Runnable) () -> {
-            if (!userSetting.wasLogin) {
-                Intent intent = new Intent(SplashActivity.this, OnBoarding.class);
-                startActivity(intent);
-                finish();
-            } else if (userSetting.wasInfor == false){
+            if (userSetting.wasInformation) {
                 Intent intent = new Intent(SplashActivity.this, InformationActivity.class);
                 startActivity(intent);
                 finish();
-            } else {
+            } else if (userSetting.wasLogin){
                 Intent intent = new Intent(SplashActivity.this, MainActivity.class);
+                startActivity(intent);
+                finish();
+            } else {
+                Intent intent = new Intent(SplashActivity.this, OnBoarding.class);
                 startActivity(intent);
                 finish();
             }
@@ -61,8 +61,8 @@ public class SplashActivity extends AppCompatActivity {
 
     public void getUserSetting(UserSetting userSetting){
         SharedPreferences sharedPreferences = getSharedPreferences("sharedPrefs",MODE_PRIVATE);
-        userSetting.wasLogin = sharedPreferences.getBoolean("IS_LOGIN",false);
-        userSetting.wasInfor = sharedPreferences.getBoolean("IS_INFOR",false);
+        userSetting.wasLogin = sharedPreferences.getBoolean("WAS_LOGIN",false);
+        userSetting.wasInformation = sharedPreferences.getBoolean("WAS_INFORMATION",false);
         //userSetting.UID = sharedPreferences.getString("UID","");
     }
 }

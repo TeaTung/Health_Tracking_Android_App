@@ -3,7 +3,7 @@ package com.example.healthtracking.ClassData;
 public class UserSetting {
     public boolean wasLogin;
     public String UID = "";
-    public  boolean wasInfor;
+    public  boolean wasInformation;
 
     public UserSetting(){
 
@@ -18,10 +18,10 @@ public class UserSetting {
     }
 
     public boolean isInfor() {
-        return wasInfor;
+        return wasInformation;
     }
 
     public void setInfor(boolean infor) {
-        wasInfor = infor;
+        wasInformation = infor;
     }
 }
