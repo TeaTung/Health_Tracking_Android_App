@@ -2,33 +2,35 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="320dp"
+    android:layout_height="160dp"
     android:background="@drawable/round_border_step_counter">
 
     <ProgressBar
         android:id="@+id/stepProgress"
-        android:layout_width="140dp"
-        android:layout_height="140dp"
+        android:layout_width="163dp"
+        android:layout_height="152dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="4dp"
         android:indeterminateOnly="false"
         android:progress="70"
         android:progressDrawable="@drawable/circle_progress"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.6" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/stepsCounter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="56dp"
         android:fontFamily="sans-serif-black"
         android:text="1000"
         android:textColor="#FFFFFF"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/stepProgress"
-        app:layout_constraintVertical_bias="0.432"
-        tools:layout_editor_absoluteX="56dp" />
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="@+id/stepProgress"
+        app:layout_constraintHorizontal_bias="0.519"
+        app:layout_constraintStart_toStartOf="@+id/stepProgress"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/stepsCounter2"
@@ -37,6 +39,7 @@
         android:fontFamily="sans-serif-condensed-light"
         android:text="80 Kalo"
         android:textColor="#FFFFFF"
+        android:textSize="16sp"
         app:layout_constraintStart_toEndOf="@+id/stepProgress"
         app:layout_constraintTop_toBottomOf="@+id/textView18" />
 
@@ -47,6 +50,7 @@
         android:fontFamily="sans-serif-condensed-light"
         android:text="1 Kilomet"
         android:textColor="#FFFFFF"
+        android:textSize="16sp"
         app:layout_constraintStart_toEndOf="@+id/stepProgress"
         app:layout_constraintTop_toBottomOf="@+id/textView19" />
 
@@ -56,19 +60,21 @@
         android:fontFamily="sans-serif-light"
         android:text="Bước chân"
         android:textColor="@color/white"
-        android:textSize="12sp"
-        app:layout_constraintTop_toBottomOf="@+id/stepsCounter"
-        tools:layout_editor_absoluteX="45dp" />
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="@+id/stepProgress"
+        app:layout_constraintHorizontal_bias="0.466"
+        app:layout_constraintStart_toStartOf="@+id/stepProgress"
+        app:layout_constraintTop_toBottomOf="@+id/stepsCounter" />
 
     <TextView
         android:id="@+id/textView18"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="28dp"
         android:fontFamily="sans-serif-black"
         android:text="Bạn đã đốt cháy"
         android:textColor="@color/white"
-        android:textSize="12sp"
+        android:textSize="16sp"
         app:layout_constraintStart_toEndOf="@+id/stepProgress"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -80,7 +86,7 @@
         android:fontFamily="sans-serif-black"
         android:text="Quãng đường"
         android:textColor="@color/white"
-        android:textSize="12sp"
+        android:textSize="16sp"
         app:layout_constraintStart_toEndOf="@+id/stepProgress"
         app:layout_constraintTop_toBottomOf="@+id/stepsCounter2" />
 </androidx.constraintlayout.widget.ConstraintLayout>
