@@ -145,9 +145,10 @@
         android:text="Đã có tài khoản?"
         android:textColor="#021B59"
         android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttonSignUp"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="147dp" />
+        tools:ignore="MissingConstraints" />
 
     <Button
         android:id="@+id/buttonSignUp"
