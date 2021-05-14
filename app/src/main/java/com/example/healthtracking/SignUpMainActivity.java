@@ -15,11 +15,14 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.healthtracking.ClassData.JavaMailAPI;
 import com.example.healthtracking.ClassData.UserSetting;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+
+import java.util.Random;
 
 public class SignUpMainActivity extends AppCompatActivity {
 
@@ -96,25 +99,23 @@ public class SignUpMainActivity extends AppCompatActivity {
             editTextEmail.setError("Email không tồn tại");
             return;
         }
-        ProgressDialog progress = new ProgressDialog(this);
-        progress.setMessage("Vui lòng đợi...");
-        progress.show();
-        progress.setCanceledOnTouchOutside(false);
+        Random random = new Random();
+        String code = String.valueOf(random.nextInt(900000)+100000);
+        String mEmail = editTextEmail.getText().toString();
+        String mSubject = "Khôi phục tài khoản";
+        String mMessage = "Xin chào, mã khôi phục tài khoản của bạn là: " + code ;
 
-        mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if (task.isSuccessful()) {
-                    progress.dismiss();
-                    setSharedPreference(email);
-                    Toast.makeText(SignUpMainActivity.this, "Tạo tài khoản thành công", Toast.LENGTH_LONG).show();
-                }
-                else {
-                    progress.dismiss();
-                    Toast.makeText(SignUpMainActivity.this, "Tạo tài khoản không thành công", Toast.LENGTH_LONG).show();
-                }
-            }
-        });
+        JavaMailAPI javaMailAPI = new JavaMailAPI(SignUpMainActivity.this, mEmail, mSubject, mMessage);
+        javaMailAPI.execute();
+
+        Intent intent = new Intent(SignUpMainActivity.this, ConfirmCodeActivity.class);
+        intent.putExtra("email",mEmail);
+        intent.putExtra("password",password);
+        intent.putExtra("code",code);
+        startActivity(intent);
+        finish();
+
+
     }
 
     public  boolean isValidEmail(CharSequence target)
@@ -122,10 +123,10 @@ public class SignUpMainActivity extends AppCompatActivity {
         return (!TextUtils.isEmpty(target) && Patterns.EMAIL_ADDRESS.matcher(target).matches());
     }
 
-    public void setSharedPreference(String email){
+  /*  public void setSharedPreference(String UID){
         SharedPreferences sharedPreferences = getSharedPreferences("sharedPrefs",MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString("EMAIL",email);
+        editor.putString("UID",UID);
         editor.apply();
-    }
+    }*/
 }

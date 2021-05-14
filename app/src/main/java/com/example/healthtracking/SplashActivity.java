@@ -47,7 +47,7 @@ public class SplashActivity extends AppCompatActivity {
                 Intent intent = new Intent(SplashActivity.this, OnBoarding.class);
                 startActivity(intent);
                 finish();
-            } else if (!userSetting.equals("")){
+            } else if (userSetting.wasInfor == false){
                 Intent intent = new Intent(SplashActivity.this, InformationActivity.class);
                 startActivity(intent);
                 finish();
@@ -62,6 +62,7 @@ public class SplashActivity extends AppCompatActivity {
     public void getUserSetting(UserSetting userSetting){
         SharedPreferences sharedPreferences = getSharedPreferences("sharedPrefs",MODE_PRIVATE);
         userSetting.wasLogin = sharedPreferences.getBoolean("IS_LOGIN",false);
-        userSetting.email = sharedPreferences.getString("EMAIL","");
+        userSetting.wasInfor = sharedPreferences.getBoolean("IS_INFOR",false);
+        //userSetting.UID = sharedPreferences.getString("UID","");
     }
 }

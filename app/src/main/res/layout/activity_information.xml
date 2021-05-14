@@ -7,7 +7,7 @@
     tools:context=".InformationActivity">
 
     <Button
-        android:id="@+id/buttonSignUp2"
+        android:id="@+id/buttonStart"
         android:layout_width="350sp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="50dp"
@@ -79,6 +79,7 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editTextName"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:drawableStart="@drawable/ic_person"
@@ -99,6 +100,7 @@
         app:layout_constraintTop_toBottomOf="@+id/nameEt">
 
         <com.google.android.material.textfield.MaterialAutoCompleteTextView
+            android:id="@+id/textViewYear"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Năm sinh" />
@@ -115,6 +117,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout2">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editTextWeight"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Cân nặng" />
@@ -131,6 +134,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editTextHeight"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Chiều cao" />
@@ -148,6 +152,7 @@
         app:layout_constraintTop_toBottomOf="@+id/nameEt">
 
         <com.google.android.material.textfield.MaterialAutoCompleteTextView
+            android:id="@+id/spinnerSex"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Giới tính" />
