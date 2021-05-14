@@ -116,15 +116,6 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
-   /* @Override
-    public void onStart() {
-        super.onStart();
-        // Check if user is signed in (non-null) and update UI accordingly.
-        FirebaseUser User = mAuth.getCurrentUser();
-        updateUI(User);
-    }*/
-
-
 
     public  void Anhxa()
     {
@@ -170,19 +161,6 @@ public class LoginActivity extends AppCompatActivity {
             return;
         }
 
-      /*  mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if (task.isSuccessful()) {
-                    Toast.makeText(LoginActivity.this, "Đăng nhập thành công", Toast.LENGTH_LONG).show();
-                    FirebaseUser user = mAuth.getCurrentUser();
-                    updateUI(user);
-                }
-                else {
-                    Toast.makeText(LoginActivity.this, "Đăng nhập không thành công", Toast.LENGTH_LONG).show();
-                }
-            }
-        });*/
         mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
