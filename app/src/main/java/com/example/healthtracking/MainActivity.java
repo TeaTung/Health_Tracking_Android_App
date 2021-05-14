@@ -79,8 +79,8 @@ public class MainActivity extends AppCompatActivity {
     public  void changeUserSetting(){
         SharedPreferences sharedPreferences = getSharedPreferences("sharedPrefs",MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
-
         editor.putBoolean("WAS_LOGIN",true);
+        editor.putBoolean("WAS_INFORMATION",false);
         editor.apply();
     }
 }

@@ -14,13 +14,17 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.textfield.MaterialAutoCompleteTextView;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.whiteelephant.monthpicker.MonthPickerDialog;
 
+import java.io.IOException;
 import java.util.Calendar;
 
 import static android.icu.lang.UCharacter.GraphemeClusterBreak.V;
@@ -34,6 +38,7 @@ public class InformationActivity extends AppCompatActivity {
     Button button;
     String arr[]={"Nam", "Nữ"};
     String Sex;
+    FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -105,31 +110,35 @@ public class InformationActivity extends AppCompatActivity {
             builder.setActivatedMonth(today.get(Calendar.MONTH))
                     .setMinYear(1900)
                     .setActivatedYear(today.get(Calendar.YEAR))
-                    .setMaxYear(2030)
-                    .setTitle("Select year")
+                    .setMaxYear(today.get(Calendar.YEAR))
+                    .setTitle("Chọn năm sinh")
                     .showYearOnly()
                     .build().show();
 
         }
         else if (v.getId() == R.id.buttonStart)
         {
-            mDatabase = FirebaseDatabase.getInstance().getReference();
-            User user = new User();
-            Profile profile = new Profile(edittextname.getText().toString(), Integer.parseInt(textViewyear.getText().toString()),spinnersex.getText().toString(),
-                    Double.parseDouble(edittextheight.getText().toString()),Double.parseDouble(edittextweight.getText().toString()));
-            OnedayofPractice onedayofPractice1 = new OnedayofPractice(new Run(0,0),0,0);
-            user.profile = profile;
+            if (checkInformation()) {
+                mDatabase = FirebaseDatabase.getInstance().getReference();
+                mAuth = FirebaseAuth.getInstance();
+                FirebaseUser fuser = mAuth.getCurrentUser();
 
-            long millis=System.currentTimeMillis();
-            java.sql.Date date=new java.sql.Date(millis);
-            user.practice.put(date.toString(),onedayofPractice1);
-            // textView.setText(getIntent().getStringExtra("UID").toString());
-            mDatabase.child(getIntent().getStringExtra("UID")).setValue(user);
+                User user = new User();
+                Profile profile = new Profile(edittextname.getText().toString(), Integer.parseInt(textViewyear.getText().toString()), spinnersex.getText().toString(),
+                        Double.parseDouble(edittextheight.getText().toString()), Double.parseDouble(edittextweight.getText().toString()));
+                OnedayofPractice onedayofPractice1 = new OnedayofPractice(new Run(0, 0), 0, 0);
+                user.profile = profile;
 
-            Intent intent = new Intent(InformationActivity.this, MainActivity.class);
-            intent.putExtra("UID", getIntent().getStringExtra("UID"));
-            startActivity(intent);
-            finish();
+                long millis = System.currentTimeMillis();
+                java.sql.Date date = new java.sql.Date(millis);
+                user.practice.put(date.toString(), onedayofPractice1);
+                mDatabase.child(fuser.getUid()).setValue(user);
+
+                Intent intent = new Intent(InformationActivity.this, MainActivity.class);
+                intent.putExtra("UID", getIntent().getStringExtra("UID"));
+                startActivity(intent);
+                finish();
+            }
         }
     }
 
@@ -139,6 +148,76 @@ public class InformationActivity extends AppCompatActivity {
 
         editor.putBoolean("WAS_INFORMATION",true);
         editor.apply();
+    }
+
+    public  boolean checkInformation()
+    {
+        if (edittextname.getText().toString().equals(""))
+        {
+            edittextname.setError("Vui long nhập tên");
+            return false;
+        }
+
+        if (textViewyear.getText().toString().equals(""))
+        {
+
+            textViewyear.setError("Vui long chọn năm sinh");
+            return false;
+        }
+        if (spinnersex.getText().toString().equals(""))
+        {
+            spinnersex.setError("Vui long chon gioi tinh");
+            return false;
+        }
+        if (edittextheight.getText().toString().equals(""))
+        {
+            edittextheight.setError("Vui long nhập chiều cao");
+            return false;
+        }
+        if (edittextweight.getText().toString().equals(""))
+        {
+            edittextweight.setError("Vui long nhập cân nặng");
+            return false;
+        }
+
+        for (int i = 0; i < edittextname.getText().toString().length(); i++)
+        {
+            int x = (int)(edittextname.getText().toString().charAt(i));
+            if (((x>= 33) & (x<=64)) | ((x >= 91) & (x <= 96)) | (x >= 123))
+            {
+                edittextname.setError("Tên chỉ bao gôm chữ cái và ký tự trắng");
+                return false;
+            }
+
+        }
+        try {
+           Double x = Double.parseDouble(edittextheight.getText().toString());
+           if (( x <= 14) | (x>= 301))
+           {
+             edittextheight.setError("Chiều cao từ 15cm tới 300cm");
+               return  false;
+           }
+        }
+        catch (Exception e )
+        {
+            /////////
+            return false;
+        }
+
+        try {
+            Double x = Double.parseDouble(edittextweight.getText().toString());
+            if (( x <= 9) | (x>= 301))
+            {
+                edittextweight.setError("Cân nặng phải từ 10kg tới 300kg ");
+                return  false;
+            }
+        }
+        catch (Exception e )
+        {
+            /////////
+            return false;
+        }
+        return true;
     }
 
 }
