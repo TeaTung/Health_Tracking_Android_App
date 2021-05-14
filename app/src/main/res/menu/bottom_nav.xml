@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/nav_home"
+        android:icon="@drawable/ic_home"
+        android:title="Tổng quan"
+        android:iconTint="@color/white"
+        app:cnb_iconColor="@color/blue"/>
+
+    <item
+        android:id="@+id/nav_run"
+        android:icon="@drawable/ic_run"
+        android:title="Tập luyện"
+        android:iconTint="@color/white"
+        app:cnb_iconColor="@color/blue" />
+
+    <item
+        android:id="@+id/nav_food"
+        android:icon="@drawable/ic_food"
+        android:title="Chế độ ăn"
+        android:iconTint="@color/white"
+        app:cnb_iconColor="@color/blue"/>
+
+    <item
+        android:id="@+id/nav_account"
+        android:icon="@drawable/ic_person"
+        android:title="Tài khoản"
+        android:iconTint="@color/white"
+        app:cnb_iconColor="@color/blue"/>
+</menu>
