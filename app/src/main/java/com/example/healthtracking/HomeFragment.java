@@ -1,9 +1,15 @@
 package com.example.healthtracking;
 
+import android.content.Context;
 import android.content.Intent;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -26,7 +32,9 @@ import org.jetbrains.annotations.NotNull;
  * Use the {@link HomeFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class HomeFragment extends Fragment {
+public class HomeFragment extends Fragment implements SensorEventListener {
+    TextView stepCounter;
+    SensorManager sensorManager;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -69,8 +77,6 @@ public class HomeFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-
-
     }
 
     @Override
@@ -78,8 +84,10 @@ public class HomeFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
+
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         textViewName = (TextView) view.findViewById(R.id.textView14);
+
         textViewKm = (TextView) view.findViewById(R.id.textViewKm);
         textViewCalo = (TextView) view.findViewById(R.id.textViewCalo);
         textViewCountStep = (TextView) view.findViewById(R.id.textViewCountStep);
@@ -103,6 +111,29 @@ public class HomeFragment extends Fragment {
         return view;
     }
 
+
+    @Override
+    public void onActivityCreated(@Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        stepCounter = (TextView) getActivity().findViewById(R.id.stepsCounter);
+        sensorManager = (SensorManager) getActivity().getSystemService(Context.SENSOR_SERVICE);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        Sensor countSensor = sensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER);
+        sensorManager.registerListener(this,countSensor,SensorManager.SENSOR_DELAY_UI);
+    }
+
+    @Override
+    public void onSensorChanged(SensorEvent event) {
+        stepCounter.setText(String.valueOf(event.values[0]));
+    }
+
+    @Override
+    public void onAccuracyChanged(Sensor sensor, int accuracy) {
+
     public  void Setup()
     {
         double km, calo;
@@ -112,6 +143,5 @@ public class HomeFragment extends Fragment {
       calo = stepcount*62.5;
       textViewKm.setText(String.valueOf(km));
       textViewCalo.setText(String.valueOf(calo));
-
     }
 }

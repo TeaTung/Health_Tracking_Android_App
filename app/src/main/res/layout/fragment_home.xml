@@ -49,8 +49,9 @@
         android:layout_height="493dp"
         android:layout_marginTop="236dp"
         android:background="@drawable/round_border_recyclerview"
-        app:layout_constraintTop_toTopOf="@+id/toolbar2"
-        tools:layout_editor_absoluteX="-16dp">
+
+        app:layout_constraintTop_toTopOf="@+id/toolbar2">
+
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="350dp"
@@ -96,10 +97,11 @@
                 app:layout_constraintEnd_toEndOf="@+id/stepProgress"
                 app:layout_constraintHorizontal_bias="0.504"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textViewCountStep" />
+
+                app:layout_constraintTop_toBottomOf="@+id/stepsCounter" />
 
             <TextView
-                android:id="@+id/textViewCountStep"
+                android:id="@+id/stepsCounter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="52dp"
