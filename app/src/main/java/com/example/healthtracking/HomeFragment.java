@@ -2,6 +2,7 @@ package com.example.healthtracking;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -27,6 +28,9 @@ import com.google.firebase.database.ValueEventListener;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.util.Calendar;
+import java.util.Date;
+
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link HomeFragment#newInstance} factory method to
@@ -35,6 +39,8 @@ import org.jetbrains.annotations.NotNull;
 public class HomeFragment extends Fragment implements SensorEventListener {
     TextView stepCounter;
     SensorManager sensorManager;
+    SharedPreferences sharedPreferences;
+    int realStepCounter = 0;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -127,11 +133,10 @@ public class HomeFragment extends Fragment implements SensorEventListener {
 
     @Override
     public void onSensorChanged(SensorEvent event) {
-       String stepcount ;
-       stepcount = String.valueOf(event.values[0]);
-       int x = (int) Double.parseDouble(stepcount);
-       stepCounter.setText(String.valueOf(x));
-       Setup();
+
+        setTodayStepCounter();
+        stepCounter.setText("" + realStepCounter);
+        Setup();
     }
 
     @Override
@@ -152,5 +157,19 @@ public class HomeFragment extends Fragment implements SensorEventListener {
             textViewKm.setText(String.valueOf(m)+" Km");
         }
         textViewCalo.setText(String.valueOf(calo)+" Calo");
+    }
+
+    public void setTodayStepCounter(){
+        Calendar today = Calendar.getInstance();
+        sharedPreferences = getActivity().getSharedPreferences("sharedPrefs",Context.MODE_PRIVATE);
+        int currentDay = today.get(Calendar.DAY_OF_MONTH);
+        int lastestDay = sharedPreferences.getInt("TODAY",currentDay);
+
+        if (currentDay == lastestDay){
+            realStepCounter++;
+        } else {
+            realStepCounter = 0;
+            realStepCounter++;
+        }
     }
 }
