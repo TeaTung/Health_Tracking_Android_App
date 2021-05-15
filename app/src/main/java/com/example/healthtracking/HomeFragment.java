@@ -107,6 +107,7 @@ public class HomeFragment extends Fragment implements SensorEventListener {
             }
         });
         return view;
+
     }
 
 
@@ -126,8 +127,10 @@ public class HomeFragment extends Fragment implements SensorEventListener {
 
     @Override
     public void onSensorChanged(SensorEvent event) {
-        stepCounter.setText(String.valueOf(event.values[0]));
-        Setup();
+       String stepcount ;
+       stepcount = String.valueOf(event.values[0]);
+       stepCounter.setText(stepcount);
+       Setup();
     }
 
     @Override
@@ -137,7 +140,7 @@ public class HomeFragment extends Fragment implements SensorEventListener {
     public void Setup ()
     {
         double km, calo;
-        int stepcount = Integer.parseInt(textViewCountStep.getText().toString());
+        int stepcount = (int) Double.parseDouble(stepCounter.getText().toString());
         progressBarStepCount.setProgress(stepcount);
         km = stepcount * 0.7;
         calo = km * 62.5;

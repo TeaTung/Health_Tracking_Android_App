@@ -56,9 +56,12 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="350dp"
             android:layout_height="160dp"
+            android:layout_marginTop="32dp"
             android:background="@drawable/round_border_sleep_trachking"
-            tools:layout_editor_absoluteX="31dp"
-            tools:layout_editor_absoluteY="237dp">
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.508"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
 
             <ProgressBar
                 android:id="@+id/progressBar"
@@ -70,7 +73,8 @@
                 android:progressDrawable="@drawable/circle_progress_sleep"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="1.0" />
 
             <TextView
                 android:id="@+id/textView23"
@@ -144,6 +148,7 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout"
             android:layout_width="350dp"
             android:layout_height="160dp"
             android:layout_marginTop="32dp"
@@ -160,7 +165,7 @@
                 android:indeterminateOnly="false"
                 android:max="10000"
                 android:progress="70"
-                android:progressDrawable="@drawable/circle_progress"
+                android:progressDrawable="@drawable/circle_progress_step"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
