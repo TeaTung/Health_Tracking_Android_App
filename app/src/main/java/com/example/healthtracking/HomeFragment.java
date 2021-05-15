@@ -90,7 +90,7 @@ public class HomeFragment extends Fragment implements SensorEventListener {
 
         textViewKm = (TextView) view.findViewById(R.id.textViewKm);
         textViewCalo = (TextView) view.findViewById(R.id.textViewCalo);
-        textViewCountStep = (TextView) view.findViewById(R.id.textViewCountStep);
+        textViewCountStep = (TextView) view.findViewById(R.id.stepsCounter);
         progressBarStepCount = (ProgressBar) view.findViewById(R.id.stepProgress);
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         FirebaseDatabase.getInstance().getReference().child(user.getUid()).child("profile").child("Name").addListenerForSingleValueEvent(new ValueEventListener() {
@@ -106,8 +106,6 @@ public class HomeFragment extends Fragment implements SensorEventListener {
 
             }
         });
-        Setup();
-
         return view;
     }
 
@@ -129,19 +127,21 @@ public class HomeFragment extends Fragment implements SensorEventListener {
     @Override
     public void onSensorChanged(SensorEvent event) {
         stepCounter.setText(String.valueOf(event.values[0]));
+        Setup();
     }
 
     @Override
     public void onAccuracyChanged(Sensor sensor, int accuracy) {
 
-    public  void Setup()
+    }
+    public void Setup ()
     {
         double km, calo;
         int stepcount = Integer.parseInt(textViewCountStep.getText().toString());
-      progressBarStepCount.setProgress(stepcount);
-      km = stepcount*0.7;
-      calo = stepcount*62.5;
-      textViewKm.setText(String.valueOf(km));
-      textViewCalo.setText(String.valueOf(calo));
+        progressBarStepCount.setProgress(stepcount);
+        km = stepcount * 0.7;
+        calo = km * 62.5;
+        textViewKm.setText(String.valueOf(km));
+        textViewCalo.setText(String.valueOf(calo));
     }
 }
