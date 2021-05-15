@@ -133,6 +133,7 @@ public class HomeFragment extends Fragment implements SensorEventListener {
 
     @Override
     public void onSensorChanged(SensorEvent event) {
+
         setTodayStepCounter();
         stepCounter.setText("" + realStepCounter);
         Setup();
@@ -144,13 +145,18 @@ public class HomeFragment extends Fragment implements SensorEventListener {
     }
     public void Setup ()
     {
-        double km, calo;
+        double m, calo;
         int stepcount = (int) Double.parseDouble(stepCounter.getText().toString());
         progressBarStepCount.setProgress(stepcount);
-        km = stepcount * 0.7;
-        calo = km * 62.5;
-        textViewKm.setText(String.valueOf(km));
-        textViewCalo.setText(String.valueOf(calo));
+        m = Math.round(stepcount * 0.7*100)/100;
+        calo = m * 0.0625;
+        if (m <1000) textViewKm.setText(String.valueOf(m)+" m");
+        else
+        {
+            m = m/1000;
+            textViewKm.setText(String.valueOf(m)+" Km");
+        }
+        textViewCalo.setText(String.valueOf(calo)+" Calo");
     }
 
     public void setTodayStepCounter(){
