@@ -113,6 +113,9 @@ public class HomeFragment extends Fragment implements SensorEventListener {
 
             }
         });
+
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("sharedPrefs",Context.MODE_PRIVATE);
+        realStepCounter = sharedPreferences.getInt("REALSTEP",0);
         return view;
 
     }
@@ -163,19 +166,23 @@ public class HomeFragment extends Fragment implements SensorEventListener {
     public void setTodayStepCounter(){
         Calendar today = Calendar.getInstance();
         int currentDay = today.get(Calendar.DAY_OF_MONTH);
-
-        if (currentDay != day){
-            SharedPreferences sharedPreferences = getActivity().getSharedPreferences("sharedPrefs",Context.MODE_PRIVATE);
-            SharedPreferences.Editor editor = sharedPreferences.edit();
-
-            editor.putInt("DAY",currentDay);
-            editor.apply();
-            day = sharedPreferences.getInt("DAY",0);
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("sharedPrefs",Context.MODE_PRIVATE);
+        if (currentDay != sharedPreferences.getInt("DAY",0)){
 
             realStepCounter = 0;
             realStepCounter++;
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putInt("REALSTEP",realStepCounter);
+            editor.putInt("DAY",currentDay);
+            editor.apply();
+
         } else {
             realStepCounter++;
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putInt("REALSTEP",realStepCounter);
+            editor.apply();
+
+
         }
     }
 }
