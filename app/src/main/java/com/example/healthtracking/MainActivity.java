@@ -81,9 +81,6 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences sharedPreferences = getSharedPreferences("sharedPrefs",MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
-        Calendar today = Calendar.getInstance();
-        int currentDay = today.get(Calendar.DAY_OF_MONTH);
-        editor.putInt("TODAY",currentDay);
         editor.putBoolean("WAS_LOGIN",true);
         editor.putBoolean("WAS_INFORMATION",false);
         editor.apply();
