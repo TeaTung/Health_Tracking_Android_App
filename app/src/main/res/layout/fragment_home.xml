@@ -22,8 +22,8 @@
         android:id="@+id/textView13"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="80dp"
         android:fontFamily="sans-serif-medium"
         android:text="Xin Chào!"
         android:textColor="@color/white"
@@ -43,11 +43,103 @@
         app:layout_constraintStart_toStartOf="@+id/textView13"
         app:layout_constraintTop_toBottomOf="@+id/textView13" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="410dp"
-        android:layout_height="510dp"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="493dp"
         android:background="@drawable/round_border_recyclerview"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        tools:layout_editor_absoluteX="1dp"
+        tools:layout_editor_absoluteY="237dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="350dp"
+            android:layout_height="160dp"
+            android:background="@drawable/round_border_step_counter"
+            tools:layout_editor_absoluteX="30dp"
+            tools:layout_editor_absoluteY="50dp">
+
+            <ProgressBar
+                android:id="@+id/stepProgress3"
+                android:layout_width="163dp"
+                android:layout_height="152dp"
+                android:layout_marginStart="4dp"
+                android:indeterminateOnly="false"
+                android:progress="70"
+                android:progressDrawable="@drawable/circle_progress"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textView22"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-black"
+                android:text="Bạn đã đốt cháy"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                tools:layout_editor_absoluteX="167dp"
+                tools:layout_editor_absoluteY="80dp" />
+
+            <TextView
+                android:id="@+id/textView20"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-light"
+                android:text="Bước chân"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="@+id/stepProgress3"
+                app:layout_constraintHorizontal_bias="0.504"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/stepsCounter7" />
+
+            <TextView
+                android:id="@+id/stepsCounter7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="52dp"
+                android:fontFamily="sans-serif-black"
+                android:text="1000"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="@+id/stepProgress3"
+                app:layout_constraintHorizontal_bias="0.516"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/stepProgress3" />
+
+            <TextView
+                android:id="@+id/textView21"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-black"
+                android:text="Quãng đường"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                tools:layout_editor_absoluteX="167dp"
+                tools:layout_editor_absoluteY="20dp" />
+
+            <TextView
+                android:id="@+id/stepsCounter8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-condensed-light"
+                android:text="1 Kilomet"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp"
+                tools:layout_editor_absoluteX="167dp"
+                tools:layout_editor_absoluteY="42dp" />
+
+            <TextView
+                android:id="@+id/stepsCounter9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-condensed-light"
+                android:text="80 Kalo"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp"
+                tools:layout_editor_absoluteX="167dp"
+                tools:layout_editor_absoluteY="102dp" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
