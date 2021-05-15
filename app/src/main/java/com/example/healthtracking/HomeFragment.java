@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -36,7 +37,8 @@ public class HomeFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    TextView textViewName;
+    TextView textViewName, textViewKm, textViewCalo, textViewCountStep;
+    ProgressBar progressBarStepCount;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -78,6 +80,10 @@ public class HomeFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         textViewName = (TextView) view.findViewById(R.id.textView14);
+        textViewKm = (TextView) view.findViewById(R.id.textViewKm);
+        textViewCalo = (TextView) view.findViewById(R.id.textViewCalo);
+        textViewCountStep = (TextView) view.findViewById(R.id.textViewCountStep);
+        progressBarStepCount = (ProgressBar) view.findViewById(R.id.stepProgress);
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         FirebaseDatabase.getInstance().getReference().child(user.getUid()).child("profile").child("Name").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -92,6 +98,20 @@ public class HomeFragment extends Fragment {
 
             }
         });
+        Setup();
+
         return view;
+    }
+
+    public  void Setup()
+    {
+        double km, calo;
+        int stepcount = Integer.parseInt(textViewCountStep.getText().toString());
+      progressBarStepCount.setProgress(stepcount);
+      km = stepcount*0.7;
+      calo = stepcount*62.5;
+      textViewKm.setText(String.valueOf(km));
+      textViewCalo.setText(String.valueOf(calo));
+
     }
 }
