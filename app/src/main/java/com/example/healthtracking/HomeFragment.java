@@ -41,6 +41,7 @@ public class HomeFragment extends Fragment implements SensorEventListener {
     SensorManager sensorManager;
     SharedPreferences sharedPreferences;
     int realStepCounter = 0;
+    int day = 0;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -161,14 +162,19 @@ public class HomeFragment extends Fragment implements SensorEventListener {
 
     public void setTodayStepCounter(){
         Calendar today = Calendar.getInstance();
-        sharedPreferences = getActivity().getSharedPreferences("sharedPrefs",Context.MODE_PRIVATE);
         int currentDay = today.get(Calendar.DAY_OF_MONTH);
-        int lastestDay = sharedPreferences.getInt("TODAY",currentDay);
 
-        if (currentDay == lastestDay){
+        if (currentDay != day){
+            SharedPreferences sharedPreferences = getActivity().getSharedPreferences("sharedPrefs",Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+
+            editor.putInt("DAY",currentDay);
+            editor.apply();
+            day = sharedPreferences.getInt("DAY",0);
+
+            realStepCounter = 0;
             realStepCounter++;
         } else {
-            realStepCounter = 0;
             realStepCounter++;
         }
     }
