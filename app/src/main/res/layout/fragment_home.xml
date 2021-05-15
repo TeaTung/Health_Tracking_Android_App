@@ -47,8 +47,99 @@
         android:layout_width="match_parent"
         android:layout_height="493dp"
         android:background="@drawable/round_border_recyclerview"
-        tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="237dp">
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="350dp"
+            android:layout_height="160dp"
+            android:background="@drawable/round_border_sleep_trachking"
+            tools:layout_editor_absoluteX="31dp"
+            tools:layout_editor_absoluteY="237dp">
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                style="?android:attr/progressBarStyle"
+                android:layout_width="154dp"
+                android:layout_height="159dp"
+                android:indeterminateOnly="false"
+                android:progress="70"
+                android:progressDrawable="@drawable/circle_progress_sleep"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textView23"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="55dp"
+                android:fontFamily="sans-serif-black"
+                android:text="8"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="@+id/progressBar"
+                app:layout_constraintHorizontal_bias="0.507"
+                app:layout_constraintStart_toStartOf="@+id/progressBar"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textView24"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tiếng"
+                android:textColor="@color/white"
+                app:layout_constraintEnd_toEndOf="@+id/progressBar"
+                app:layout_constraintStart_toStartOf="@+id/progressBar"
+                app:layout_constraintTop_toBottomOf="@+id/textView23" />
+
+            <TextView
+                android:id="@+id/textView25"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:fontFamily="sans-serif-black"
+                android:text="Giấc ngủ"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textView26"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="8 Tiếng"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="@+id/textView25"
+                app:layout_constraintTop_toBottomOf="@+id/textView25" />
+
+            <TextView
+                android:id="@+id/textView27"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="24dp"
+                android:fontFamily="sans-serif-black"
+                android:text="Chất lượng"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView26" />
+
+            <TextView
+                android:id="@+id/textView28"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tốt"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="@+id/textView27"
+                app:layout_constraintTop_toBottomOf="@+id/textView27" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="350dp"
@@ -60,11 +151,12 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <ProgressBar
-                android:id="@+id/stepProgress3"
+                android:id="@+id/stepProgress"
                 android:layout_width="163dp"
                 android:layout_height="152dp"
                 android:layout_marginStart="4dp"
                 android:indeterminateOnly="false"
+                android:max="10000"
                 android:progress="70"
                 android:progressDrawable="@drawable/circle_progress"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -75,12 +167,13 @@
                 android:id="@+id/textView22"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
                 android:fontFamily="sans-serif-black"
                 android:text="Bạn đã đốt cháy"
                 android:textColor="@color/white"
                 android:textSize="20sp"
-                tools:layout_editor_absoluteX="167dp"
-                tools:layout_editor_absoluteY="80dp" />
+                app:layout_constraintStart_toEndOf="@+id/stepProgress"
+                app:layout_constraintTop_toBottomOf="@+id/textViewKm" />
 
             <TextView
                 android:id="@+id/textView20"
@@ -90,13 +183,14 @@
                 android:text="Bước chân"
                 android:textColor="@color/white"
                 android:textSize="14sp"
-                app:layout_constraintEnd_toEndOf="@+id/stepProgress3"
+                app:layout_constraintEnd_toEndOf="@+id/stepProgress"
                 app:layout_constraintHorizontal_bias="0.504"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/stepsCounter7" />
+
+                app:layout_constraintTop_toBottomOf="@+id/stepsCounter" />
 
             <TextView
-                android:id="@+id/stepsCounter7"
+                android:id="@+id/stepsCounter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="52dp"
@@ -104,43 +198,45 @@
                 android:text="1000"
                 android:textColor="#FFFFFF"
                 android:textSize="20sp"
-                app:layout_constraintEnd_toEndOf="@+id/stepProgress3"
+                app:layout_constraintEnd_toEndOf="@+id/stepProgress"
                 app:layout_constraintHorizontal_bias="0.516"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/stepProgress3" />
+                app:layout_constraintTop_toTopOf="@+id/stepProgress" />
 
             <TextView
                 android:id="@+id/textView21"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
                 android:fontFamily="sans-serif-black"
                 android:text="Quãng đường"
                 android:textColor="@color/white"
                 android:textSize="20sp"
-                tools:layout_editor_absoluteX="167dp"
-                tools:layout_editor_absoluteY="20dp" />
+                app:layout_constraintStart_toEndOf="@+id/stepProgress"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/stepsCounter8"
+                android:id="@+id/textViewKm"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-condensed-light"
                 android:text="1 Kilomet"
                 android:textColor="#FFFFFF"
                 android:textSize="18sp"
-                tools:layout_editor_absoluteX="167dp"
-                tools:layout_editor_absoluteY="42dp" />
+                app:layout_constraintStart_toEndOf="@+id/stepProgress"
+                app:layout_constraintTop_toBottomOf="@+id/textView21" />
 
             <TextView
-                android:id="@+id/stepsCounter9"
+                android:id="@+id/textViewCalo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="1dp"
                 android:fontFamily="sans-serif-condensed-light"
                 android:text="80 Kalo"
                 android:textColor="#FFFFFF"
                 android:textSize="18sp"
-                tools:layout_editor_absoluteX="167dp"
-                tools:layout_editor_absoluteY="102dp" />
+                app:layout_constraintStart_toEndOf="@+id/stepProgress"
+                app:layout_constraintTop_toBottomOf="@+id/textView22" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
