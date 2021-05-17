@@ -33,7 +33,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/stepsCounter2"
+        android:id="@+id/calories"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif-condensed-light"
@@ -41,10 +41,10 @@
         android:textColor="#FFFFFF"
         android:textSize="16sp"
         app:layout_constraintStart_toEndOf="@+id/stepProgress"
-        app:layout_constraintTop_toBottomOf="@+id/textView18" />
+        app:layout_constraintTop_toBottomOf="@+id/tvTitleCalo" />
 
     <TextView
-        android:id="@+id/stepsCounter3"
+        android:id="@+id/kilometer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif-condensed-light"
@@ -52,9 +52,10 @@
         android:textColor="#FFFFFF"
         android:textSize="16sp"
         app:layout_constraintStart_toEndOf="@+id/stepProgress"
-        app:layout_constraintTop_toBottomOf="@+id/textView19" />
+        app:layout_constraintTop_toBottomOf="@+id/TitleDistance" />
 
     <TextView
+        android:id="@+id/tvTitleStepCounter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif-light"
@@ -67,7 +68,7 @@
         app:layout_constraintTop_toBottomOf="@+id/stepsCounter" />
 
     <TextView
-        android:id="@+id/textView18"
+        android:id="@+id/tvTitleCalo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="28dp"
@@ -79,7 +80,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView19"
+        android:id="@+id/TitleDistance"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -88,5 +89,5 @@
         android:textColor="@color/white"
         android:textSize="16sp"
         app:layout_constraintStart_toEndOf="@+id/stepProgress"
-        app:layout_constraintTop_toBottomOf="@+id/stepsCounter2" />
+        app:layout_constraintTop_toBottomOf="@+id/calories" />
 </androidx.constraintlayout.widget.ConstraintLayout>
