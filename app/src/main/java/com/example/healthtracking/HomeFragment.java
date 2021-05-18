@@ -5,6 +5,8 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,7 +28,10 @@ import org.jetbrains.annotations.NotNull;
  * create an instance of this fragment.
  */
 public class HomeFragment extends Fragment {
-
+    int[] stepsCounter;
+    int[] kilometers;
+    int[] calories;
+    RecyclerView recyclerView;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -92,6 +97,28 @@ public class HomeFragment extends Fragment {
 
             }
         });
+        recyclerView = (RecyclerView)view.findViewById(R.id.recycle_view);
+        sendCardViewIntoRecycleView(recyclerView);
         return view;
+    }
+
+    public void sendCardViewIntoRecycleView(RecyclerView recyclerView){
+        stepsCounter = new int[Home.homes.length];
+        for (int i = 0; i < stepsCounter.length; i++){
+            stepsCounter[i] = Home.homes[i].getStepsCounter();
+        }
+        kilometers = new int[Home.homes.length];
+        for (int i = 0; i < kilometers.length; i++){
+            kilometers[i] = Home.homes[i].getKilometers();
+        }
+        calories = new int[Home.homes.length];
+        for (int i = 0; i < calories.length; i++){
+            calories[i] = Home.homes[i].getCalories();
+        }
+
+        HomeAdapter adapter = new HomeAdapter(stepsCounter, kilometers, calories);
+        recyclerView.setAdapter(adapter);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
+        recyclerView.setLayoutManager(layoutManager);
     }
 }
