@@ -2,6 +2,7 @@ package com.example.healthtracking;
 
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -19,6 +20,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
     TextView tvStepsCounter;
     TextView tvKilometer;
     TextView tvCalories;
+    ProgressBar progressBar;
 
 
     public HomeAdapter(int[] stepsCounter){
@@ -37,7 +39,9 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
         CardView cardView = holder.cardView;
         double km = Math.round(stepsCounter[position] * 0.7*100)/100;
         double calo = km * 0.0625;
-
+        progressBar = (ProgressBar)cardView.findViewById(R.id.stepProgress);
+        progressBar.setMax(1000);
+        progressBar.setProgress(stepsCounter[position]);
         tvStepsCounter = (TextView) cardView.findViewById(R.id.stepsCounter);
         tvStepsCounter.setText(""+stepsCounter[position]);
         tvKilometer = (TextView) cardView.findViewById(R.id.kilometer);
