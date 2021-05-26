@@ -47,7 +47,9 @@ public class HomeFragment extends Fragment implements SensorEventListener {
     SensorManager sensorManager;
     SharedPreferences sharedPreferences;
     RecyclerView recyclerView;
+    HomeAdapter adapter;
     int[] stepsCounter;
+    ProgressBar progressBar;
     int realStepCounter = 0;
 
     // TODO: Rename parameter arguments, choose names that match
@@ -99,6 +101,7 @@ public class HomeFragment extends Fragment implements SensorEventListener {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         textViewName = (TextView) view.findViewById(R.id.textView14);
         recyclerView = (RecyclerView)view.findViewById(R.id.recycle_view);
+        progressBar = (ProgressBar)view.findViewById(R.id.stepProgress);
 
         setProfileName();
         sendCardViewIntoRecycleView(recyclerView);
@@ -124,7 +127,7 @@ public class HomeFragment extends Fragment implements SensorEventListener {
     @Override
     public void onSensorChanged(SensorEvent event) {
         setTodayStepCounter();
-        sendCardViewIntoRecycleView(recyclerView);
+        adapter.notifyDataSetChanged();
     }
     @Override
     public void onAccuracyChanged(Sensor sensor, int accuracy) {
@@ -152,7 +155,7 @@ public class HomeFragment extends Fragment implements SensorEventListener {
     }
     public void sendCardViewIntoRecycleView(RecyclerView recyclerView){
         Home[] cardSteps = {
-                new Home(realStepCounter),
+                new Home(realStepCounter,progressBar)
         };
 
         stepsCounter = new int[cardSteps.length];
@@ -160,7 +163,7 @@ public class HomeFragment extends Fragment implements SensorEventListener {
             stepsCounter[i] = cardSteps[i].getStepsCounter();
         }
 
-        HomeAdapter adapter = new HomeAdapter(stepsCounter);
+        adapter = new HomeAdapter(stepsCounter);
         recyclerView.setAdapter(adapter);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
