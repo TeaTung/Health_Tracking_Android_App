@@ -126,7 +126,7 @@ public class InformationActivity extends AppCompatActivity {
                 User user = new User();
                 Profile profile = new Profile(edittextname.getText().toString(), Integer.parseInt(textViewyear.getText().toString()), spinnersex.getText().toString(),
                         Double.parseDouble(edittextheight.getText().toString()), Double.parseDouble(edittextweight.getText().toString()));
-                OnedayofPractice onedayofPractice1 = new OnedayofPractice(new Run(0, 0), 0, 0);
+                OnedayofPractice onedayofPractice1 = new OnedayofPractice(new Run(0, 0,0), 0, 0);
                 user.profile = profile;
 
                 long millis = System.currentTimeMillis();
@@ -183,7 +183,7 @@ public class InformationActivity extends AppCompatActivity {
         for (int i = 0; i < edittextname.getText().toString().length(); i++)
         {
             int x = (int)(edittextname.getText().toString().charAt(i));
-            if (((x>= 33) & (x<=64)) | ((x >= 91) & (x <= 96)) | (x >= 123))
+            if (((x>= 33) & (x<=64)) | ((x >= 91) & (x <= 96)) | ((x >= 123)& (x <= 126)))
             {
                 edittextname.setError("Tên chỉ bao gôm chữ cái và ký tự trắng");
                 return false;
