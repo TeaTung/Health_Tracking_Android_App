@@ -3,7 +3,8 @@
     package="com.example.healthtracking">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACTIVITY_RECOGNITION"/>
+    <uses-permission android:name="android.permission.ACTIVITY_RECOGNITION" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -11,15 +12,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.HealthTracking">
-        <activity android:name=".ConfirmCodeActivity"></activity>
+        <activity android:name=".MapRunActivity"></activity>
+        <activity android:name=".ConfirmCodeActivity" />
         <activity android:name=".MenuActivity" />
         <activity android:name=".SignUpMainActivity" />
         <activity android:name=".ForgetActivity" />
         <activity android:name=".InformationActivity" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".OnBoarding" />
-        <activity android:name=".MainActivity"/>
-
+        <activity android:name=".MainActivity" />
         <activity android:name=".SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
