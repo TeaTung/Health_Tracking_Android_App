@@ -105,6 +105,7 @@ public class HomeFragment extends Fragment implements SensorEventListener {
 
         setProfileName();
         sendCardViewIntoRecycleView(recyclerView);
+        requestStepCounterPermission();
 
         sharedPreferences = getActivity().getSharedPreferences("sharedPrefs",Context.MODE_PRIVATE);
         realStepCounter = sharedPreferences.getInt("REALSTEP",0);
@@ -183,11 +184,11 @@ public class HomeFragment extends Fragment implements SensorEventListener {
         });
     }
 
-//    public void requestStepCounterPermission(){
-//        if(ContextCompat.checkSelfPermission(getContext(),
-//                Manifest.permission.ACTIVITY_RECOGNITION) == PackageManager.PERMISSION_DENIED){
-//            //ask for permission
-//            requestPermissions(new String[]{Manifest.permission.ACTIVITY_RECOGNITION}, PHY);
-//        }
-//    }
+    public void requestStepCounterPermission(){
+        if(ContextCompat.checkSelfPermission(getContext(),
+                Manifest.permission.ACTIVITY_RECOGNITION) == PackageManager.PERMISSION_DENIED){
+            //ask for permission
+            requestPermissions(new String[]{Manifest.permission.ACTIVITY_RECOGNITION}, 44);
+        }
+    }
 }
