@@ -128,7 +128,7 @@ public class HomeFragment extends Fragment implements SensorEventListener {
     @Override
     public void onSensorChanged(SensorEvent event) {
         setTodayStepCounter();
-        adapter.notifyDataSetChanged();
+        sendCardViewIntoRecycleView(recyclerView);
     }
     @Override
     public void onAccuracyChanged(Sensor sensor, int accuracy) {
