@@ -118,74 +118,33 @@ public class MapRunActivity extends AppCompatActivity implements OnMapReadyCallb
 
             return;
         }
-        Task<Location> task = client.getLastLocation();
-        task.addOnSuccessListener(new OnSuccessListener<Location>() {
+        Task<Location> locationTask = fusedLocationClient.getLastLocation();
+        locationTask.addOnSuccessListener(new OnSuccessListener<Location>() {
             @Override
             public void onSuccess(Location location) {
-                if (location != null){
+                if(location != null){
                     //sync map
                     supportMapFragment.getMapAsync(new OnMapReadyCallback() {
                         @Override
                         public void onMapReady(@NonNull @NotNull GoogleMap googleMap) {
-                            //Initialize lat Lng
-                            LatLng latLng = new LatLng(location.getLatitude(),
+                            //Create marker
+                            LatLng startLocation = new LatLng(location.getLatitude(),
                                     location.getLongitude());
-                            //Create maker options
-                            MarkerOptions startMarkerOptions = new MarkerOptions().position(latLng).title("Bạn đang ở đây");
+                            MarkerOptions startMaker = new MarkerOptions().position(startLocation)
+                                    .title("Bạn đang ở đây");
 
-                            //Zoom map
-                            googleMap.addMarker(startMarkerOptions);
-                            googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng,15));
+                            //Zoom map and add marker
+                            googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(startLocation,15));
+                            googleMap.addMarker(startMaker);
 
                             PolylineOptions line = new PolylineOptions().width(15).color(Color.BLUE);
-                            line.add(startMarkerOptions.getPosition());
-
-                            googleMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
-                                @Override
-                                public void onMapClick(@NonNull @NotNull LatLng latLng) {
-                                    line.add(latLng);
-                                    Polyline polyline = googleMap.addPolyline(line);
-                                    googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng,15));
-                                }
-                            });
+                            line.add(startLocation);
+                            drawLastLocation(googleMap,line);
                         }
                     });
                 }
             }
         });
-
-//        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-//
-//            return;
-//        }
-//        Task<Location> locationTask = fusedLocationClient.getLastLocation();
-//        locationTask.addOnSuccessListener(new OnSuccessListener<Location>() {
-//            @Override
-//            public void onSuccess(Location location) {
-//                if(location != null){
-//                    //sync map
-//                    supportMapFragment.getMapAsync(new OnMapReadyCallback() {
-//                        @Override
-//                        public void onMapReady(@NonNull @NotNull GoogleMap googleMap) {
-//                            //Create marker
-//                            LatLng startLocation = new LatLng(location.getLatitude(),
-//                                    location.getLongitude());
-//                            MarkerOptions startMaker = new MarkerOptions().position(startLocation)
-//                                    .title("Bạn đang ở đây");
-//
-//                            //Zoom map and add marker
-//                            googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(startLocation,15));
-//                            googleMap.addMarker(startMaker);
-//
-//                            PolylineOptions line = new PolylineOptions().width(15).color(Color.BLUE);
-//                            line.add(startLocation);
-//                            drawLastLocation(googleMap,line);
-//
-//                        }
-//                    });
-//                }
-//            }
-//        });
 
     }
     @Override
