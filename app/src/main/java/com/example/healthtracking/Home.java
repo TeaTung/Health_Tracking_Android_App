@@ -28,5 +28,16 @@ public class Home {
         return  progressBar;
     }
 
+    public void setStepsCounter(int stepsCounter) {
+        this.stepsCounter = stepsCounter;
+    }
+
+    public ProgressBar getProgressBar() {
+        return progressBar;
+    }
+
+    public void setProgressBar(ProgressBar progressBar) {
+        this.progressBar = progressBar;
+    }
 }
 
