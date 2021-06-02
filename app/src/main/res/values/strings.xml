@@ -16,5 +16,6 @@
         <item> Nam</item>
         <item> Nữ</item>
     </string-array>
+    <string name="google_map_key">AIzaSyA_oAEARBx9zw82u7mZiVbSfqjeFdeN1WQ</string>
 
 </resources>

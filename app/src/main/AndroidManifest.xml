@@ -16,7 +16,7 @@
         android:theme="@style/Theme.HealthTracking">
 
         <meta-data android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyA_oAEARBx9zw82u7mZiVbSfqjeFdeN1WQ"/>
+            android:value="@string/google_map_key"/>
         <activity android:name=".MapRunActivity"></activity>
         <activity android:name=".ConfirmCodeActivity" />
         <activity android:name=".MenuActivity" />

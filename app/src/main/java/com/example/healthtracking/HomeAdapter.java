@@ -39,6 +39,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
         CardView cardView = holder.cardView;
         double km = Math.round(stepsCounter[position] * 0.7*100)/100;
         double calo = km * 0.0625;
+
         progressBar = (ProgressBar)cardView.findViewById(R.id.stepProgress);
         progressBar.setMax(1000);
         progressBar.setProgress(stepsCounter[position]);
