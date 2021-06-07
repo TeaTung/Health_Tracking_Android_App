@@ -15,11 +15,13 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
             <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                android:id="@+id/toolbar"
-                app:layout_collapseMode="pin"/>
+                app:layout_collapseMode="pin" />
+
             <TextView
                 android:id="@+id/textView13"
                 android:layout_width="wrap_content"
@@ -30,16 +32,18 @@
                 android:text="Xin Chào!"
                 android:textColor="@color/white"
                 android:textSize="30sp" />
+
             <TextView
                 android:id="@+id/textView14"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="66dp"
                 android:layout_marginStart="32dp"
+                android:layout_marginTop="66dp"
                 android:fontFamily="sans-serif-light"
                 android:text=""
                 android:textColor="@color/white"
                 android:textSize="32sp" />
+
         </com.google.android.material.appbar.CollapsingToolbarLayout>
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -47,9 +51,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
-        <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:app="http://schemas.android.com/apk/res-auto"
-            xmlns:tools="http://schemas.android.com/tools"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             tools:context=".HomeFragment"
@@ -57,13 +59,14 @@
 
             <androidx.recyclerview.widget.RecyclerView
 
-                android:layout_width="410dp"
-                android:layout_height="wrap_content"
                 android:id="@+id/recycle_view"
+                android:layout_width="413dp"
+                android:layout_height="537dp"
+                android:layout_marginBottom="10416dp"
                 android:background="@drawable/round_border_recyclerview"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
