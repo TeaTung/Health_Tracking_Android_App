@@ -151,30 +151,7 @@ public class HomeFragment extends Fragment implements SensorEventListener {
 
     }
 
-    public void setTodayStepCounter() {
-        Calendar today = Calendar.getInstance();
-        int currentDay = today.get(Calendar.DAY_OF_MONTH);
-        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE);
-        if (currentDay != sharedPreferences.getInt("DAY", 0)) {
-
-            realStepCounter = 0;
-            realStepCounter++;
-            SharedPreferences.Editor editor = sharedPreferences.edit();
-            editor.putInt("REALSTEP", realStepCounter);
-            editor.putInt("DAY", currentDay);
-            editor.apply();
-
-        } else {
-            realStepCounter++;
-            SharedPreferences.Editor editor = sharedPreferences.edit();
-            editor.putInt("REALSTEP", realStepCounter);
-            editor.apply();
-        }
-    }
-
     public void sendCardViewIntoRecycleView(RecyclerView recyclerView) {
-
-
         Home[] cardSteps = {
                 new Home(realStepCounter, progressBar)
         };
