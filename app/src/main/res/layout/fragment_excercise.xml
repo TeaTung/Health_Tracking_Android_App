@@ -17,7 +17,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView16"
+        android:id="@+id/textViewDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="28dp"
@@ -30,15 +30,15 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView15"
+        android:id="@+id/textViewName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif-medium"
         android:text="Dương Tùng"
         android:textColor="#FFFFFF"
         android:textSize="22sp"
-        app:layout_constraintStart_toStartOf="@+id/textView16"
-        app:layout_constraintTop_toBottomOf="@+id/textView16" />
+        app:layout_constraintStart_toStartOf="@+id/textViewDate"
+        app:layout_constraintTop_toBottomOf="@+id/textViewDate" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
@@ -48,7 +48,7 @@
         android:background="@drawable/round_border_running"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView15">
+        app:layout_constraintTop_toBottomOf="@+id/textViewName">
 
         <ca.antonious.materialdaypicker.MaterialDayPicker
             android:id="@+id/day_picker"
@@ -58,7 +58,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.515"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:selectionMode="ca.antonious.materialdaypicker.SingleSelectionMode"/>
 
         <ImageView
             android:id="@+id/imgRun"
@@ -71,7 +72,7 @@
             app:layout_constraintTop_toBottomOf="@+id/day_picker" />
 
         <TextView
-            android:id="@+id/textView17"
+            android:id="@+id/textViewStepCount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -80,6 +81,7 @@
             android:textColor="#373737"
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="@+id/imgRun"
+            app:layout_constraintHorizontal_bias="0.434"
             app:layout_constraintStart_toStartOf="@+id/imgRun"
             app:layout_constraintTop_toBottomOf="@+id/imgRun" />
 
@@ -104,7 +106,7 @@
             app:layout_constraintTop_toBottomOf="@+id/day_picker" />
 
         <TextView
-            android:id="@+id/textView22"
+            android:id="@+id/textViewKalos"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -117,7 +119,7 @@
             app:layout_constraintTop_toBottomOf="@+id/imageView13" />
 
         <TextView
-            android:id="@+id/textView23"
+            android:id="@+id/textViewTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -140,7 +142,7 @@
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="@+id/imageView13"
             app:layout_constraintStart_toStartOf="@+id/imageView13"
-            app:layout_constraintTop_toBottomOf="@+id/textView22" />
+            app:layout_constraintTop_toBottomOf="@+id/textViewKalos" />
 
         <TextView
             android:id="@+id/textView25"
@@ -153,7 +155,7 @@
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="@+id/imageView12"
             app:layout_constraintStart_toStartOf="@+id/imageView12"
-            app:layout_constraintTop_toBottomOf="@+id/textView23" />
+            app:layout_constraintTop_toBottomOf="@+id/textViewTime" />
 
         <TextView
             android:id="@+id/textView26"
@@ -166,7 +168,7 @@
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="@+id/imgRun"
             app:layout_constraintStart_toStartOf="@+id/imgRun"
-            app:layout_constraintTop_toBottomOf="@+id/textView17" />
+            app:layout_constraintTop_toBottomOf="@+id/textViewStepCount" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

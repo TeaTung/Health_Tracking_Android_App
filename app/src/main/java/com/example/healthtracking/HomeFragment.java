@@ -2,17 +2,18 @@ package com.example.healthtracking;
 
 import android.Manifest;
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -23,7 +24,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.healthtracking.ClassData.OnedayofPractice;
 import com.example.healthtracking.ClassData.Run;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -36,7 +39,6 @@ import com.google.firebase.database.ValueEventListener;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Calendar;
-import java.util.Date;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -50,7 +52,10 @@ public class HomeFragment extends Fragment implements SensorEventListener {
     HomeAdapter adapter;
     int[] stepsCounter;
     ProgressBar progressBar;
-    int realStepCounter = 0;
+    int realStepCounter ;
+    int k;
+    int x;
+    TextView textViewName;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -60,8 +65,6 @@ public class HomeFragment extends Fragment implements SensorEventListener {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-
-    TextView textViewName;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -84,6 +87,14 @@ public class HomeFragment extends Fragment implements SensorEventListener {
         fragment.setArguments(args);
         return fragment;
     }
+
+    public interface OnGetDataListener {
+        //this is for callbacks
+        void onSuccess(DataSnapshot dataSnapshot);
+        void onStart();
+        void onFailure();
+    }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -92,6 +103,8 @@ public class HomeFragment extends Fragment implements SensorEventListener {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
+
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -100,67 +113,73 @@ public class HomeFragment extends Fragment implements SensorEventListener {
 
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         textViewName = (TextView) view.findViewById(R.id.textView14);
-        recyclerView = (RecyclerView)view.findViewById(R.id.recycle_view);
-        progressBar = (ProgressBar)view.findViewById(R.id.stepProgress);
-
+        recyclerView = (RecyclerView) view.findViewById(R.id.recycle_view);
+        progressBar = (ProgressBar) view.findViewById(R.id.stepProgress);
         setProfileName();
+        sharedPreferences = getActivity().getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE);
+        realStepCounter = sharedPreferences.getInt("REALSTEP",0);
         sendCardViewIntoRecycleView(recyclerView);
         requestStepCounterPermission();
-
-        sharedPreferences = getActivity().getSharedPreferences("sharedPrefs",Context.MODE_PRIVATE);
-        realStepCounter = sharedPreferences.getInt("REALSTEP",0);
+        //sharedPreferences = getActivity().getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE);
+        //realStepCounter = sharedPreferences.getInt("REALSTEP",0);
         return view;
 
     }
+
     @Override
     public void onActivityCreated(@Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         sensorManager = (SensorManager) getActivity().getSystemService(Context.SENSOR_SERVICE);
+
     }
 
     @Override
     public void onResume() {
         super.onResume();
         Sensor countSensor = sensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER);
-        sensorManager.registerListener(this,countSensor,SensorManager.SENSOR_DELAY_UI);
+        sensorManager.registerListener(this, countSensor, SensorManager.SENSOR_DELAY_UI);
     }
 
     @Override
     public void onSensorChanged(SensorEvent event) {
-        setTodayStepCounter();
-        sendCardViewIntoRecycleView(recyclerView);
+         realStepCounter++;
+         sendCardViewIntoRecycleView(recyclerView);
     }
+
     @Override
     public void onAccuracyChanged(Sensor sensor, int accuracy) {
 
     }
-    public void setTodayStepCounter(){
+
+    public void setTodayStepCounter() {
         Calendar today = Calendar.getInstance();
         int currentDay = today.get(Calendar.DAY_OF_MONTH);
-        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("sharedPrefs",Context.MODE_PRIVATE);
-        if (currentDay != sharedPreferences.getInt("DAY",0)){
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE);
+        if (currentDay != sharedPreferences.getInt("DAY", 0)) {
 
             realStepCounter = 0;
             realStepCounter++;
             SharedPreferences.Editor editor = sharedPreferences.edit();
-            editor.putInt("REALSTEP",realStepCounter);
-            editor.putInt("DAY",currentDay);
+            editor.putInt("REALSTEP", realStepCounter);
+            editor.putInt("DAY", currentDay);
             editor.apply();
 
         } else {
             realStepCounter++;
             SharedPreferences.Editor editor = sharedPreferences.edit();
-            editor.putInt("REALSTEP",realStepCounter);
+            editor.putInt("REALSTEP", realStepCounter);
             editor.apply();
         }
     }
-    public void sendCardViewIntoRecycleView(RecyclerView recyclerView){
-        Home[] cardSteps = {
-                new Home(realStepCounter,progressBar)
-        };
 
+    public void sendCardViewIntoRecycleView(RecyclerView recyclerView) {
+
+
+        Home[] cardSteps = {
+                new Home(realStepCounter, progressBar)
+        };
         stepsCounter = new int[cardSteps.length];
-        for (int i = 0; i < stepsCounter.length; i++){
+        for (int i = 0; i < stepsCounter.length; i++) {
             stepsCounter[i] = cardSteps[i].getStepsCounter();
         }
 
@@ -169,26 +188,78 @@ public class HomeFragment extends Fragment implements SensorEventListener {
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
     }
-    public void setProfileName(){
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        FirebaseDatabase.getInstance().getReference().child(user.getUid()).child("profile").child("Name").addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
-                String x = snapshot.getValue(String.class);
-                textViewName.setText(x);
-            }
-            @Override
-            public void onCancelled(@NonNull @NotNull DatabaseError error) {
 
-            }
-        });
+    public void setProfileName() {
+
+            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+            FirebaseDatabase.getInstance().getReference().child(user.getUid()).child("profile").child("Name").addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
+                    String x = snapshot.getValue(String.class);
+                    textViewName.setText(x);
+                }
+
+                @Override
+                public void onCancelled(@NonNull @NotNull DatabaseError error) {
+
+                }
+            });
     }
 
-    public void requestStepCounterPermission(){
-        if(ContextCompat.checkSelfPermission(getContext(),
-                Manifest.permission.ACTIVITY_RECOGNITION) == PackageManager.PERMISSION_DENIED){
+    public void requestStepCounterPermission() {
+        if (ContextCompat.checkSelfPermission(getContext(),
+                Manifest.permission.ACTIVITY_RECOGNITION) == PackageManager.PERMISSION_DENIED) {
             //ask for permission
             requestPermissions(new String[]{Manifest.permission.ACTIVITY_RECOGNITION}, 44);
         }
     }
+
+
+
+    public void LoadDataFromFirebase( ) {
+
+        long millis = System.currentTimeMillis();
+        java.sql.Date date = new java.sql.Date(millis);
+            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+            DatabaseReference  reference = FirebaseDatabase.getInstance().getReference().child(user.getUid()).child("practice").child(date.toString())
+                    .child("run").child("StepCount");
+
+            readData(reference, new OnGetDataListener() {
+                @Override
+                public void onSuccess(DataSnapshot dataSnapshot) {
+                     realStepCounter = dataSnapshot.getValue(Integer.class);
+                     realStepCounter++;
+                     sendCardViewIntoRecycleView(recyclerView);
+                }
+
+                @Override
+                public void onStart() {
+
+                }
+
+                @Override
+                public void onFailure() {
+
+                }
+            });
+
+
+        }
+
+    public void readData(DatabaseReference ref, final OnGetDataListener listener) {
+        listener.onStart();
+        ref.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
+                listener.onSuccess(snapshot);
+            }
+
+            @Override
+            public void onCancelled(@NonNull @NotNull DatabaseError error) {
+               listener.onFailure();
+            }
+        });
+
+    }
+
 }
