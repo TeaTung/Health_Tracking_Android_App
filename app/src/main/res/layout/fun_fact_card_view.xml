@@ -59,7 +59,6 @@
             android:text="Bạn có biết?"
             android:textColor="#FCFDFC"
             style="@style/TextShadowStyle"
-            android:shadowRadius="5px"
             android:textSize="20sp"
             app:layout_constraintBottom_toTopOf="@+id/constraintLayout2"
             app:layout_constraintEnd_toEndOf="parent"

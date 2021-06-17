@@ -9,7 +9,7 @@
     <ImageView
         android:id="@+id/imageView6"
         android:layout_width="756dp"
-        android:layout_height="380dp"
+        android:layout_height="550dp"
         android:scaleType="fitCenter"
         android:src="@drawable/tool_bar"
         app:layout_constraintEnd_toEndOf="parent"
@@ -42,8 +42,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
-        android:layout_width="388dp"
-        android:layout_height="196dp"
+        android:layout_width="363dp"
+        android:layout_height="195dp"
         android:layout_marginTop="24dp"
         android:background="@drawable/round_border_running"
         app:layout_constraintEnd_toEndOf="parent"
@@ -52,14 +52,14 @@
 
         <ca.antonious.materialdaypicker.MaterialDayPicker
             android:id="@+id/day_picker"
-            android:layout_width="360dp"
-            android:layout_height="45dp"
+            android:layout_width="348dp"
+            android:layout_height="44dp"
             android:layout_marginTop="8dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.515"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:selectionMode="ca.antonious.materialdaypicker.SingleSelectionMode"/>
+            app:selectionMode="ca.antonious.materialdaypicker.SingleSelectionMode" />
 
         <ImageView
             android:id="@+id/imgRun"
@@ -172,42 +172,85 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <TextView
-        android:id="@+id/textView27"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="13dp"
-        android:fontFamily="sans-serif-medium"
-        android:text="Chuỗi 4 Firefit days."
-        android:textColor="#FFFFFF"
-        android:textSize="24sp"
-        app:layout_constraintStart_toEndOf="@+id/imageView14"
-        app:layout_constraintTop_toTopOf="@+id/imageView14" />
-
-    <ImageView
-        android:id="@+id/imageView14"
-        android:layout_width="59dp"
-        android:layout_height="53dp"
-        android:layout_marginStart="62dp"
-        android:src="@drawable/firefit"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView6"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="280dp"
+        android:layout_height="58dp"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout3"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
 
-    <TextView
-        android:id="@+id/textView29"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="10dp"
-        android:fontFamily="sans-serif-light"
-        android:text="Luyện tập chăm chỉ để nhận Firefit Days."
-        android:textColor="#F8F8F8"
-        android:textSize="12sp"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView14"
-        app:layout_constraintStart_toEndOf="@+id/imageView14"
-        app:layout_constraintTop_toBottomOf="@+id/textView27"
-        app:layout_constraintVertical_bias="1.0" /><![CDATA[
-    >
-]]>
+        <ImageView
+            android:id="@+id/imageView14"
+            android:layout_width="59dp"
+            android:layout_height="53dp"
+            android:src="@drawable/firefit"
+            tools:layout_editor_absoluteX="4dp"
+            tools:layout_editor_absoluteY="2dp" />
+
+        <TextView
+            android:id="@+id/textView27"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-medium"
+            android:text="Chuỗi 4 Firefit days."
+            android:textColor="#FFFFFF"
+            android:textSize="24sp"
+            app:layout_constraintStart_toEndOf="@+id/imageView14"
+            app:layout_constraintTop_toTopOf="@+id/imageView14" />
+
+        <TextView
+            android:id="@+id/textView29"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-light"
+            android:text="Luyện tập chăm chỉ để nhận Firefit Days."
+            android:textColor="#F8F8F8"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView14"
+            app:layout_constraintStart_toStartOf="@+id/textView27" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout3"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginBottom="4dp"
+        android:background="@drawable/round_border_recyclerview"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:id="@+id/textView46"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:fontFamily="sans-serif-black"
+            android:text="Luyện tập cùng FireFit"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="357dp"
+            android:layout_height="55dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView46">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#FFFFFF"
+                android:fontFamily="sans-serif-light"
+                android:hint="Chọn bài tập"
+                android:textSize="20sp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
