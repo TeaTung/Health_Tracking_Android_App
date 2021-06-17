@@ -4,13 +4,11 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.healthtracking.ClassData.OnedayofPractice;
 import com.example.healthtracking.ClassData.Run;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -37,7 +35,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
     @Override
     public ViewHolder onCreateViewHolder(@NonNull  ViewGroup parent, int viewType) {
         CardView cardView = (CardView) LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.card_view,parent,false);
+                .inflate(R.layout.exercise_card_view,parent,false);
         return new ViewHolder(cardView);
     }
 

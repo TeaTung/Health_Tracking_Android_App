@@ -5,7 +5,7 @@
             android:shape="ring"
             android:thicknessRatio="12"
             android:useLevel="false">
-            <solid android:color="#FEAA48" />
+            <solid android:color="#0984e3" />
         </shape>
     </item>
     <item>

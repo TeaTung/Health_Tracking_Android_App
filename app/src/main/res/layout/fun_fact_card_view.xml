@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cardView"
+    android:layout_width="match_parent"
+    android:layout_height="180dp"
+    android:background="@drawable/round_border_recyclerview">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="314dp"
+        android:layout_height="160dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/round_border_step_counter">
+
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/pictureFunFact"
+            android:layout_width="314dp"
+            android:layout_height="80dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:shapeAppearanceOverlay="@style/roundedImageView"
+            app:srcCompat="@drawable/sup_lo" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout2"
+            android:layout_width="314dp"
+            android:layout_height="107dp"
+            android:background="@drawable/rouned_fun_fact"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <TextView
+                android:id="@+id/textView36"
+                android:layout_width="253dp"
+                android:layout_height="40dp"
+                android:fontFamily="sans-serif-light"
+                android:gravity="center_horizontal"
+                android:text="Mỗi bông súp lơ chứa 200 gram chất xơ, cung cấp đủ cho một ngày."
+                android:textColor="#FDFDFD"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:id="@+id/textView17"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-black"
+            android:text="Bạn có biết?"
+            android:textColor="#FCFDFC"
+            style="@style/TextShadowStyle"
+            android:shadowRadius="5px"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toTopOf="@+id/constraintLayout2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/pictureFunFact" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>

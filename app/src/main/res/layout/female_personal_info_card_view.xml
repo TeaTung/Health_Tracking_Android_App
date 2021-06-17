@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cardView"
+    android:layout_width="match_parent"
+    android:layout_height="180dp"
+    android:background="@drawable/round_border_recyclerview">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="314dp"
+        android:layout_height="160dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/round_border_step_counter">
+
+        <TextView
+            android:id="@+id/kilometer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-condensed-light"
+            android:text="174 Cm"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            app:layout_constraintTop_toBottomOf="@+id/TitleDistance"
+            tools:layout_editor_absoluteX="16dp" />
+
+        <TextView
+            android:id="@+id/tvTitleCalo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:fontFamily="sans-serif-black"
+            android:text="Thể trạng cơ thể"
+            android:textColor="@color/white"
+            android:textSize="17sp"
+            app:layout_constraintTop_toTopOf="@+id/imageView15"
+            tools:layout_editor_absoluteX="16dp" />
+
+        <TextView
+            android:id="@+id/TitleDistance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:fontFamily="sans-serif-black"
+            android:text="Chiều cao"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@+id/tvTitleCalo"
+            app:layout_constraintTop_toBottomOf="@+id/tvTitleCalo" />
+
+        <ImageView
+            android:id="@+id/imageView15"
+            android:layout_width="142dp"
+            android:layout_height="160dp"
+            android:layout_marginEnd="-10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.523"
+            app:srcCompat="@drawable/excersice_female_card" />
+
+        <TextView
+            android:id="@+id/textView15"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:fontFamily="sans-serif-black"
+            android:text="Cân nặng"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toStartOf="@+id/imageView15"
+            app:layout_constraintTop_toBottomOf="@+id/tvTitleCalo" />
+
+        <TextView
+            android:id="@+id/textView16"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-condensed-light"
+            android:text="70 Kg"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            app:layout_constraintTop_toBottomOf="@+id/textView15"
+            tools:layout_editor_absoluteX="104dp" />
+
+        <TextView
+            android:id="@+id/textView22"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:fontFamily="sans-serif-black"
+            android:text="Ngày kinh nguyệt"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@+id/kilometer"
+            app:layout_constraintTop_toBottomOf="@+id/kilometer" />
+
+        <TextView
+            android:id="@+id/textView23"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-condensed-light"
+            android:text="3 Ngày nữa"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@+id/textView22"
+            app:layout_constraintTop_toBottomOf="@+id/textView22" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>
