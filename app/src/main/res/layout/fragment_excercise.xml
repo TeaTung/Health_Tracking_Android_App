@@ -25,7 +25,7 @@
         android:fontFamily="sans-serif-thin"
         android:text="21/05/2021"
         android:textColor="#FFFFFF"
-        android:textSize="16sp"
+        android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -36,7 +36,7 @@
         android:fontFamily="sans-serif-medium"
         android:text="Dương Tùng"
         android:textColor="#FFFFFF"
-        android:textSize="22sp"
+        android:textSize="24sp"
         app:layout_constraintStart_toStartOf="@+id/textViewDate"
         app:layout_constraintTop_toBottomOf="@+id/textViewDate" />
 
@@ -214,8 +214,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout3"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_marginBottom="4dp"
+        android:layout_height="224dp"
         android:background="@drawable/round_border_recyclerview"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -235,6 +234,8 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputLayout5"
+            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu"
             android:layout_width="357dp"
             android:layout_height="55dp"
             android:layout_marginTop="16dp"
@@ -242,14 +243,44 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView46">
 
-            <com.google.android.material.textfield.TextInputEditText
+            <AutoCompleteTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#FFFFFF"
-                android:fontFamily="sans-serif-light"
+                android:background="#fff"
                 android:hint="Chọn bài tập"
-                android:textSize="20sp" />
+                android:textSize="18sp"
+                >
+
+            </AutoCompleteTextView>
+
+
+
         </com.google.android.material.textfield.TextInputLayout>
+
+        <ImageButton
+            android:id="@+id/imageButton2"
+            android:layout_width="153dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="28dp"
+            android:layout_weight="1"
+            android:background="#fff"
+            android:src="@drawable/start_button_shape"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textInputLayout5" />
+
+        <TextView
+            android:id="@+id/textView48"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-black"
+            android:text="BẮT ĐẦU"
+            android:textColor="#FFFEFE"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="@+id/imageButton2"
+            app:layout_constraintEnd_toEndOf="@+id/imageButton2"
+            app:layout_constraintStart_toStartOf="@+id/imageButton2"
+            app:layout_constraintTop_toTopOf="@+id/imageButton2" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
