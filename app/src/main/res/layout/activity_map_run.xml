@@ -14,16 +14,16 @@
         android:layout_height="match_parent"/>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:visibility="invisible"
+        android:id="@+id/notification_background"
         android:layout_width="396dp"
         android:layout_height="273dp"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="44dp"
         android:layout_centerHorizontal="true"
-        android:background="@drawable/round_border_recyclerview"
+        android:layout_marginBottom="44dp"
+        android:background="@drawable/round_border_notification"
+        android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        android:id="@+id/notification_background"
         app:layout_constraintStart_toStartOf="parent">
 
         <TextView
@@ -146,11 +146,11 @@
 
         <TextView
             android:id="@+id/fire_fit"
-            android:visibility="invisible"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-black"
             android:text="FireFit Day"
+            android:visibility="invisible"
             app:layout_constraintBottom_toBottomOf="@+id/pgbAward"
             app:layout_constraintEnd_toEndOf="@+id/pgbAward"
             app:layout_constraintStart_toStartOf="@+id/pgbAward"
