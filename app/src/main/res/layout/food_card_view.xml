@@ -2,7 +2,7 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/cardView"
+    android:id="@+id/cdvInfor"
     android:layout_width="match_parent"
     android:layout_height="180dp"
     android:background="@drawable/round_border_recyclerview">
@@ -15,19 +15,20 @@
         android:background="@drawable/round_border_step_counter">
 
         <ProgressBar
-            android:id="@+id/stepProgressFood"
-            android:layout_width="163dp"
-            android:layout_height="152dp"
-            android:layout_marginEnd="4dp"
+            android:id="@+id/pgbFood"
+            android:layout_width="162dp"
+            android:layout_height="138dp"
+            android:layout_marginEnd="5dp"
             android:indeterminateOnly="false"
             android:progress="70"
             android:progressDrawable="@drawable/circle_progress_step"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/tvLit"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/stepsCounter"
+            android:id="@+id/tvFoodCounter"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="56dp"
@@ -35,31 +36,35 @@
             android:text="1000"
             android:textColor="#FFFFFF"
             android:textSize="20sp"
-            app:layout_constraintEnd_toEndOf="@+id/stepProgressFood"
+            app:layout_constraintEnd_toEndOf="@+id/pgbFood"
             app:layout_constraintHorizontal_bias="0.49"
-            app:layout_constraintStart_toStartOf="@+id/stepProgressFood"
+            app:layout_constraintStart_toStartOf="@+id/pgbFood"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/calories"
+            android:id="@+id/tvCaloriesInFood"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
             android:fontFamily="sans-serif-condensed-light"
             android:text="80 Kalo"
             android:textColor="#FFFFFF"
             android:textSize="16sp"
-            app:layout_constraintTop_toBottomOf="@+id/tvCaloTieuThu"
-            tools:layout_editor_absoluteX="16dp" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvCaloTieuThu" />
 
         <TextView
-            android:id="@+id/kilometer"
+            android:id="@+id/tvLit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="84dp"
             android:fontFamily="sans-serif-condensed-light"
-            android:text="0.3/1.5 Lits"
+            android:text="0 Lit"
             android:textColor="#FFFFFF"
             android:textSize="16sp"
-            app:layout_constraintStart_toStartOf="@+id/TitleDistance"
+            app:layout_constraintEnd_toStartOf="@+id/pgbFood"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/TitleDistance" />
 
         <TextView
@@ -70,21 +75,22 @@
             android:text="Kalories"
             android:textColor="@color/white"
             android:textSize="14sp"
-            app:layout_constraintEnd_toEndOf="@+id/stepProgressFood"
-            app:layout_constraintStart_toStartOf="@+id/stepProgressFood"
-            app:layout_constraintTop_toBottomOf="@+id/stepsCounter" />
+            app:layout_constraintEnd_toEndOf="@+id/pgbFood"
+            app:layout_constraintStart_toStartOf="@+id/pgbFood"
+            app:layout_constraintTop_toBottomOf="@+id/tvFoodCounter" />
 
         <TextView
             android:id="@+id/tvCaloTieuThu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="28dp"
             android:fontFamily="sans-serif-black"
             android:text="Bạn đã tiêu thụ"
             android:textColor="@color/white"
             android:textSize="16sp"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:layout_editor_absoluteX="16dp" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/TitleDistance"
@@ -95,8 +101,8 @@
             android:text="Lượng nước uống"
             android:textColor="@color/white"
             android:textSize="16sp"
-            app:layout_constraintStart_toStartOf="@+id/calories"
-            app:layout_constraintTop_toBottomOf="@+id/calories" />
+            app:layout_constraintStart_toStartOf="@+id/tvCaloriesInFood"
+            app:layout_constraintTop_toBottomOf="@+id/tvCaloriesInFood" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.cardview.widget.CardView>

@@ -2,7 +2,7 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/cardView"
+    android:id="@+id/cdvInfor"
     android:layout_width="match_parent"
     android:layout_height="180dp"
     android:background="@drawable/round_border_recyclerview">
@@ -15,65 +15,61 @@
         android:background="@drawable/round_border_step_counter">
 
         <ProgressBar
-            android:id="@+id/stepProgress"
-            android:layout_width="163dp"
+            android:id="@+id/pgbStep"
+            android:layout_width="0dp"
             android:layout_height="152dp"
             android:layout_marginStart="4dp"
             android:layout_marginTop="4dp"
             android:indeterminateOnly="false"
             android:progress="70"
             android:progressDrawable="@drawable/circle_progress_step"
+            app:layout_constraintEnd_toStartOf="@+id/tvDistanceInEx"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/stepsCounter"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="56dp"
-            android:fontFamily="sans-serif-black"
-            android:text="1000"
-            android:textColor="#FFFFFF"
-            android:textSize="20sp"
-            app:layout_constraintEnd_toEndOf="@+id/stepProgress"
-            app:layout_constraintHorizontal_bias="0.519"
-            app:layout_constraintStart_toStartOf="@+id/stepProgress"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/calories"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="sans-serif-condensed-light"
-            android:text="80 Kalo"
-            android:textColor="#FFFFFF"
-            android:textSize="16sp"
-            app:layout_constraintStart_toEndOf="@+id/stepProgress"
-            app:layout_constraintTop_toBottomOf="@+id/tvTitleCalo" />
-
-        <TextView
-            android:id="@+id/kilometer"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="sans-serif-condensed-light"
-            android:text="1 Kilomet"
-            android:textColor="#FFFFFF"
-            android:textSize="16sp"
-            app:layout_constraintStart_toEndOf="@+id/stepProgress"
-            app:layout_constraintTop_toBottomOf="@+id/TitleDistance" />
 
         <TextView
             android:id="@+id/tvTitleStepCounter"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="55dp"
+            android:layout_marginBottom="54dp"
             android:fontFamily="sans-serif-light"
             android:text="Bước chân"
             android:textColor="@color/white"
             android:textSize="14sp"
-            app:layout_constraintEnd_toEndOf="@+id/stepProgress"
+            app:layout_constraintBottom_toBottomOf="@+id/pgbStep"
+            app:layout_constraintEnd_toEndOf="@+id/pgbStep"
             app:layout_constraintHorizontal_bias="0.466"
-            app:layout_constraintStart_toStartOf="@+id/stepProgress"
-            app:layout_constraintTop_toBottomOf="@+id/stepsCounter" />
+            app:layout_constraintStart_toStartOf="@+id/pgbStep"
+            app:layout_constraintTop_toTopOf="@+id/tvTitleCalo" />
+
+        <TextView
+            android:id="@+id/tvCaloriesInEx"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:fontFamily="sans-serif-light"
+            android:text="0"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            app:layout_constraintStart_toEndOf="@+id/pgbStep"
+            app:layout_constraintTop_toBottomOf="@+id/tvTitleCalo" />
+
+        <TextView
+            android:id="@+id/tvDistanceInEx"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="27dp"
+            android:layout_marginEnd="139dp"
+            android:layout_marginBottom="27dp"
+            android:fontFamily="sans-serif-light"
+            android:text="0"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@+id/pgbStep"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/pgbStep"
+            app:layout_constraintTop_toTopOf="@+id/tvTitleStepCounter" />
 
         <TextView
             android:id="@+id/tvTitleCalo"
@@ -84,20 +80,32 @@
             android:text="Bạn đã đốt cháy"
             android:textColor="@color/white"
             android:textSize="16sp"
-            app:layout_constraintStart_toEndOf="@+id/stepProgress"
+            app:layout_constraintStart_toEndOf="@+id/pgbStep"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvStepInEx"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="27dp"
+            android:layout_marginBottom="5dp"
+            android:fontFamily="sans-serif-black"
+            android:text="0"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toTopOf="@+id/tvTitleStepCounter"
+            app:layout_constraintEnd_toEndOf="@+id/tvTitleStepCounter" />
 
         <TextView
             android:id="@+id/TitleDistance"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
             android:fontFamily="sans-serif-black"
             android:text="Quãng đường"
             android:textColor="@color/white"
             android:textSize="16sp"
-            app:layout_constraintStart_toEndOf="@+id/stepProgress"
-            app:layout_constraintTop_toBottomOf="@+id/calories" />
+            app:layout_constraintBottom_toTopOf="@+id/tvDistanceInEx"
+            app:layout_constraintStart_toEndOf="@+id/pgbStep" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.cardview.widget.CardView>

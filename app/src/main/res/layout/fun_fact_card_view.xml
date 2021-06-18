@@ -2,7 +2,7 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/cardView"
+    android:id="@+id/cdvInfor"
     android:layout_width="match_parent"
     android:layout_height="180dp"
     android:background="@drawable/round_border_recyclerview">
@@ -37,7 +37,7 @@
             app:layout_constraintStart_toStartOf="parent">
 
             <TextView
-                android:id="@+id/textView36"
+                android:id="@+id/tvQuote"
                 android:layout_width="253dp"
                 android:layout_height="40dp"
                 android:fontFamily="sans-serif-light"
@@ -52,7 +52,7 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <TextView
-            android:id="@+id/textView17"
+            android:id="@+id/tvTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-black"
