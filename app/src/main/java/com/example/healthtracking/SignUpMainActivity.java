@@ -1,11 +1,7 @@
 package com.example.healthtracking;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Patterns;
@@ -13,13 +9,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.healthtracking.ClassData.JavaMailAPI;
-import com.example.healthtracking.ClassData.UserSetting;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.Random;
@@ -31,11 +24,13 @@ public class SignUpMainActivity extends AppCompatActivity {
     FirebaseAuth mAuth;
     TextView textViewBack;
     ProgressDialog progressDialog;
+    View decorateView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up_main);
         Anhxa();
+        decorView();
         mAuth = FirebaseAuth.getInstance();
         buttonSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -129,4 +124,30 @@ public class SignUpMainActivity extends AppCompatActivity {
         editor.putString("UID",UID);
         editor.apply();
     }*/
+    public void decorView(){
+      decorateView = getWindow().getDecorView();
+      decorateView.setOnSystemUiVisibilityChangeListener(new View.OnSystemUiVisibilityChangeListener() {
+          @Override
+          public void onSystemUiVisibilityChange(int visibility) {
+              if (visibility == 0) {
+                  decorateView.setSystemUiVisibility(hideSystemBar());
+              }
+          }
+      });
+  }
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+        if (hasFocus) {
+            decorateView.setSystemUiVisibility(hideSystemBar());
+        }
+    }
+    private int hideSystemBar() {
+        return View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
+                | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                | View.SYSTEM_UI_FLAG_FULLSCREEN
+                | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION;
+    }
 }

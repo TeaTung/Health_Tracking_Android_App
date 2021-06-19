@@ -1,9 +1,5 @@
 package com.example.healthtracking;
 
-import androidx.appcompat.app.AppCompatActivity;
-import  com.example.healthtracking.ClassData.*;
-
-import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -12,11 +8,13 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.Spinner;
-import android.widget.TextView;
-import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.healthtracking.ClassData.OnedayofPractice;
+import com.example.healthtracking.ClassData.Profile;
+import com.example.healthtracking.ClassData.Run;
+import com.example.healthtracking.ClassData.User;
 import com.google.android.material.textfield.MaterialAutoCompleteTextView;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
@@ -25,10 +23,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.whiteelephant.monthpicker.MonthPickerDialog;
 
-import java.io.IOException;
 import java.util.Calendar;
-
-import static android.icu.lang.UCharacter.GraphemeClusterBreak.V;
 
 public class InformationActivity extends AppCompatActivity {
 
@@ -40,6 +35,7 @@ public class InformationActivity extends AppCompatActivity {
     String arr[]={"Nam", "Nữ"};
     String Sex;
     FirebaseAuth mAuth;
+    View decorateView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,10 +46,34 @@ public class InformationActivity extends AppCompatActivity {
         changeUserSetting();
         textViewyear.setOnClickListener(this::onClick);
         button.setOnClickListener(this::onClick);
-
+        decorView();
     }
-
-
+    public void decorView(){
+        decorateView = getWindow().getDecorView();
+        decorateView.setOnSystemUiVisibilityChangeListener(new View.OnSystemUiVisibilityChangeListener() {
+            @Override
+            public void onSystemUiVisibilityChange(int visibility) {
+                if (visibility == 0) {
+                    decorateView.setSystemUiVisibility(hideSystemBar());
+                }
+            }
+        });
+    }
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+        if (hasFocus) {
+            decorateView.setSystemUiVisibility(hideSystemBar());
+        }
+    }
+    private int hideSystemBar() {
+        return View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
+                | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                | View.SYSTEM_UI_FLAG_FULLSCREEN
+                | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION;
+    }
     public  void Anhxa()
     {
         edittextname = (TextInputEditText) findViewById(R.id.editTextName);

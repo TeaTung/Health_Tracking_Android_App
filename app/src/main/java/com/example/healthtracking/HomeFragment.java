@@ -132,7 +132,6 @@ public class HomeFragment extends Fragment implements SensorEventListener {
 
     @Override
     public void onSensorChanged(SensorEvent event) {
-
     }
 
     @Override
