@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -12,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import com.example.healthtracking.ClassData.Run;
+import com.google.android.material.textfield.MaterialAutoCompleteTextView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -47,7 +49,10 @@ public class ExcerciseFragment extends Fragment {
     TextView textViewDate, textViewName, textViewStepCount;
     List<MaterialDayPicker.Weekday> allWeekdays;
     MaterialDayPicker.Weekday currentday;
-    int k;
+    MaterialAutoCompleteTextView lvListExercise;
+    ImageView imgStart;
+    TextView tvStart;
+
 
     public ExcerciseFragment() {
         // Required empty public constructor
@@ -84,20 +89,17 @@ public class ExcerciseFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_excercise, container, false);
-        imgRun = (ImageView) view.findViewById(R.id.imgRun);
         materialDayPicker = (MaterialDayPicker) view.findViewById(R.id.day_picker);
         textViewDate = (TextView) view.findViewById(R.id.textViewDate);
         textViewName = (TextView) view.findViewById(R.id.textViewName);
         textViewStepCount = (TextView) view.findViewById(R.id.textViewStepCount);
-        Loaddata();
+        lvListExercise = (MaterialAutoCompleteTextView) view.findViewById(R.id.lvListExercise);
+        imgStart = (ImageView) view.findViewById(R.id.imgStart);
+        tvStart = (TextView) view.findViewById(R.id.tvStart);
         setDayPicker();
-        imgRun.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), MapRunActivity.class);
-                startActivity(intent);
-            }
-        });
+        Loaddata();
+        setButtonStart();
+        setListExercise();
         // Inflate the layout for this fragment
         return view;
     }
@@ -233,6 +235,37 @@ public class ExcerciseFragment extends Fragment {
                     }
                 break;
             }
+        }
+    }
+
+    private void setListExercise(){
+        String arr[] = {"Hít đất", "Gập bụng", "Hít xà", "Chạy bộ", "Khác"};
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_dropdown_item_1line,arr);
+        lvListExercise.setAdapter(adapter);
+    }
+
+    private void setButtonStart(){
+        imgStart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startExercise();
+            }
+        });
+
+        tvStart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startExercise();
+            }
+        });
+    }
+
+    private void startExercise(){
+        if (!lvListExercise.getText().toString().equals("")){
+            String exercise = lvListExercise.getText().toString();
+            Intent intent = new Intent(getActivity(),RequestPermission.class);
+            intent.putExtra("Name",exercise);
+            startActivity(intent);
         }
     }
 }

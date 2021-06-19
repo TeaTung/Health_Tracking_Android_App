@@ -27,7 +27,7 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <TextView
-            android:id="@+id/tvTimeRecord"
+            android:id="@+id/tvTimeRecordDoingEx"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
@@ -48,7 +48,7 @@
             android:text="Quãng đường:"
             android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvTimeRecord" />
+            app:layout_constraintTop_toBottomOf="@+id/tvTimeRecordDoingEx" />
 
         <TextView
             android:id="@+id/textView30"
@@ -134,15 +134,16 @@
         <ProgressBar
             android:id="@+id/pgbAward"
             style="?android:attr/progressBarStyle"
-            android:layout_width="129dp"
-            android:layout_height="123dp"
+            android:layout_width="117dp"
+            android:layout_height="117dp"
             android:layout_marginTop="24dp"
             android:layout_marginEnd="28dp"
             android:indeterminateOnly="false"
+            android:max="10000"
             android:progress="0"
             android:progressDrawable="@drawable/circle_progress_step"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvTimeRecord" />
+            app:layout_constraintTop_toBottomOf="@+id/tvTimeRecordDoingEx" />
 
         <TextView
             android:id="@+id/fire_fit"
