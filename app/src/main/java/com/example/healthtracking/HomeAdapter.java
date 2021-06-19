@@ -132,7 +132,9 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             tvStepCounter.setText(exercise.getStepsCounter() + "");
             tvCaloriesInEx.setText(exercise.getCalories()+ "");
             tvDistanceInEx.setText(exercise.getDistances()+ "");
-            progressBarExercise = exercise.getProgressBar();
+            progressBarExercise.setMax(100);
+            progressBarExercise.setProgress(50);
+
         }
     }
     static class FoodViewHolder extends RecyclerView.ViewHolder{

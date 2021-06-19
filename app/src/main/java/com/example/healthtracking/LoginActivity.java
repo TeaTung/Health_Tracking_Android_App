@@ -22,12 +22,10 @@ import com.facebook.FacebookSdk;
 import com.facebook.appevents.AppEventsLogger;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
-import com.facebook.login.widget.LoginButton;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -53,6 +51,7 @@ public class LoginActivity extends AppCompatActivity {
     GoogleSignInClient mGoogleSignInClient;
     ImageView imgLoginWithGg;
     ImageView imgLoginWithFb;
+    View decorateView;
 
     int RC_SIGN_IN;
     @Override
@@ -68,6 +67,7 @@ public class LoginActivity extends AppCompatActivity {
         textViewForgetPW.setOnClickListener(this::onClick);
         imgLoginWithFb.setOnClickListener(this::onClick);
         imgLoginWithGg.setOnClickListener(this::onClick);
+        decorView();
     }
 
     public void onClick(View v) {
@@ -263,5 +263,31 @@ public class LoginActivity extends AppCompatActivity {
         } else
             Toast.makeText(this, "Đăng nhập thất bại! ", Toast.LENGTH_SHORT).show();
 
+    }
+    public void decorView(){
+        decorateView = getWindow().getDecorView();
+        decorateView.setOnSystemUiVisibilityChangeListener(new View.OnSystemUiVisibilityChangeListener() {
+            @Override
+            public void onSystemUiVisibilityChange(int visibility) {
+                if (visibility == 0) {
+                    decorateView.setSystemUiVisibility(hideSystemBar());
+                }
+            }
+        });
+    }
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+        if (hasFocus) {
+            decorateView.setSystemUiVisibility(hideSystemBar());
+        }
+    }
+    private int hideSystemBar() {
+        return View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
+                | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                | View.SYSTEM_UI_FLAG_FULLSCREEN
+                | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION;
     }
 }

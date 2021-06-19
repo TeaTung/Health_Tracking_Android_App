@@ -1,29 +1,22 @@
 package com.example.healthtracking;
 
+import android.content.SharedPreferences;
+import android.os.Bundle;
+import android.view.View;
+
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 
-import android.Manifest;
-import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
-import android.location.Location;
-import android.os.Bundle;
-
-import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
-
 import com.ismaeldivita.chipnavigation.ChipNavigationBar;
-
-import bolts.Task;
 
 public class MainActivity extends AppCompatActivity {
     FirebaseAuth mAuth;
     DatabaseReference mDatabase;
     private ChipNavigationBar chipNavigationBar;
     private Fragment fragment = null;
-
+    View decorateView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
 
         changeUserSetting();
 
+        decorView();
         chipNavigationBar = findViewById(R.id.bottom_nav_bar);
         chipNavigationBar.setItemSelected(R.id.nav_home, true);
         getSupportFragmentManager().beginTransaction().replace(R.id.main_container, new HomeFragment()).commit();
@@ -61,6 +55,32 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    public void decorView(){
+        decorateView = getWindow().getDecorView();
+        decorateView.setOnSystemUiVisibilityChangeListener(new View.OnSystemUiVisibilityChangeListener() {
+            @Override
+            public void onSystemUiVisibilityChange(int visibility) {
+                if (visibility == 0) {
+                    decorateView.setSystemUiVisibility(hideSystemBar());
+                }
+            }
+        });
+    }
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+        if (hasFocus) {
+            decorateView.setSystemUiVisibility(hideSystemBar());
+        }
+    }
+    private int hideSystemBar() {
+        return View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
+                | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                | View.SYSTEM_UI_FLAG_FULLSCREEN
+                | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION;
+    }
     public  void changeUserSetting(){
         SharedPreferences sharedPreferences = getSharedPreferences("sharedPrefs",MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,7 +9,7 @@
     tools:context=".RequestPermission">
 
     <ImageButton
-        android:id="@+id/imageButton"
+        android:id="@+id/imgStartEx"
         android:layout_width="153dp"
         android:layout_height="50dp"
         android:layout_marginTop="32dp"
@@ -17,10 +18,10 @@
         android:src="@drawable/start_button_shape"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView49" />
+        app:layout_constraintTop_toBottomOf="@+id/tvHowtoUse" />
 
     <TextView
-        android:id="@+id/textView51"
+        android:id="@+id/tvStartEx"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="43dp"
@@ -29,13 +30,13 @@
         android:text="BẮT ĐẦU"
         android:textColor="#FFFEFE"
         android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="@+id/imageButton"
-        app:layout_constraintEnd_toEndOf="@+id/imageButton"
-        app:layout_constraintStart_toStartOf="@+id/imageButton"
-        app:layout_constraintTop_toTopOf="@+id/imageButton" />
+        app:layout_constraintBottom_toBottomOf="@+id/imgStartEx"
+        app:layout_constraintEnd_toEndOf="@+id/imgStartEx"
+        app:layout_constraintStart_toStartOf="@+id/imgStartEx"
+        app:layout_constraintTop_toTopOf="@+id/imgStartEx" />
 
     <TextView
-        android:id="@+id/textView47"
+        android:id="@+id/tvTopicEx"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="48dp"
@@ -49,18 +50,18 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/imageView16"
+        android:id="@+id/imgEx"
         android:layout_width="286dp"
         android:layout_height="275dp"
         android:layout_marginTop="88dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView47"
+        app:layout_constraintTop_toBottomOf="@+id/tvTopicEx"
         app:srcCompat="@drawable/pushup" />
 
     <TextView
-        android:id="@+id/textView49"
+        android:id="@+id/tvHowtoUse"
         android:layout_width="338dp"
         android:layout_height="109dp"
         android:layout_marginTop="28dp"
@@ -71,10 +72,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView16" />
+        app:layout_constraintTop_toBottomOf="@+id/imgEx" />
 
     <TextView
-        android:id="@+id/textView52"
+        android:id="@+id/tvNotUse"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
@@ -82,5 +83,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageButton" />
+        app:layout_constraintTop_toBottomOf="@+id/imgStartEx" />
 </androidx.constraintlayout.widget.ConstraintLayout>
