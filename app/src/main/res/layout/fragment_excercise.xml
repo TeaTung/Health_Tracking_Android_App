@@ -79,7 +79,7 @@
             android:fontFamily="sans-serif-black"
             android:text="6500"
             android:textColor="#373737"
-            android:textSize="16sp"
+            android:textSize="17dp"
             app:layout_constraintEnd_toEndOf="@+id/imgRun"
             app:layout_constraintHorizontal_bias="0.434"
             app:layout_constraintStart_toStartOf="@+id/imgRun"
@@ -113,7 +113,7 @@
             android:fontFamily="sans-serif-black"
             android:text="720"
             android:textColor="#373737"
-            android:textSize="16sp"
+            android:textSize="17dp"
             app:layout_constraintEnd_toEndOf="@+id/imageView13"
             app:layout_constraintStart_toStartOf="@+id/imageView13"
             app:layout_constraintTop_toBottomOf="@+id/imageView13" />
@@ -126,7 +126,7 @@
             android:fontFamily="sans-serif-black"
             android:text="2"
             android:textColor="#373737"
-            android:textSize="16sp"
+            android:textSize="17dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView12" />
@@ -139,7 +139,7 @@
             android:fontFamily="sans-serif-thin"
             android:text="Kalos"
             android:textColor="#070707"
-            android:textSize="16sp"
+            android:textSize="17dp"
             app:layout_constraintEnd_toEndOf="@+id/imageView13"
             app:layout_constraintStart_toStartOf="@+id/imageView13"
             app:layout_constraintTop_toBottomOf="@+id/textViewKalos" />
@@ -152,7 +152,7 @@
             android:fontFamily="sans-serif-thin"
             android:text="Giờ"
             android:textColor="#070707"
-            android:textSize="16sp"
+            android:textSize="17dp"
             app:layout_constraintEnd_toEndOf="@+id/imageView12"
             app:layout_constraintStart_toStartOf="@+id/imageView12"
             app:layout_constraintTop_toBottomOf="@+id/textViewTime" />
@@ -165,7 +165,7 @@
             android:fontFamily="sans-serif-thin"
             android:text="Bước chân"
             android:textColor="#070707"
-            android:textSize="16sp"
+            android:textSize="17dp"
             app:layout_constraintEnd_toEndOf="@+id/imgRun"
             app:layout_constraintStart_toStartOf="@+id/imgRun"
             app:layout_constraintTop_toBottomOf="@+id/textViewStepCount" />
@@ -221,7 +221,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout3"
         android:layout_width="match_parent"
-        android:layout_height="224dp"
+        android:layout_height="290dp"
         android:background="@drawable/round_border_recyclerview"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -249,21 +249,21 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView46">
+
             <com.google.android.material.textfield.MaterialAutoCompleteTextView
                 android:id="@+id/lvListExercise"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="#fff"
                 android:hint="Chọn bài tập"
-                android:textSize="14sp">
-            </com.google.android.material.textfield.MaterialAutoCompleteTextView>
+                android:textSize="20sp"></com.google.android.material.textfield.MaterialAutoCompleteTextView>
         </com.google.android.material.textfield.TextInputLayout>
 
         <ImageButton
             android:id="@+id/imgStart"
             android:layout_width="153dp"
             android:layout_height="50dp"
-            android:layout_marginTop="28dp"
+            android:layout_marginTop="56dp"
             android:layout_weight="1"
             android:background="#fff"
             android:src="@drawable/start_button_shape"

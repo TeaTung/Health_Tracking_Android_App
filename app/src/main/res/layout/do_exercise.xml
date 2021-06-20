@@ -7,6 +7,26 @@
     android:background="@drawable/push_up_background"
     tools:context=".RequestPermission">
 
+    <EditText
+        android:id="@+id/editTextKalo"
+        android:layout_width="77dp"
+        android:layout_height="34dp"
+        android:background="@drawable/round_border_input_text"
+        android:ems="10"
+        android:padding="16sp"
+        tools:layout_editor_absoluteX="32dp"
+        tools:layout_editor_absoluteY="502dp" />
+
+    <EditText
+        android:id="@+id/editTextReps"
+        android:layout_width="77dp"
+        android:layout_height="34dp"
+        android:background="@drawable/round_border_input_text"
+        android:ems="10"
+        android:padding="16sp"
+        tools:layout_editor_absoluteX="32dp"
+        tools:layout_editor_absoluteY="583dp" />
+
     <ImageButton
         android:id="@+id/imageButton3"
         android:layout_width="153dp"
@@ -134,4 +154,27 @@
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="@+id/textView53"
         app:layout_constraintTop_toBottomOf="@+id/textView53" />
+
+    <TextView
+        android:id="@+id/textView16"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:fontFamily="sans-serif-light"
+        android:text="Lần"
+        android:textSize="24sp"
+        app:layout_constraintStart_toEndOf="@+id/editTextReps"
+        app:layout_constraintTop_toBottomOf="@+id/textView54" />
+
+    <TextView
+        android:id="@+id/textView17"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:fontFamily="sans-serif-light"
+        android:text="Kalories"
+        android:textSize="24dp"
+        app:layout_constraintStart_toEndOf="@+id/editTextKalo"
+        app:layout_constraintTop_toBottomOf="@+id/textView31" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

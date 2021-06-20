@@ -8,7 +8,7 @@
     android:background="@drawable/round_border_recyclerview">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="314dp"
+        android:layout_width="360dp"
         android:layout_height="160dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="10dp"
@@ -16,96 +16,96 @@
 
         <ProgressBar
             android:id="@+id/pgbStep"
-            android:layout_width="0dp"
-            android:layout_height="152dp"
-            android:layout_marginStart="4dp"
-            android:layout_marginTop="4dp"
+            android:layout_width="162dp"
+            android:layout_height="138dp"
+            android:layout_marginStart="20dp"
             android:indeterminateOnly="false"
             android:progress="70"
             android:progressDrawable="@drawable/circle_progress_step"
-            app:layout_constraintEnd_toStartOf="@+id/tvDistanceInEx"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/tvTitleStepCounter"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="55dp"
-            android:layout_marginBottom="54dp"
-            android:fontFamily="sans-serif-light"
-            android:text="Bước chân"
-            android:textColor="@color/white"
-            android:textSize="14sp"
-            app:layout_constraintBottom_toBottomOf="@+id/pgbStep"
-            app:layout_constraintEnd_toEndOf="@+id/pgbStep"
-            app:layout_constraintHorizontal_bias="0.466"
-            app:layout_constraintStart_toStartOf="@+id/pgbStep"
-            app:layout_constraintTop_toTopOf="@+id/tvTitleCalo" />
 
         <TextView
             android:id="@+id/tvCaloriesInEx"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
             android:fontFamily="sans-serif-light"
             android:text="0"
             android:textColor="@color/white"
-            android:textSize="14sp"
-            app:layout_constraintStart_toEndOf="@+id/pgbStep"
+            android:textSize="18dp"
+            app:layout_constraintStart_toStartOf="@+id/tvTitleCalo"
             app:layout_constraintTop_toBottomOf="@+id/tvTitleCalo" />
 
         <TextView
             android:id="@+id/tvDistanceInEx"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="27dp"
-            android:layout_marginEnd="139dp"
-            android:layout_marginBottom="27dp"
             android:fontFamily="sans-serif-light"
             android:text="0"
             android:textColor="@color/white"
-            android:textSize="14sp"
-            app:layout_constraintBottom_toBottomOf="@+id/pgbStep"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/pgbStep"
-            app:layout_constraintTop_toTopOf="@+id/tvTitleStepCounter" />
+            android:textSize="18dp"
+            app:layout_constraintStart_toStartOf="@+id/TitleDistance"
+            app:layout_constraintTop_toBottomOf="@+id/TitleDistance" />
 
         <TextView
             android:id="@+id/tvTitleCalo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="28dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="24dp"
             android:fontFamily="sans-serif-black"
             android:text="Bạn đã đốt cháy"
             android:textColor="@color/white"
-            android:textSize="16sp"
+            android:textSize="18dp"
             app:layout_constraintStart_toEndOf="@+id/pgbStep"
             app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/tvStepInEx"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="27dp"
-            android:layout_marginBottom="5dp"
-            android:fontFamily="sans-serif-black"
-            android:text="0"
-            android:textColor="@color/white"
-            android:textSize="16sp"
-            app:layout_constraintBottom_toTopOf="@+id/tvTitleStepCounter"
-            app:layout_constraintEnd_toEndOf="@+id/tvTitleStepCounter" />
 
         <TextView
             android:id="@+id/TitleDistance"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
             android:fontFamily="sans-serif-black"
             android:text="Quãng đường"
             android:textColor="@color/white"
-            android:textSize="16sp"
-            app:layout_constraintBottom_toTopOf="@+id/tvDistanceInEx"
-            app:layout_constraintStart_toEndOf="@+id/pgbStep" />
+            android:textSize="18dp"
+            app:layout_constraintStart_toStartOf="@+id/tvTitleCalo"
+            app:layout_constraintTop_toBottomOf="@+id/tvCaloriesInEx" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="94dp"
+            android:layout_height="56dp"
+            app:layout_constraintBottom_toBottomOf="@+id/pgbStep"
+            app:layout_constraintEnd_toEndOf="@+id/pgbStep"
+            app:layout_constraintStart_toStartOf="@+id/pgbStep"
+            app:layout_constraintTop_toTopOf="@+id/pgbStep">
+
+            <TextView
+                android:id="@+id/tvTitleStepCounter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-light"
+                android:text="Bước chân"
+                android:textColor="@color/white"
+                android:textSize="18dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/tvStepInEx"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-black"
+                android:text="0"
+                android:textColor="@color/white"
+                android:textSize="22dp"
+                app:layout_constraintBottom_toTopOf="@+id/tvTitleStepCounter"
+                app:layout_constraintEnd_toEndOf="@+id/tvTitleStepCounter"
+                app:layout_constraintStart_toStartOf="@+id/tvTitleStepCounter" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.cardview.widget.CardView>
