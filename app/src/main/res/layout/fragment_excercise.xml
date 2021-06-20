@@ -173,8 +173,8 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="280dp"
-        android:layout_height="58dp"
+        android:layout_width="279dp"
+        android:layout_height="60dp"
         app:layout_constraintBottom_toTopOf="@+id/constraintLayout3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -182,14 +182,10 @@
 
         <ImageView
             android:id="@+id/imageView14"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginStart="4dp"
-            android:layout_marginTop="2dp"
-            android:layout_marginBottom="2dp"
+            android:layout_width="59dp"
+            android:layout_height="54dp"
             android:src="@drawable/firefit"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/textView29"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -212,10 +208,9 @@
             android:text="Luyện tập chăm chỉ để nhận Firefit Days."
             android:textColor="#F8F8F8"
             android:textSize="12sp"
-            app:layout_constraintBottom_toBottomOf="@+id/imageView14"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/imageView14"
-            app:layout_constraintStart_toStartOf="@+id/textView27" />
+            app:layout_constraintTop_toBottomOf="@+id/textView27" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -240,36 +235,32 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textInputLayout5"
-            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu"
-            android:layout_width="357dp"
-            android:layout_height="55dp"
+
+        <com.google.android.material.textfield.MaterialAutoCompleteTextView
+            android:id="@+id/lvListExercise"
+            android:layout_width="355dp"
+            android:layout_height="58dp"
+            android:layout_gravity="center"
             android:layout_marginTop="24dp"
+            android:background="@drawable/round_border_input_text"
+            android:hint="Chọn bài tập"
+            android:padding="15px"
+            android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView46">
-
-            <com.google.android.material.textfield.MaterialAutoCompleteTextView
-                android:id="@+id/lvListExercise"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="#fff"
-                android:hint="Chọn bài tập"
-                android:textSize="20sp"></com.google.android.material.textfield.MaterialAutoCompleteTextView>
-        </com.google.android.material.textfield.TextInputLayout>
+            app:layout_constraintTop_toBottomOf="@+id/textView46"></com.google.android.material.textfield.MaterialAutoCompleteTextView>
 
         <ImageButton
             android:id="@+id/imgStart"
             android:layout_width="153dp"
             android:layout_height="50dp"
-            android:layout_marginTop="55dp"
+            android:layout_marginBottom="12dp"
             android:layout_weight="1"
             android:background="#fff"
             android:src="@drawable/start_button_shape"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textInputLayout5" />
+            app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
             android:id="@+id/tvStart"
