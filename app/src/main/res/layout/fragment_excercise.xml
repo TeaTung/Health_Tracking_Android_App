@@ -221,7 +221,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout3"
         android:layout_width="match_parent"
-        android:layout_height="290dp"
+        android:layout_height="260dp"
         android:background="@drawable/round_border_recyclerview"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -245,7 +245,7 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu"
             android:layout_width="357dp"
             android:layout_height="55dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="24dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView46">
@@ -263,7 +263,7 @@
             android:id="@+id/imgStart"
             android:layout_width="153dp"
             android:layout_height="50dp"
-            android:layout_marginTop="56dp"
+            android:layout_marginTop="55dp"
             android:layout_weight="1"
             android:background="#fff"
             android:src="@drawable/start_button_shape"

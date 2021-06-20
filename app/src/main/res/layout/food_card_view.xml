@@ -29,18 +29,6 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/tvFoodCounter"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="sans-serif-black"
-            android:text="1000"
-            android:textColor="#FFFFFF"
-            android:textSize="22dp"
-            app:layout_constraintEnd_toEndOf="@+id/tvTitleStepCounter"
-            app:layout_constraintStart_toStartOf="@+id/tvTitleStepCounter"
-            tools:layout_editor_absoluteY="56dp" />
-
-        <TextView
             android:id="@+id/tvCaloriesInFood"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -61,18 +49,6 @@
             android:textSize="18dp"
             app:layout_constraintStart_toStartOf="@+id/TitleDistance"
             app:layout_constraintTop_toBottomOf="@+id/TitleDistance" />
-
-        <TextView
-            android:id="@+id/tvTitleStepCounter"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="sans-serif-light"
-            android:text="Kalories"
-            android:textColor="@color/white"
-            android:textSize="18dp"
-            app:layout_constraintEnd_toEndOf="@+id/pgbFood"
-            app:layout_constraintStart_toStartOf="@+id/pgbFood"
-            app:layout_constraintTop_toBottomOf="@+id/tvFoodCounter" />
 
         <TextView
             android:id="@+id/tvCaloTieuThu"
@@ -98,6 +74,40 @@
             android:textSize="18dp"
             app:layout_constraintStart_toStartOf="@+id/tvCaloriesInFood"
             app:layout_constraintTop_toBottomOf="@+id/tvCaloriesInFood" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="86dp"
+            android:layout_height="54dp"
+            app:layout_constraintBottom_toBottomOf="@+id/pgbFood"
+            app:layout_constraintEnd_toEndOf="@+id/pgbFood"
+            app:layout_constraintHorizontal_bias="0.526"
+            app:layout_constraintStart_toStartOf="@+id/pgbFood"
+            app:layout_constraintTop_toTopOf="@+id/pgbFood">
+
+            <TextView
+                android:id="@+id/tvFoodCounter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-black"
+                android:text="1000"
+                android:textColor="#FFFFFF"
+                android:textSize="22dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tvTitleStepCounter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-light"
+                android:text="Kalories"
+                android:textColor="@color/white"
+                android:textSize="18dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.cardview.widget.CardView>
