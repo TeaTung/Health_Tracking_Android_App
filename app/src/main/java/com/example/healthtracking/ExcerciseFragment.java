@@ -2,16 +2,19 @@ package com.example.healthtracking;
 
 import android.content.Intent;
 import android.os.Bundle;
+
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-
+import com.example.healthtracking.ClassData.Jog;
 import com.example.healthtracking.ClassData.Run;
 import com.google.android.material.textfield.MaterialAutoCompleteTextView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -46,7 +49,7 @@ public class ExcerciseFragment extends Fragment {
     private String mParam2;
 
     MaterialDayPicker materialDayPicker;
-    TextView textViewDate, textViewName, textViewStepCount;
+    TextView textViewDate, textViewName, textViewStepCount, textViewKalos, textViewTime, textViewHistory, textViewTimeUnit;
     List<MaterialDayPicker.Weekday> allWeekdays;
     MaterialDayPicker.Weekday currentday;
     MaterialAutoCompleteTextView lvListExercise;
@@ -93,6 +96,21 @@ public class ExcerciseFragment extends Fragment {
         textViewDate = (TextView) view.findViewById(R.id.textViewDate);
         textViewName = (TextView) view.findViewById(R.id.textViewName);
         textViewStepCount = (TextView) view.findViewById(R.id.textViewStepCount);
+        textViewKalos = (TextView) view.findViewById(R.id.textViewKalosUse);
+        textViewTime = (TextView) view.findViewById(R.id.textViewTime);
+        textViewTimeUnit = (TextView) view.findViewById(R.id.textViewTimeUnit);
+        textViewHistory = (TextView) view.findViewById(R.id.textViewHistory);
+        Loaddata();
+        setDayPicker();
+     
+        textViewHistory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), HistoryActivity.class);
+                startActivity(intent);
+            }
+        });
+
         lvListExercise = (MaterialAutoCompleteTextView) view.findViewById(R.id.lvListExercise);
         imgStart = (ImageView) view.findViewById(R.id.imgStart);
         tvStart = (TextView) view.findViewById(R.id.tvStart);
@@ -101,6 +119,7 @@ public class ExcerciseFragment extends Fragment {
         setButtonStart();
         setListExercise();
         // Inflate the layout for this fragment
+
         return view;
     }
 
@@ -131,7 +150,7 @@ public class ExcerciseFragment extends Fragment {
         MaterialDayPicker.Weekday[] mWeekday = new MaterialDayPicker.Weekday[1];
         Calendar cal = Calendar.getInstance();
         int i = cal.get(Calendar.DAY_OF_WEEK);
-        materialDayPicker.setFirstDayOfWeek(MaterialDayPicker.Weekday.TUESDAY);
+        materialDayPicker.setFirstDayOfWeek(MaterialDayPicker.Weekday.MONDAY);
         setSelectDayPicker(i);
 
         mWeekday[0] = materialDayPicker.getSelectedDays().get(0);
@@ -216,27 +235,62 @@ public class ExcerciseFragment extends Fragment {
                         java.sql.Date date = new java.sql.Date(millis);
                         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                         FirebaseDatabase.getInstance().getReference().child(user.getUid()).child("practice").child(date.toString())
-                                .child("run").addListenerForSingleValueEvent(new ValueEventListener() {
-                            @Override
-                            public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
+                                .addListenerForSingleValueEvent(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
 
-                                //  OnedayofPractice onedayofPractice = snapshot.getValue(OnedayofPractice.class);
-                                Run run = snapshot.getValue(Run.class);
-                                textViewStepCount.setText("" + run.StepCount);
+                                        //  OnedayofPractice onedayofPractice = snapshot.getValue(OnedayofPractice.class);
+                                        if (snapshot.getValue() != null)
+                                        {
 
-                            }
+                                            Run run = snapshot.child("run").getValue(Run.class);
+                                            int jogTime =  snapshot.child("jog").child("Time").getValue(Integer.class);
+                                            double jogCalo =  snapshot.child("jog").child("Calories").getValue(double.class);
+                                            textViewStepCount.setText("" + run.StepCount);
+                                            textViewKalos.setText(""+Math.round(run.Calories + jogCalo));
+                                            textViewTime.setText(ConvertTimeToString(jogTime));
+                                            if (jogTime >= 3600)  textViewTimeUnit.setText("Giờ");
+                                            else if (jogTime >= 60)  textViewTimeUnit.setText("Phút");
+                                            else textViewTimeUnit.setText("Giây");
 
-                            @Override
-                            public void onCancelled(@NonNull @NotNull DatabaseError error) {
+                                        }
+                                        else
 
-                            }
-                        });
+                                        {
+                                            textViewStepCount.setText("0");
+                                            textViewKalos.setText("0");
+                                            textViewTime.setText("0");
+                                        }
+
+                                    }
+
+                                    @Override
+                                    public void onCancelled(@NonNull @NotNull DatabaseError error) {
+
+                                    }
+                                });
                         break;
                     }
                 break;
             }
         }
     }
+
+
+    public  String ConvertTimeToString(int i)
+    {
+        if (i >= 3600) {
+            double x = (i * 1.0) / 3600;
+            if (Math.round(x) == i / 3600) return "" + i / 3600;
+            return "" + Math.round(x * 100.0) / 100.0;
+        }
+        else  if (i >= 60 )
+        {
+            double x = (i * 1.0) / 60;
+            if (Math.round(x) == i / 60) return "" + i / 60;
+            return "" + Math.round(x * 100.0) / 100.0;
+        }
+        else return ""+i;
 
     private void setListExercise(){
         String arr[] = {"Hít đất", "Gập bụng", "Hít xà", "Chạy bộ", "Khác"};
@@ -267,5 +321,6 @@ public class ExcerciseFragment extends Fragment {
             intent.putExtra("Name",exercise);
             startActivity(intent);
         }
+
     }
 }

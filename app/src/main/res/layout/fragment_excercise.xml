@@ -25,7 +25,7 @@
         android:fontFamily="sans-serif-thin"
         android:text="21/05/2021"
         android:textColor="#FFFFFF"
-        android:textSize="20sp"
+        android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -36,7 +36,7 @@
         android:fontFamily="sans-serif-medium"
         android:text="Dương Tùng"
         android:textColor="#FFFFFF"
-        android:textSize="24sp"
+        android:textSize="22sp"
         app:layout_constraintStart_toStartOf="@+id/textViewDate"
         app:layout_constraintTop_toBottomOf="@+id/textViewDate" />
 
@@ -106,7 +106,7 @@
             app:layout_constraintTop_toBottomOf="@+id/day_picker" />
 
         <TextView
-            android:id="@+id/textViewKalos"
+            android:id="@+id/textViewKalosUse"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -142,10 +142,10 @@
             android:textSize="17dp"
             app:layout_constraintEnd_toEndOf="@+id/imageView13"
             app:layout_constraintStart_toStartOf="@+id/imageView13"
-            app:layout_constraintTop_toBottomOf="@+id/textViewKalos" />
+            app:layout_constraintTop_toBottomOf="@+id/textViewKalosUse" />
 
         <TextView
-            android:id="@+id/textView25"
+            android:id="@+id/textViewTimeUnit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
@@ -173,6 +173,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+
         android:layout_width="279dp"
         android:layout_height="60dp"
         app:layout_constraintBottom_toTopOf="@+id/constraintLayout3"
@@ -216,6 +217,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout3"
         android:layout_width="match_parent"
+        android:layout_marginBottom="4dp"
         android:layout_height="260dp"
         android:background="@drawable/round_border_recyclerview"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -275,6 +277,21 @@
             app:layout_constraintStart_toStartOf="@+id/imgStart"
             app:layout_constraintTop_toTopOf="@+id/imgStart" />
 
+
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/textViewHistory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="History"
+        android:textColor="@color/white"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="@+id/constraintLayout3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.852"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
+        app:layout_constraintVertical_bias="0.028" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

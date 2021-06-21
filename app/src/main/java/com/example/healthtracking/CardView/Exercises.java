@@ -5,10 +5,10 @@ import android.widget.ProgressBar;
 public class Exercises {
     private int stepsCounter;
     private ProgressBar progressBar;
-    private int calories;
-    private int distances;
+    private double calories;
+    private double distances;
 
-    public Exercises(int stepsCounter, ProgressBar progressBar, int calories, int distances) {
+    public Exercises(int stepsCounter, ProgressBar progressBar, double calories, double distances) {
         this.stepsCounter = stepsCounter;
         this.progressBar = progressBar;
         this.calories = calories;
@@ -31,19 +31,19 @@ public class Exercises {
         this.progressBar = progressBar;
     }
 
-    public int getCalories() {
+    public double getCalories() {
         return calories;
     }
 
-    public void setCalories(int calories) {
+    public void setCalories(double calories) {
         this.calories = calories;
     }
 
-    public int getDistances() {
+    public double getDistances() {
         return distances;
     }
 
-    public void setDistances(int distances) {
+    public void setDistances(double distances) {
         this.distances = distances;
     }
 }
