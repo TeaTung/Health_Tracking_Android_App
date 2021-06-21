@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/push_up_background"
+    tools:context=".RequestPermission">
+
+    <ImageButton
+        android:id="@+id/imgStartEx"
+        android:layout_width="153dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="32dp"
+        android:layout_weight="1"
+        android:background="#fff"
+        android:src="@drawable/start_button_shape"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvHowtoUse" />
+
+    <TextView
+        android:id="@+id/tvStartEx"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="43dp"
+        android:layout_marginEnd="43dp"
+        android:fontFamily="sans-serif-black"
+        android:text="BẮT ĐẦU"
+        android:textColor="#FFFEFE"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/imgStartEx"
+        app:layout_constraintEnd_toEndOf="@+id/imgStartEx"
+        app:layout_constraintStart_toStartOf="@+id/imgStartEx"
+        app:layout_constraintTop_toTopOf="@+id/imgStartEx" />
+
+    <TextView
+        android:id="@+id/tvTopicEx"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        android:fontFamily="sans-serif-condensed-medium"
+        android:text="BƯỚC QUA MÙA DÂU CÙNG FIREFIT"
+        android:textColor="#000000"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvHowtoUse"
+        android:layout_width="327dp"
+        android:layout_height="112dp"
+        android:layout_marginTop="24dp"
+        android:fontFamily="sans-serif-condensed-light"
+        android:gravity="center"
+        android:text="Firefit sẽ giúp bạn ghi nhận và tính toán chu kỳ kinh nguyệt. Từ đó, dự báo và nhắc nhở bạn khi mùa dâu sắp tới. "
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView17" />
+
+    <ImageView
+        android:id="@+id/imageView17"
+        android:layout_width="381dp"
+        android:layout_height="328dp"
+        android:layout_marginTop="44dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.466"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvTopicEx"
+        app:srcCompat="@drawable/period" />
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/push_up_background">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout4"
+        android:layout_width="match_parent"
+        android:layout_height="263dp"
+        android:background="@drawable/round_border_period"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:fontFamily="sans-serif-black"
+            android:text="Ghi nhận chu kì"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageButton
+            android:id="@+id/imgStart2"
+            android:layout_width="153dp"
+            android:layout_height="50dp"
+            android:layout_marginBottom="12dp"
+            android:layout_weight="1"
+            android:background="#fff"
+            android:backgroundTint="#FFECEA"
+            android:src="@drawable/start_button_shape"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/tvStart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-black"
+            android:text="GHI NHẬN"
+            android:textColor="#FFFEFE"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="@+id/imgStart2"
+            app:layout_constraintEnd_toEndOf="@+id/imgStart2"
+            app:layout_constraintStart_toStartOf="@+id/imgStart2"
+            app:layout_constraintTop_toTopOf="@+id/imgStart2" />
+
+        <TextView
+            android:id="@+id/textView57"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="44dp"
+            android:layout_marginTop="16dp"
+            android:fontFamily="sans-serif-black"
+            android:text="Ngày:"
+            android:textSize="20dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+        <TextView
+            android:id="@+id/textView58"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:fontFamily="sans-serif-black"
+            android:text="Chu kỳ:"
+            android:textSize="20dp"
+            app:layout_constraintStart_toStartOf="@+id/textView57"
+            app:layout_constraintTop_toBottomOf="@+id/textView57" />
+
+        <com.shawnlin.numberpicker.NumberPicker
+            android:id="@+id/number_picker"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            app:layout_constraintBottom_toBottomOf="@+id/textView58"
+            app:layout_constraintStart_toStartOf="@+id/textView58"
+            app:layout_constraintTop_toTopOf="@+id/textView58"
+            app:layout_constraintVertical_bias="0.54"
+            app:np_dividerColor="@color/colorPrimary"
+            app:np_height="30dp"
+            app:np_max="40"
+            app:np_min="20"
+            app:np_orientation="horizontal"
+            app:np_selectedTextColor="@color/colorPrimary"
+            app:np_textColor="@color/colorPrimary"
+            app:np_value="28"
+            app:np_width="80dp" />
+
+        <CheckBox
+            android:id="@+id/checkBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Để FireFit tự động tính chu kỳ"
+            app:layout_constraintBottom_toTopOf="@+id/imgStart2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/textView59"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="22/12/2021"
+            android:textSize="20dp"
+            app:layout_constraintBottom_toBottomOf="@+id/textView57"
+            app:layout_constraintStart_toEndOf="@+id/textView57" />
+
+        <TextView
+            android:id="@+id/textView60"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="120dp"
+            android:text="Ngày"
+            android:textSize="20dp"
+            app:layout_constraintBottom_toBottomOf="@+id/textView58"
+            app:layout_constraintStart_toEndOf="@+id/textView58"
+            app:layout_constraintTop_toTopOf="@+id/textView58" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/textView52"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="22/12/2021"
+        android:textSize="20dp"
+        app:layout_constraintStart_toStartOf="@+id/textView51"
+        app:layout_constraintTop_toBottomOf="@+id/textView51" />
+
+    <TextView
+        android:id="@+id/textView51"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="20dp"
+        android:fontFamily="sans-serif-black"
+        android:text="Ngầy kinh nguyệt dự đoán tiếp theo:"
+        android:textSize="20dp"
+        app:layout_constraintStart_toStartOf="@+id/textView18"
+        app:layout_constraintTop_toBottomOf="@+id/textView23" />
+
+    <CalendarView
+        android:id="@+id/calendarView"
+        android:layout_width="412dp"
+        android:layout_height="298dp"
+        android:background="@android:color/transparent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView18"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="sans-serif-black"
+        android:text="Ngày kinh nguyệt gần nhất:"
+        android:textSize="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/calendarView" />
+
+    <TextView
+        android:id="@+id/textView23"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="22/12/2021"
+        android:textSize="20dp"
+        app:layout_constraintStart_toStartOf="@+id/textView18"
+        app:layout_constraintTop_toBottomOf="@+id/textView18" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
