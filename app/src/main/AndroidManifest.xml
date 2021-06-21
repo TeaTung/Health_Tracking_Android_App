@@ -15,6 +15,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.HealthTracking">
         <activity android:name=".HistoryActivity"></activity>
+        <activity android:name=".DoExercise"></activity>
         <activity android:name=".RequestPermission" />
 
         <meta-data

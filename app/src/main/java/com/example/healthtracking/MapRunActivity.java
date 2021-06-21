@@ -1,21 +1,10 @@
 package com.example.healthtracking;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-
 import android.Manifest;
-import android.content.Context;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
-import android.hardware.Sensor;
-import android.hardware.SensorEvent;
-import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.location.Location;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Looper;
 import android.view.View;
@@ -24,7 +13,13 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+
 import com.example.healthtracking.ClassData.DetailJog;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.app.ActivityCompat;
+
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
@@ -32,12 +27,10 @@ import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -49,6 +42,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import org.jetbrains.annotations.NotNull;
+
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -112,10 +106,11 @@ public class MapRunActivity extends AppCompatActivity implements OnMapReadyCallb
         tvCalo = (TextView) findViewById(R.id.tvCalo);
         tvDistance = (TextView) findViewById(R.id.tvDistance);
         tvSpeed = (TextView) findViewById(R.id.tvSpeed);
-        tvTimeRecord = (TextView) findViewById(R.id.tvTimeRecord);
+        tvTimeRecord = (TextView) findViewById(R.id.tvTimeRecordDoingEx);
         tvFireFit = (TextView) findViewById(R.id.fire_fit);
         pgbAward = (ProgressBar) findViewById(R.id.pgbAward);
-        pgbAward.setMax(1);
+        pgbAward.setMax(10000);
+        pgbAward.setProgress(0);
         timer = new Timer();
 
         //Call function
@@ -137,8 +132,10 @@ public class MapRunActivity extends AppCompatActivity implements OnMapReadyCallb
         }
     }
     private void getCurrentLocation() {
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this,
+                Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            checkAccessLocationPermission();
             return;
         }
         Task<Location> locationTask = fusedLocationClient.getLastLocation();
@@ -273,8 +270,11 @@ public class MapRunActivity extends AppCompatActivity implements OnMapReadyCallb
                     time2=time;
                     time = 0.0;
 
-
-                    if (ActivityCompat.checkSelfPermission(MapRunActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(MapRunActivity.this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                    if (ActivityCompat.checkSelfPermission(MapRunActivity.this,
+                            Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
+                            && ActivityCompat.checkSelfPermission(MapRunActivity.this,
+                            Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                        checkAccessLocationPermission();
                         return;
                     }
                     mGoogleMap.setMyLocationEnabled(false);
@@ -300,13 +300,8 @@ public class MapRunActivity extends AppCompatActivity implements OnMapReadyCallb
         locationRequest.setPriority(LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY);
 
         if (ActivityCompat.checkSelfPermission(MapRunActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(MapRunActivity.this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
+
+            checkAccessLocationPermission();
             return;
         }
         fusedLocationClient.requestLocationUpdates(locationRequest, locationCallback, Looper.myLooper());
@@ -346,7 +341,7 @@ public class MapRunActivity extends AppCompatActivity implements OnMapReadyCallb
         tvCalo.setText(calo + " calories ");
         tvSpeed.setText(speed + " m/s ");
         pgbAward.setProgress((int)step);
-        if (pgbAward.getProgress() == 100){
+        if (pgbAward.getProgress() == 10000){
             tvFireFit.setVisibility(View.VISIBLE);
         }
     }

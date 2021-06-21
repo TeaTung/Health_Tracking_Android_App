@@ -83,6 +83,11 @@ dependencies {
 
     //Shapeable Image
     implementation 'com.google.android.material:material:1.2.0'
+
     /// picasso
     implementation 'com.squareup.picasso:picasso:2.71828'
+
+    //Number Picker
+    implementation 'io.github.ShawnLin013:number-picker:2.4.13'
+
 }

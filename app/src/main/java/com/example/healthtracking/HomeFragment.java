@@ -143,6 +143,7 @@ public class HomeFragment extends Fragment implements SensorEventListener {
 
     @Override
     public void onSensorChanged(SensorEvent event) {
+
         if (check == 1) {
             realStepCounter++;
             distance = Math.round(realStepCounter * 0.7 * 100) / 100;

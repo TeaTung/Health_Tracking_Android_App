@@ -33,6 +33,7 @@ public class ConfirmCodeActivity extends AppCompatActivity {
     String code,mEmail;
     CountDownTimer timer;
     FirebaseAuth mAuth;
+    View decorateView;
     int dem = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +43,6 @@ public class ConfirmCodeActivity extends AppCompatActivity {
         Anhxa();;
         code = getIntent().getStringExtra("code");
         mEmail = getIntent().getStringExtra("email");
-
         buttonContinue.setOnClickListener(this::onClick);
         textViewReset.setOnClickListener(this::onClick);
         buttonBack.setOnClickListener(this::onClick);
@@ -67,8 +67,34 @@ public class ConfirmCodeActivity extends AppCompatActivity {
                 textViewNotice.setVisibility(View.INVISIBLE);
             }
         });
+        decorView();
     }
-
+    public void decorView(){
+        decorateView = getWindow().getDecorView();
+        decorateView.setOnSystemUiVisibilityChangeListener(new View.OnSystemUiVisibilityChangeListener() {
+            @Override
+            public void onSystemUiVisibilityChange(int visibility) {
+                if (visibility == 0) {
+                    decorateView.setSystemUiVisibility(hideSystemBar());
+                }
+            }
+        });
+    }
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+        if (hasFocus) {
+            decorateView.setSystemUiVisibility(hideSystemBar());
+        }
+    }
+    private int hideSystemBar() {
+        return View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
+                | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                | View.SYSTEM_UI_FLAG_FULLSCREEN
+                | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION;
+    }
     public void onClick(View v)
     {
         if (v.getId() == R.id.buttonCoutinue)

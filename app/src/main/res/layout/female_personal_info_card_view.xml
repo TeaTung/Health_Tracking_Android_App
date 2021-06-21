@@ -5,10 +5,12 @@
     android:id="@+id/cdvInfor"
     android:layout_width="match_parent"
     android:layout_height="180dp"
-    android:background="@drawable/round_border_recyclerview">
+    android:background="@drawable/round_border_recyclerview"
+    app:cardCornerRadius="36dp"
+    app:cardElevation="0dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="314dp"
+        android:layout_width="360dp"
         android:layout_height="160dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="10dp"
@@ -18,24 +20,26 @@
             android:id="@+id/tvHeighInFemale"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="40dp"
             android:fontFamily="sans-serif-condensed-light"
             android:text="174 Cm"
             android:textColor="#FFFFFF"
-            android:textSize="16sp"
-            app:layout_constraintEnd_toStartOf="@+id/tvWeighInFemale"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="@+id/TitleDistance"
             app:layout_constraintTop_toBottomOf="@+id/TitleDistance" />
 
         <TextView
             android:id="@+id/tvTitleCalo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="10dp"
             android:fontFamily="sans-serif-black"
+            android:shadowColor="#000000"
+            android:shadowDx="2"
+            android:shadowDy="2"
             android:text="Thể trạng cơ thể"
             android:textColor="@color/white"
-            android:textSize="17sp"
+            android:textSize="22dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/imageView15" />
 
@@ -47,7 +51,7 @@
             android:fontFamily="sans-serif-black"
             android:text="Chiều cao"
             android:textColor="@color/white"
-            android:textSize="16sp"
+            android:textSize="18dp"
             app:layout_constraintStart_toStartOf="@+id/tvTitleCalo"
             app:layout_constraintTop_toBottomOf="@+id/tvTitleCalo" />
 
@@ -67,10 +71,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
+            android:layout_marginEnd="12dp"
             android:fontFamily="sans-serif-black"
             android:text="Cân nặng"
             android:textColor="#FFFFFF"
-            android:textSize="16sp"
+            android:textSize="18dp"
             app:layout_constraintEnd_toStartOf="@+id/imageView15"
             app:layout_constraintTop_toBottomOf="@+id/tvTitleCalo" />
 
@@ -78,12 +83,11 @@
             android:id="@+id/tvWeighInFemale"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="32dp"
             android:fontFamily="sans-serif-condensed-light"
             android:text="70 Kg"
             android:textColor="#FFFFFF"
-            android:textSize="16sp"
-            app:layout_constraintEnd_toStartOf="@+id/imageView15"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="@+id/textView15"
             app:layout_constraintTop_toBottomOf="@+id/textView15" />
 
         <TextView
@@ -94,8 +98,8 @@
             android:fontFamily="sans-serif-black"
             android:text="Ngày kinh nguyệt"
             android:textColor="#FFFFFF"
-            android:textSize="16sp"
-            app:layout_constraintStart_toStartOf="@+id/tvHeighInFemale"
+            android:textSize="18dp"
+            app:layout_constraintStart_toStartOf="@+id/TitleDistance"
             app:layout_constraintTop_toBottomOf="@+id/tvHeighInFemale" />
 
         <TextView
@@ -105,7 +109,7 @@
             android:fontFamily="sans-serif-condensed-light"
             android:text="3 Ngày nữa"
             android:textColor="#FFFFFF"
-            android:textSize="16sp"
+            android:textSize="18sp"
             app:layout_constraintStart_toStartOf="@+id/textView22"
             app:layout_constraintTop_toBottomOf="@+id/textView22" />
     </androidx.constraintlayout.widget.ConstraintLayout>

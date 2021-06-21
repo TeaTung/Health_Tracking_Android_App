@@ -41,7 +41,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="48dp"
         android:fontFamily="sans-serif-condensed-medium"
-        android:text="HÍT ĐẤT CÙNG FIREFIT"
+        android:text="BƯỚC QUA MÙA DÂU CÙNG FIREFIT"
         android:textColor="#000000"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -49,39 +49,27 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/imgEx"
-        android:layout_width="286dp"
-        android:layout_height="275dp"
-        android:layout_marginTop="88dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvTopicEx"
-        app:srcCompat="@drawable/pushup" />
-
     <TextView
         android:id="@+id/tvHowtoUse"
-        android:layout_width="338dp"
-        android:layout_height="109dp"
-        android:layout_marginTop="28dp"
+        android:layout_width="327dp"
+        android:layout_height="112dp"
+        android:layout_marginTop="24dp"
         android:fontFamily="sans-serif-condensed-light"
         android:gravity="center"
-        android:text="Ứng dụng dùng cảm biến tiệm cận để ghi nhận quá trình hít đất của bạn. Đặt điện thoại ngang ngực để có thể ghi nhận quá trình luyện tập cũng như đảm bảo tư thế hít đất"
+        android:text="Firefit sẽ giúp bạn ghi nhận và tính toán chu kỳ kinh nguyệt. Từ đó, dự báo và nhắc nhở bạn khi mùa dâu sắp tới. "
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imgEx" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView17" />
 
-    <TextView
-        android:id="@+id/tvNotUse"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:text="Không cần sử dụng tính năng"
+    <ImageView
+        android:id="@+id/imageView17"
+        android:layout_width="381dp"
+        android:layout_height="328dp"
+        android:layout_marginTop="44dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.466"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imgStartEx" />
+        app:layout_constraintTop_toBottomOf="@+id/tvTopicEx"
+        app:srcCompat="@drawable/period" />
 </androidx.constraintlayout.widget.ConstraintLayout>
