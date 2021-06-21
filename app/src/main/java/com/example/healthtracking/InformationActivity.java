@@ -11,6 +11,7 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.healthtracking.ClassData.Jog;
 import com.example.healthtracking.ClassData.OnedayofPractice;
 import com.example.healthtracking.ClassData.Profile;
 import com.example.healthtracking.ClassData.Run;

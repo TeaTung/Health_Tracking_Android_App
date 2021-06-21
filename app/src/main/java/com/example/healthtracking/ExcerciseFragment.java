@@ -277,20 +277,17 @@ public class ExcerciseFragment extends Fragment {
     }
 
 
-    public  String ConvertTimeToString(int i)
-    {
+    public  String ConvertTimeToString(int i) {
         if (i >= 3600) {
             double x = (i * 1.0) / 3600;
             if (Math.round(x) == i / 3600) return "" + i / 3600;
             return "" + Math.round(x * 100.0) / 100.0;
-        }
-        else  if (i >= 60 )
-        {
+        } else if (i >= 60) {
             double x = (i * 1.0) / 60;
             if (Math.round(x) == i / 60) return "" + i / 60;
             return "" + Math.round(x * 100.0) / 100.0;
-        }
-        else return ""+i;
+        } else return "" + i;
+    }
 
     private void setListExercise(){
         String arr[] = {"Hít đất", "Gập bụng", "Hít xà", "Chạy bộ", "Khác"};
