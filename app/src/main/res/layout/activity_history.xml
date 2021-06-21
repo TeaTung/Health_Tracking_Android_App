@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".history_activity">
+    tools:context=".HistoryActivity">
 
     <CalendarView
         android:id="@+id/calendarView"
@@ -37,8 +37,8 @@
         android:text="Kalo vận động"
         android:textColor="#040404"
         android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="@+id/textView38"
-        app:layout_constraintTop_toBottomOf="@+id/textView38" />
+        app:layout_constraintStart_toStartOf="@+id/textViewKaloUse"
+        app:layout_constraintTop_toBottomOf="@+id/textViewKaloUse" />
 
     <TextView
         android:id="@+id/textView33"
@@ -62,8 +62,8 @@
         android:text="Tốc độ trung bình"
         android:textColor="#040404"
         android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="@+id/textView41"
-        app:layout_constraintTop_toBottomOf="@+id/textView41" />
+        app:layout_constraintStart_toStartOf="@+id/textViewKm"
+        app:layout_constraintTop_toBottomOf="@+id/textViewKm" />
 
     <TextView
         android:id="@+id/textView35"
@@ -74,8 +74,8 @@
         android:text="Thời gian luyện tập"
         android:textColor="#040404"
         android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="@+id/textView43"
-        app:layout_constraintTop_toBottomOf="@+id/textView43" />
+        app:layout_constraintStart_toStartOf="@+id/textViewSpeed"
+        app:layout_constraintTop_toBottomOf="@+id/textViewSpeed" />
 
     <TextView
         android:id="@+id/textView37"
@@ -86,71 +86,71 @@
         android:text="Tổng bước chân"
         android:textColor="#040404"
         android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="@+id/textView39"
-        app:layout_constraintTop_toBottomOf="@+id/textView39" />
+        app:layout_constraintStart_toStartOf="@+id/textViewKaloExercise"
+        app:layout_constraintTop_toBottomOf="@+id/textViewKaloExercise" />
 
     <TextView
-        android:id="@+id/textView38"
+        android:id="@+id/textViewKaloUse"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="2dp"
         android:fontFamily="sans-serif-light"
-        android:text="500 kalos"
+        android:text="0 kalos"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="@+id/textView20"
         app:layout_constraintTop_toBottomOf="@+id/textView20" />
 
     <TextView
-        android:id="@+id/textView39"
+        android:id="@+id/textViewKaloExercise"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="2dp"
         android:fontFamily="sans-serif-light"
-        android:text="500 kalos"
+        android:text="0 kalos"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="@+id/textView32"
         app:layout_constraintTop_toBottomOf="@+id/textView32" />
 
     <TextView
-        android:id="@+id/textView40"
+        android:id="@+id/textViewStepCount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="2dp"
         android:fontFamily="sans-serif-light"
-        android:text="5000 bước"
+        android:text="0 bước"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="@+id/textView37"
         app:layout_constraintTop_toBottomOf="@+id/textView37" />
 
     <TextView
-        android:id="@+id/textView41"
+        android:id="@+id/textViewKm"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="2dp"
         android:fontFamily="sans-serif-light"
-        android:text="5 km"
+        android:text="0 km"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="@+id/textView33"
         app:layout_constraintTop_toBottomOf="@+id/textView33" />
 
     <TextView
-        android:id="@+id/textView42"
+        android:id="@+id/textViewTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="2dp"
         android:fontFamily="sans-serif-light"
-        android:text="2 giờ 30 phút"
+        android:text="0 giờ 0 phút"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="@+id/textView35"
         app:layout_constraintTop_toBottomOf="@+id/textView35" />
 
     <TextView
-        android:id="@+id/textView43"
+        android:id="@+id/textViewSpeed"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="2dp"
         android:fontFamily="sans-serif-light"
-        android:text="3 km/h"
+        android:text="0 km/h"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="@+id/textView34"
         app:layout_constraintTop_toBottomOf="@+id/textView34" />
@@ -161,7 +161,7 @@
         android:layout_marginTop="37dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView42">
+        app:layout_constraintTop_toBottomOf="@+id/textViewTime">
 
         <ImageView
             android:id="@+id/imageView11"

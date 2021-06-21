@@ -24,6 +24,7 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.example.healthtracking.ClassData.DetailJog;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
@@ -40,10 +41,17 @@ import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -69,8 +77,9 @@ public class MapRunActivity extends AppCompatActivity implements OnMapReadyCallb
     double distance;
     double calo;
     double speed;
-    double time = 0.0;
+    double time = 0.0, time2 = 0.0;
     boolean isTimerStarted;
+    String Stime ="";
 
 
     @Override
@@ -218,6 +227,7 @@ public class MapRunActivity extends AppCompatActivity implements OnMapReadyCallb
 
                 startTrackingStep();
                 startTimer();
+                Stime = getStime();
             }
         });
     }
@@ -260,6 +270,7 @@ public class MapRunActivity extends AppCompatActivity implements OnMapReadyCallb
                     btnStop.setText("OK");
                     isTimerStarted = false;
                     timerTask.cancel();
+                    time2=time;
                     time = 0.0;
 
 
@@ -271,6 +282,7 @@ public class MapRunActivity extends AppCompatActivity implements OnMapReadyCallb
                     lytNotification.setVisibility(View.INVISIBLE);
                     imgStart.setVisibility(View.VISIBLE);
                     tvTimeRecord.setText(formatTime(0,0,0));
+                    UpdateData();
                 }
             }
         });
@@ -337,5 +349,59 @@ public class MapRunActivity extends AppCompatActivity implements OnMapReadyCallb
         if (pgbAward.getProgress() == 100){
             tvFireFit.setVisibility(View.VISIBLE);
         }
+    }
+
+    public  void UpdateData()
+    {
+        long millis = System.currentTimeMillis() ;
+        java.sql.Date date = new java.sql.Date(millis);
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        //////// Luu du lieu vua moi chay
+        FirebaseDatabase.getInstance().getReference().child(user.getUid()).child("practice").child(date.toString()).child("jog")
+                .child("detail").child(Stime).setValue(new DetailJog(distance,calo,(int) Math.round(step), (int) Math.round(time2)));
+        //////
+        FirebaseDatabase.getInstance().getReference().child(user.getUid()).child("practice").child(date.toString())
+                .addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
+                             int runStep = snapshot.child("run").child("StepCount").getValue(Integer.class)+(int) Math.round(step);
+                             int jogStep = snapshot.child("jog").child("StepCount").getValue(Integer.class)+(int) Math.round(step);
+                             int jogTime = snapshot.child("jog").child("Time").getValue(Integer.class)+(int) Math.round(time2);
+                             double jogCalo = snapshot.child("jog").child("Calories").getValue(double.class)+calo;
+                             double jogdistance = snapshot.child("jog").child("Distance").getValue(double.class)+distance;
+
+                        FirebaseDatabase.getInstance().getReference().child(user.getUid()).child("practice").child(date.toString())
+                                .child("run").child("StepCount").setValue(runStep);
+                        FirebaseDatabase.getInstance().getReference().child(user.getUid()).child("practice").child(date.toString())
+                                .child("jog").child("StepCount").setValue(jogStep);
+                        FirebaseDatabase.getInstance().getReference().child(user.getUid()).child("practice").child(date.toString())
+                                .child("jog").child("Distance").setValue(jogdistance);
+                        FirebaseDatabase.getInstance().getReference().child(user.getUid()).child("practice").child(date.toString())
+                                .child("jog").child("Calories").setValue(jogCalo);
+                        FirebaseDatabase.getInstance().getReference().child(user.getUid()).child("practice").child(date.toString())
+                                .child("jog").child("Time").setValue(jogTime);
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull @NotNull DatabaseError error) {
+
+                    }
+                });
+    }
+
+    public String getStime()
+    {
+        Calendar calendar = Calendar.getInstance();
+        String hour = (calendar.getTime().getHours() > 9) ?
+                "" + calendar.getTime().getHours() + ""
+                : "0" + calendar.getTime().getHours();
+        String minute = (calendar.getTime().getMinutes() > 9) ?
+                "" + calendar.getTime().getMinutes() + ""
+                : "0" + calendar.getTime().getMinutes();
+        String second = (calendar.getTime().getSeconds() > 9) ?
+                "" + calendar.getTime().getSeconds() + ""
+                : "0" + calendar.getTime().getSeconds();
+        return hour + ":" + minute + ":" + second;
     }
 }

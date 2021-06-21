@@ -127,8 +127,8 @@ public class InformationActivity extends AppCompatActivity {
 
                 User user = new User();
                 Profile profile = new Profile(edittextname.getText().toString(), Integer.parseInt(textViewyear.getText().toString()), spinnersex.getText().toString(),
-                        Double.parseDouble(edittextheight.getText().toString()), Double.parseDouble(edittextweight.getText().toString()));
-                OnedayofPractice onedayofPractice1 = new OnedayofPractice(new Run(0, 0,0), 0, 0);
+                        Integer.parseInt(edittextheight.getText().toString()), Integer.parseInt(edittextweight.getText().toString()), 0);
+                OnedayofPractice onedayofPractice1 = new OnedayofPractice(new Run(0, 0,0), 0, 0,new Jog(0,0,0,0));
                 user.profile = profile;
 
                 long millis = System.currentTimeMillis();

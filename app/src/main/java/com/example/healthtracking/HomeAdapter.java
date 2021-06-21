@@ -1,5 +1,8 @@
 package com.example.healthtracking;
 
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,19 +18,27 @@ import com.example.healthtracking.CardView.FunFact;
 import com.example.healthtracking.CardView.Item;
 import com.example.healthtracking.CardView.PersonalInformation;
 import com.example.healthtracking.ClassData.Run;
+import com.google.android.material.imageview.ShapeableImageView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.List;
 
 public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private List<Item> items;
+    private  int stepcout;
 
     public HomeAdapter(List<Item> items){
         this.items = items;
@@ -95,7 +106,9 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
         else if (getItemViewType(position) == 2) {
             Exercises exercises = (Exercises)items.get(position).getObject();
+          //  stepcout = exercises.getStepsCounter();
             ((ExerciseViewHolder)holder).setExerciseCard(exercises);
+
         }
 
         else if (getItemViewType(position) == 3) {
@@ -130,9 +143,16 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         }
         void setExerciseCard(Exercises exercise){
             tvStepCounter.setText(exercise.getStepsCounter() + "");
-            tvCaloriesInEx.setText(exercise.getCalories()+ "");
-            tvDistanceInEx.setText(exercise.getDistances()+ "");
-            progressBarExercise = exercise.getProgressBar();
+            tvCaloriesInEx.setText((int)exercise.getCalories()+ " Kalos");
+            if (exercise.getDistances() < 1000)
+            {
+                tvDistanceInEx.setText((exercise.getDistances()) + " m");
+            }
+            else tvDistanceInEx.setText(Math.round(exercise.getDistances()/10)/100 + " km");
+            progressBarExercise.setMax(10000);
+            progressBarExercise.setProgress(exercise.getStepsCounter());
+
+
         }
     }
     static class FoodViewHolder extends RecyclerView.ViewHolder{
@@ -154,14 +174,59 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     }
     static class FunFactViewHolder extends RecyclerView.ViewHolder{
         private TextView tvTitle, tvQuote;
+        private ShapeableImageView shapeableImageView;
+        String TextFileURL, TextHolder2="",TextHolder="";
+        BufferedReader bufferReader ;
+        URL url ;
         public FunFactViewHolder(@NonNull @NotNull View itemView) {
             super(itemView);
             tvTitle = itemView.findViewById(R.id.tvTitle);
             tvQuote = itemView.findViewById(R.id.tvQuote);
+            shapeableImageView = itemView.findViewById(R.id.pictureFunFact);
         }
         void setFundFactCard(FunFact funFact) {
 //            tvTitle.setText(funFact.getTitle());
 //            tvQuote.setText(funFact.getQuote());
+            FirebaseDatabase.getInstance().getReference().child("Picture").addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
+                    String x = snapshot.child("text").getValue(String.class);
+                    TextFileURL = x;
+                    Picasso.get().load(snapshot.child("image").getValue(String.class)).into(shapeableImageView);
+                    new GetNotePadFileFromServer().execute();
+
+
+                }
+
+                @Override
+                public void onCancelled(@NonNull @NotNull DatabaseError error) {
+
+                }
+            });
+
+        }
+
+        public class GetNotePadFileFromServer extends AsyncTask<Void, Void, Void> {
+            @Override protected Void doInBackground(Void... params) {
+                try { url = new URL(TextFileURL);
+                    bufferReader = new BufferedReader(new InputStreamReader(url.openStream()));
+                    while ((TextHolder2 = bufferReader.readLine()) != null)
+                    {
+                        TextHolder += TextHolder2; } bufferReader.close();
+                } catch (MalformedURLException malformedURLException) {
+
+                    malformedURLException.printStackTrace();
+                    TextHolder = malformedURLException.toString();
+                } catch (IOException iOException) {
+
+                    iOException.printStackTrace();
+                    TextHolder = iOException.toString();
+                } return null;
+            }
+            @Override protected void onPostExecute(Void finalTextHolder) {
+                tvQuote.setText(TextHolder);
+                super.onPostExecute(finalTextHolder);
+            }
         }
     }
     static class PersonalMaleInformationHolder extends RecyclerView.ViewHolder{
@@ -193,35 +258,5 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         }
     }
 
-    public  void checkDaydataIsExist(int step, double distance, double calo) {
-        long millis = System.currentTimeMillis();
-        java.sql.Date date = new java.sql.Date(millis);
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        FirebaseDatabase.getInstance().getReference().child(user.getUid()).child("practice").child(date.toString()).addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
-//                if (snapshot.getValue() == null) {
-//
-//                    FirebaseDatabase.getInstance().getReference().child(user.getUid()).child("practice").child(date.toString())
-//                            .setValue(new OnedayofPractice((new Run(0, 0, 0)), 0, 0));
-//                    Run run = new Run(step, distance, calo);
-//                    FirebaseDatabase.getInstance().getReference().child(user.getUid()).child("practice").child(date.toString())
-//                            .child("run").setValue(run);
-//                }
-//                else
-                {
-                    Run run = new Run(step, distance, calo);
-                    FirebaseDatabase.getInstance().getReference().child(user.getUid()).child("practice").child(date.toString())
-                            .child("run").setValue(run);
-                }
 
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull @NotNull DatabaseError error) {
-
-            }
-        });
-    }
 }

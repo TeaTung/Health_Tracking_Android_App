@@ -2,6 +2,7 @@ package com.example.healthtracking;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
@@ -9,6 +10,7 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,10 +30,15 @@ import com.example.healthtracking.CardView.Food;
 import com.example.healthtracking.CardView.FunFact;
 import com.example.healthtracking.CardView.Item;
 import com.example.healthtracking.CardView.PersonalInformation;
+import com.example.healthtracking.ClassData.Jog;
+import com.example.healthtracking.ClassData.OnedayofPractice;
+import com.example.healthtracking.ClassData.Profile;
+import com.example.healthtracking.ClassData.Run;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
@@ -47,6 +54,7 @@ import java.util.List;
  */
 public class HomeFragment extends Fragment implements SensorEventListener {
     SensorManager sensorManager;
+    SharedPreferences sharedPreferences;
     RecyclerView recyclerView;
     ProgressBar progressBarStep;
     ProgressBar progressBarFood;
@@ -56,6 +64,10 @@ public class HomeFragment extends Fragment implements SensorEventListener {
     Exercises exercises;
     Food food;
     FunFact funFact;
+    int realStepCounter , height,weigth, daykn;
+    double kalo, distance;
+    int sex;
+    int check = 0;
 
 
     // TODO: Rename parameter arguments, choose names that match
@@ -106,10 +118,9 @@ public class HomeFragment extends Fragment implements SensorEventListener {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         textViewName = (TextView) view.findViewById(R.id.textView14);
         recyclerView = (RecyclerView) view.findViewById(R.id.recycle_view);
-        progressBarStep = (ProgressBar) view.findViewById(R.id.pgbStep);
-        progressBarFood = (ProgressBar) view.findViewById(R.id.pgbFood);
         setProfileName();
-
+        sharedPreferences = getActivity().getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE);
+        realStepCounter = sharedPreferences.getInt("REALSTEP",0)-1;
         requestStepCounterPermission();
         createCardView();
         return view;
@@ -132,7 +143,21 @@ public class HomeFragment extends Fragment implements SensorEventListener {
 
     @Override
     public void onSensorChanged(SensorEvent event) {
-
+        if (check == 1) {
+            realStepCounter++;
+            distance = Math.round(realStepCounter * 0.7 * 100) / 100;
+            kalo = Math.round(distance * 0.0625);
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putInt("REALSTEP", realStepCounter);
+            editor.apply();
+            items.clear();
+            createCardView();
+            UpdateData();
+        }
+        else
+        {
+            LoaddataForFirst();
+        }
     }
 
     @Override
@@ -167,8 +192,10 @@ public class HomeFragment extends Fragment implements SensorEventListener {
     public void createCardView(){
         setInformationCardView();
 
-        //Type: 0 = femaleInfo || 1 = MaleInfo || 2 = Exercise || 3 = Food || 4 = Fun fact
-        items.add(new Item(1,personalInformation));
+        //Type: 1 = femaleInfo || 0 = MaleInfo || 2 = Exercise || 3 = Food || 4 = Fun fact
+
+
+        items.add(new Item(sex,personalInformation));
         items.add(new Item(2,exercises));
         items.add(new Item(3,food));
         items.add(new Item(4,funFact));
@@ -179,11 +206,100 @@ public class HomeFragment extends Fragment implements SensorEventListener {
     }
 
     public void setInformationCardView(){
-
-
-        personalInformation = new PersonalInformation(1,2,3);
-        exercises = new Exercises(1,progressBarStep,2,3);
+        personalInformation = new PersonalInformation(height,weigth,daykn);
+        exercises = new Exercises(realStepCounter,progressBarStep,kalo,distance);
         food = new Food(1,2,progressBarFood);
         funFact = new FunFact("title","quote");
+    }
+
+
+    public  void Loaddata()
+    {
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        FirebaseDatabase.getInstance().getReference().child(user.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
+
+                Profile x = snapshot.child("profile").getValue(Profile.class);
+                height = x.Height;
+                weigth = x.Weight;
+                if (x.Sex.equals("Nam")) sex = 0;
+                else sex = 1;
+                daykn = x.DayKn;
+
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull @NotNull DatabaseError error) {
+
+            }
+        });
+    }
+
+    public  void LoaddataForFirst()
+    {
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        FirebaseDatabase.getInstance().getReference().child(user.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
+
+                Profile x = snapshot.child("profile").getValue(Profile.class);
+                height = x.Height;
+                weigth = x.Weight;
+                if (x.Sex.equals("Nam")) sex = 0;
+                else sex = 1;
+                daykn = x.DayKn;
+
+                realStepCounter++;
+                distance = Math.round(realStepCounter * 0.7 * 100) / 100;
+                kalo = Math.round(distance * 0.0625);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putInt("REALSTEP", realStepCounter);
+                editor.apply();
+                items.clear();
+                createCardView();
+                check=1;
+
+
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull @NotNull DatabaseError error) {
+
+            }
+        });
+    }
+
+    //// cap nhat du lieu len firebase
+    public void UpdateData()
+    {
+        Run run = new Run(realStepCounter, distance, kalo);
+        long millis = System.currentTimeMillis();
+        java.sql.Date date = new java.sql.Date(millis);
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        FirebaseDatabase.getInstance().getReference().child(user.getUid()).child("practice").child(date.toString())
+                .addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
+                        if (snapshot.getValue() != null)
+                        {
+                            FirebaseDatabase.getInstance().getReference().child(user.getUid()).child("practice").child(date.toString())
+                                    .child("run").setValue(run);
+                        }
+                        else
+                        {
+                            OnedayofPractice onedayofPractice = new OnedayofPractice(run, 0,0,new Jog(0,0,0,0));
+                            FirebaseDatabase.getInstance().getReference().child(user.getUid()).child("practice").child(date.toString())
+                                    .setValue(onedayofPractice);
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull @NotNull DatabaseError error) {
+
+                    }
+                });
     }
 }
