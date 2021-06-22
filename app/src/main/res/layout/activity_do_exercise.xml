@@ -141,14 +141,14 @@
         app:layout_constraintStart_toStartOf="@+id/tvRecordKalos"
         app:layout_constraintTop_toBottomOf="@+id/tvRecordKalos" />
 
-    <EditText
+    <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/edtTimeCount"
         android:layout_width="151dp"
         android:layout_height="54dp"
         android:layout_marginStart="32dp"
         android:ems="10"
         android:fontFamily="sans-serif-light"
-        android:inputType="textPersonName"
+        android:inputType="number"
         android:textSize="24sp"
         android:visibility="invisible"
         app:layout_constraintBottom_toTopOf="@+id/imgStop"
@@ -158,14 +158,14 @@
         app:layout_constraintTop_toTopOf="@+id/tvCountTime"
         app:layout_constraintVertical_bias="0.0" />
 
-    <EditText
+    <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/edtCalories"
         android:layout_width="151dp"
         android:layout_height="54dp"
         android:layout_marginStart="32dp"
         android:ems="10"
         android:fontFamily="sans-serif-light"
-        android:inputType="textPersonName"
+        android:inputType="number"
         android:textSize="24sp"
         android:visibility="invisible"
         app:layout_constraintBottom_toTopOf="@+id/textView54"

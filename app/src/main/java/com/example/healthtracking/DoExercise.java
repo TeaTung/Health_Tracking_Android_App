@@ -193,6 +193,10 @@ public class DoExercise extends AppCompatActivity implements SensorEventListener
             timerTask.cancel();
             time = 0.0;
             tvStop.setText("GHI NHẬN");
+            if (isSensorUsed == false){
+                edtCalories.setVisibility(View.VISIBLE);
+                edtTimeCount.setVisibility(View.VISIBLE);
+            }
         } else if (tvStop.getText().equals("GHI NHẬN")){
             tvTimeRecordDoingEx.setText(formatTime(0,0,0));
             recordExercise();
@@ -223,12 +227,14 @@ public class DoExercise extends AppCompatActivity implements SensorEventListener
         if (isSensorUsed == false){
             tvCountTime.setVisibility(View.INVISIBLE);
             tvRecordKalos.setVisibility(View.INVISIBLE);
-            edtCalories.setVisibility(View.VISIBLE);
-            edtTimeCount.setVisibility(View.VISIBLE);
+            edtCalories.setVisibility(View.INVISIBLE);
+            edtTimeCount.setVisibility(View.INVISIBLE);
             pgbAwardEx.setVisibility(View.INVISIBLE);
         }
     }
     private void recordExercise(){
+        if (isSensorUsed == false){
 
+        }
     }
 }

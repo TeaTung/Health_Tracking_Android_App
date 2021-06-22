@@ -54,7 +54,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
-
     public void decorView(){
         decorateView = getWindow().getDecorView();
         decorateView.setOnSystemUiVisibilityChangeListener(new View.OnSystemUiVisibilityChangeListener() {
@@ -89,7 +88,4 @@ public class MainActivity extends AppCompatActivity {
         editor.putBoolean("WAS_INFORMATION",false);
         editor.apply();
     }
-
-
-
 }

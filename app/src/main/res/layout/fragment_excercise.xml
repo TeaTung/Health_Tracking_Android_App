@@ -68,7 +68,7 @@
             android:layout_marginTop="8dp"
             android:src="@drawable/run"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/imageView12"
+            app:layout_constraintStart_toEndOf="@+id/imgWater"
             app:layout_constraintTop_toBottomOf="@+id/day_picker" />
 
         <TextView
@@ -86,7 +86,7 @@
             app:layout_constraintTop_toBottomOf="@+id/imageFood" />
 
         <ImageView
-            android:id="@+id/imageView12"
+            android:id="@+id/imgWater"
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_marginTop="8dp"
@@ -101,7 +101,7 @@
             android:layout_height="60dp"
             android:layout_marginTop="8dp"
             android:src="@drawable/calo"
-            app:layout_constraintEnd_toStartOf="@+id/imageView12"
+            app:layout_constraintEnd_toStartOf="@+id/imgWater"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/day_picker" />
 
@@ -129,7 +129,7 @@
             android:textSize="17dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView12" />
+            app:layout_constraintTop_toBottomOf="@+id/imgWater" />
 
         <TextView
             android:id="@+id/textView24"
@@ -153,8 +153,8 @@
             android:text="Giờ"
             android:textColor="#070707"
             android:textSize="17dp"
-            app:layout_constraintEnd_toEndOf="@+id/imageView12"
-            app:layout_constraintStart_toStartOf="@+id/imageView12"
+            app:layout_constraintEnd_toEndOf="@+id/imgWater"
+            app:layout_constraintStart_toStartOf="@+id/imgWater"
             app:layout_constraintTop_toBottomOf="@+id/textViewWater" />
 
         <TextView
@@ -248,6 +248,7 @@
             android:hint="Chọn bài tập"
             android:padding="15px"
             android:textSize="20sp"
+            android:inputType="textCapWords"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView46"></com.google.android.material.textfield.MaterialAutoCompleteTextView>

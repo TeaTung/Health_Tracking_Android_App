@@ -6,6 +6,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,7 +37,6 @@ import ca.antonious.materialdaypicker.MaterialDayPicker;
  * create an instance of this fragment.
  */
 public class ExcerciseFragment extends Fragment {
-    ImageView imgRun;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -112,6 +112,7 @@ public class ExcerciseFragment extends Fragment {
         lvListExercise = (MaterialAutoCompleteTextView) view.findViewById(R.id.lvListExercise);
         imgStart = (ImageView) view.findViewById(R.id.imgStart);
         tvStart = (TextView) view.findViewById(R.id.tvStart);
+        lvListExercise.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_CAP_SENTENCES);
         setDayPicker();
         Loaddata();
         setButtonStart();
@@ -310,12 +311,11 @@ public class ExcerciseFragment extends Fragment {
     }
 
     private void startExercise(){
-        if (!lvListExercise.getText().toString().equals("")){
+        if (lvListExercise.getText().toString().equals("") == false){
             String exercise = lvListExercise.getText().toString();
             Intent intent = new Intent(getActivity(),RequestPermission.class);
             intent.putExtra("Name",exercise);
             startActivity(intent);
         }
-
     }
 }

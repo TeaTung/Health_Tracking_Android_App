@@ -4,11 +4,16 @@ import android.media.Image;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -46,12 +51,18 @@ public class FoodFragment extends Fragment {
     private String mParam1;
     private String mParam2;
     MaterialDayPicker materialDayPicker;
-    TextView textViewDate, textViewName, textViewWater, textViewCalo, textViewDayKN;
+    TextView textViewDate, textViewName, textViewWater, textViewCalo, textViewDayKN, tvWaterML, tvRecordWater;
     List<MaterialDayPicker.Weekday> allWeekdays;
     MaterialDayPicker.Weekday currentday;
-    ImageView imageFood;
+    ImageView imageFood, imgWater, imgPlus, imgMinus ,imgRecordWater;
     List<String> listNameFood,listUnitFood;
     List<Double> listCaloriesFood;
+    ConstraintLayout cltFood, cltWater;
+    AutoCompleteTextView tvFoodName;
+    TextView tvUnit, tvFoodKalories;
+
+
+    int drinkingWater;
 
     public FoodFragment() {
         // Required empty public constructor
@@ -95,40 +106,67 @@ public class FoodFragment extends Fragment {
         textViewWater = (TextView) view.findViewById(R.id.textViewWater);
         textViewDayKN = (TextView) view.findViewById(R.id.textViewDayKN);
         textViewCalo = (TextView) view.findViewById(R.id.textViewCalo);
-        imageFood = (ImageView) view.findViewById(R.id.imageFood) ;
+        imageFood = (ImageView) view.findViewById(R.id.imageFood);
+        cltFood = (ConstraintLayout) view.findViewById(R.id.cltFood);
+        cltWater = (ConstraintLayout) view.findViewById(R.id.cltWater);
+        imgWater = (ImageView) view.findViewById(R.id.imgWater);
+        imgPlus = (ImageView) view.findViewById(R.id.imgPlus);
+        imgMinus = (ImageView) view.findViewById(R.id.imgMinus);
+        tvWaterML = (TextView) view.findViewById(R.id.tvWaterML);
+        imgRecordWater = (ImageView) view.findViewById(R.id.imgRecordWater);
+        tvRecordWater = (TextView) view.findViewById(R.id.tvRecordWater);
+        tvFoodName = (AutoCompleteTextView) view.findViewById(R.id.tvFoodName);
+        tvUnit = (TextView) view.findViewById(R.id.tvUnit);
+        tvFoodKalories = (TextView) view.findViewById(R.id.tvFoodKalories);
+
         Loaddata();
         setDayPicker();
         Event();
+        createListFood();
         return view;
     }
 
-    public  void Event()
-    {
+    public  void Event() {
         imageFood.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                listNameFood = new ArrayList<>();
-                listUnitFood = new ArrayList<>();
-                listCaloriesFood = new ArrayList<>();
-                FirebaseDatabase.getInstance().getReference().child("Food").addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
-                        for (DataSnapshot item : snapshot.getChildren())
-                        {
-                            listNameFood.add(item.child("NameFood").getValue(String.class));
-                            listUnitFood.add(item.child("UnitFood").getValue(String.class));
-                            listCaloriesFood.add(item.child("Calories").getValue(double.class));
-                        }
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull @NotNull DatabaseError error) {
-
-                    }
-                });
-
-                ////// gọi cái chỗ chuyen qua màn hình thức ăn tiep theo
-
+                cltFood.setVisibility(View.VISIBLE);
+                cltWater.setVisibility(View.INVISIBLE);
+            }
+        });
+        imgWater.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                cltWater.setVisibility(View.VISIBLE);
+                cltFood.setVisibility(View.INVISIBLE);
+            }
+        });
+        imgPlus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                drinkingWater += 50;
+                tvWaterML.setText(drinkingWater + "ml");
+            }
+        });
+        imgMinus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (drinkingWater != 0){
+                    drinkingWater -= 50;
+                    tvWaterML.setText(drinkingWater + "ml");
+                }
+            }
+        });
+        imgRecordWater.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                recordDataWater();
+            }
+        });
+        tvRecordWater.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                recordDataWater();
             }
         });
     }
@@ -153,7 +191,6 @@ public class FoodFragment extends Fragment {
             }
         });
     }
-
     public void setDayPicker() {
 
         MaterialDayPicker.Weekday[] mWeekday = new MaterialDayPicker.Weekday[1];
@@ -177,10 +214,7 @@ public class FoodFragment extends Fragment {
             }
         });
     }
-
     public void setSelectDayPicker(int i) {
-
-
         switch (i) {
             case 2:
                 materialDayPicker.setSelectedDays(MaterialDayPicker.Weekday.MONDAY);
@@ -211,7 +245,6 @@ public class FoodFragment extends Fragment {
         LoadDataForSelectedDay(materialDayPicker.getSelectedDays().get(0));
 
     }
-
     public void setEnableDayPicker(MaterialDayPicker.Weekday currenttday, MaterialDayPicker.Weekday firstday) {
         allWeekdays = new ArrayList<>();
         for (MaterialDayPicker.Weekday x : MaterialDayPicker.Weekday.values()) {
@@ -234,7 +267,6 @@ public class FoodFragment extends Fragment {
         }
 
     }
-
     public void LoadDataForSelectedDay(MaterialDayPicker.Weekday selectedday) {
 
         for (int i = allWeekdays.size() - 1; i >= 0; i--) {
@@ -279,6 +311,64 @@ public class FoodFragment extends Fragment {
             }
         }
     }
+    private void createListFood(){
+        listNameFood = new ArrayList<>();
+        listUnitFood = new ArrayList<>();
+        listCaloriesFood = new ArrayList<>();
+//        FirebaseDatabase.getInstance().getReference().child("Food").addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
+//                for (DataSnapshot item : snapshot.getChildren())
+//                {
+//                    listNameFood.add(item.child("NameFood").getValue(String.class));
+//                    listUnitFood.add(item.child("UnitFood").getValue(String.class));
+//                    listCaloriesFood.add(item.child("Calories").getValue(double.class));
+//                }
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull @NotNull DatabaseError error) {
+//
+//            }
+//        });
+        listNameFood.add("Bánh mì");
+        listNameFood.add("Cơm");
 
+        listUnitFood.add("Cái");
+        listUnitFood.add("Bát");
 
+        listCaloriesFood.add(10.0);
+        listCaloriesFood.add(20.0);
+
+        ArrayAdapter<String> adapterFood = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_dropdown_item_1line,listNameFood);
+
+        tvFoodName.setAdapter(adapterFood);
+        tvFoodName.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+            @Override
+            public void afterTextChanged(Editable s) {
+                int index = 0;
+                if (listNameFood.size() > 0){
+                    for (int i = 1; i <= listNameFood.size(); i++){
+                        if (tvFoodName.getText().toString() == listNameFood.get(i)){
+                            index = i;
+                        }
+                    }
+                    if (index != -1){
+                        Toast.makeText(getActivity(), "" + index, Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
+        });
+    }
+    private void recordDataWater(){
+
+    }
 }
