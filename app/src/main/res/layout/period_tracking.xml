@@ -29,7 +29,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageButton
-            android:id="@+id/imgStart2"
+            android:id="@+id/imageRecord"
             android:layout_width="153dp"
             android:layout_height="50dp"
             android:layout_marginBottom="12dp"
@@ -49,10 +49,10 @@
             android:text="GHI NHẬN"
             android:textColor="#FFFEFE"
             android:textSize="16sp"
-            app:layout_constraintBottom_toBottomOf="@+id/imgStart2"
-            app:layout_constraintEnd_toEndOf="@+id/imgStart2"
-            app:layout_constraintStart_toStartOf="@+id/imgStart2"
-            app:layout_constraintTop_toTopOf="@+id/imgStart2" />
+            app:layout_constraintBottom_toBottomOf="@+id/imageRecord"
+            app:layout_constraintEnd_toEndOf="@+id/imageRecord"
+            app:layout_constraintStart_toStartOf="@+id/imageRecord"
+            app:layout_constraintTop_toTopOf="@+id/imageRecord" />
 
         <TextView
             android:id="@+id/textView57"
@@ -101,7 +101,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Để FireFit tự động tính chu kỳ"
-            app:layout_constraintBottom_toTopOf="@+id/imgStart2"
+            app:layout_constraintBottom_toTopOf="@+id/imageRecord"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 

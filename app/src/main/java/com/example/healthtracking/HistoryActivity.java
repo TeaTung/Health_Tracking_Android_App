@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.CalendarView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.healthtracking.ClassData.Jog;
 import com.example.healthtracking.ClassData.Run;
@@ -116,8 +115,8 @@ public class HistoryActivity extends AppCompatActivity {
         textViewKaloUse = (TextView) findViewById(R.id.textViewKaloUse);
         textViewKaloExercise = (TextView) findViewById(R.id.textViewKaloExercise);
         textViewSpeed = (TextView) findViewById(R.id.textViewSpeed);
-        textViewStepCount = (TextView) findViewById(R.id.textViewStepCount);
-        textViewTime = (TextView) findViewById(R.id.textViewTime);
+        textViewStepCount = (TextView) findViewById(R.id.textViewCalo);
+        textViewTime = (TextView) findViewById(R.id.textViewWater);
         calendarView = (CalendarView) findViewById(R.id.calendarView);
 
 

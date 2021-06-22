@@ -12,9 +12,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.example.healthtracking.ClassData.Jog;
 import com.example.healthtracking.ClassData.Run;
 import com.google.android.material.textfield.MaterialAutoCompleteTextView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -95,9 +93,9 @@ public class ExcerciseFragment extends Fragment {
         materialDayPicker = (MaterialDayPicker) view.findViewById(R.id.day_picker);
         textViewDate = (TextView) view.findViewById(R.id.textViewDate);
         textViewName = (TextView) view.findViewById(R.id.textViewName);
-        textViewStepCount = (TextView) view.findViewById(R.id.textViewStepCount);
+        textViewStepCount = (TextView) view.findViewById(R.id.textViewCalo);
         textViewKalos = (TextView) view.findViewById(R.id.textViewKalosUse);
-        textViewTime = (TextView) view.findViewById(R.id.textViewTime);
+        textViewTime = (TextView) view.findViewById(R.id.textViewWater);
         textViewTimeUnit = (TextView) view.findViewById(R.id.textViewTimeUnit);
         textViewHistory = (TextView) view.findViewById(R.id.textViewHistory);
         Loaddata();

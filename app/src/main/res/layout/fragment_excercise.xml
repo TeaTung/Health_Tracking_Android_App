@@ -62,7 +62,7 @@
             app:selectionMode="ca.antonious.materialdaypicker.SingleSelectionMode" />
 
         <ImageView
-            android:id="@+id/imgRun"
+            android:id="@+id/imageFood"
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_marginTop="8dp"
@@ -72,7 +72,7 @@
             app:layout_constraintTop_toBottomOf="@+id/day_picker" />
 
         <TextView
-            android:id="@+id/textViewStepCount"
+            android:id="@+id/textViewCalo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -80,10 +80,10 @@
             android:text="6500"
             android:textColor="#373737"
             android:textSize="17dp"
-            app:layout_constraintEnd_toEndOf="@+id/imgRun"
+            app:layout_constraintEnd_toEndOf="@+id/imageFood"
             app:layout_constraintHorizontal_bias="0.434"
-            app:layout_constraintStart_toStartOf="@+id/imgRun"
-            app:layout_constraintTop_toBottomOf="@+id/imgRun" />
+            app:layout_constraintStart_toStartOf="@+id/imageFood"
+            app:layout_constraintTop_toBottomOf="@+id/imageFood" />
 
         <ImageView
             android:id="@+id/imageView12"
@@ -119,7 +119,7 @@
             app:layout_constraintTop_toBottomOf="@+id/imageView13" />
 
         <TextView
-            android:id="@+id/textViewTime"
+            android:id="@+id/textViewWater"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -155,7 +155,7 @@
             android:textSize="17dp"
             app:layout_constraintEnd_toEndOf="@+id/imageView12"
             app:layout_constraintStart_toStartOf="@+id/imageView12"
-            app:layout_constraintTop_toBottomOf="@+id/textViewTime" />
+            app:layout_constraintTop_toBottomOf="@+id/textViewWater" />
 
         <TextView
             android:id="@+id/textView26"
@@ -166,9 +166,9 @@
             android:text="Bước chân"
             android:textColor="#070707"
             android:textSize="17dp"
-            app:layout_constraintEnd_toEndOf="@+id/imgRun"
-            app:layout_constraintStart_toStartOf="@+id/imgRun"
-            app:layout_constraintTop_toBottomOf="@+id/textViewStepCount" />
+            app:layout_constraintEnd_toEndOf="@+id/imageFood"
+            app:layout_constraintStart_toStartOf="@+id/imageFood"
+            app:layout_constraintTop_toBottomOf="@+id/textViewCalo" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

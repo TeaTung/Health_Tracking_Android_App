@@ -31,6 +31,7 @@ import com.example.healthtracking.CardView.FunFact;
 import com.example.healthtracking.CardView.Item;
 import com.example.healthtracking.CardView.PersonalInformation;
 import com.example.healthtracking.ClassData.Jog;
+import com.example.healthtracking.ClassData.Nutrition;
 import com.example.healthtracking.ClassData.OnedayofPractice;
 import com.example.healthtracking.ClassData.Profile;
 import com.example.healthtracking.ClassData.Run;
@@ -291,7 +292,7 @@ public class HomeFragment extends Fragment implements SensorEventListener {
                         }
                         else
                         {
-                            OnedayofPractice onedayofPractice = new OnedayofPractice(run, 0,0,new Jog(0,0,0,0));
+                            OnedayofPractice onedayofPractice = new OnedayofPractice(run, new Nutrition(),0,new Jog(0,0,0,0));
                             FirebaseDatabase.getInstance().getReference().child(user.getUid()).child("practice").child(date.toString())
                                     .setValue(onedayofPractice);
                         }
