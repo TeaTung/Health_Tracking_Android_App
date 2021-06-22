@@ -343,30 +343,30 @@ public class FoodFragment extends Fragment {
         ArrayAdapter<String> adapterFood = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_dropdown_item_1line,listNameFood);
 
         tvFoodName.setAdapter(adapterFood);
-        tvFoodName.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-            @Override
-            public void afterTextChanged(Editable s) {
-                int index = 0;
-                if (listNameFood.size() > 0){
-                    for (int i = 1; i <= listNameFood.size(); i++){
-                        if (tvFoodName.getText().toString() == listNameFood.get(i)){
-                            index = i;
-                        }
-                    }
-                    if (index != -1){
-                        Toast.makeText(getActivity(), "" + index, Toast.LENGTH_SHORT).show();
-                    }
-                }
-            }
-        });
+//        tvFoodName.addTextChangedListener(new TextWatcher() {
+//            @Override
+//            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+//
+//            }
+//            @Override
+//            public void onTextChanged(CharSequence s, int start, int before, int count) {
+//
+//            }
+//            @Override
+//            public void afterTextChanged(Editable s) {
+//                int index = 0;
+//                if (listNameFood.size() > 0){
+//                    for (int i = 1; i <= listNameFood.size(); i++){
+//                        if (tvFoodName.getText().toString() == listNameFood.get(i)){
+//                            index = i;
+//                        }
+//                    }
+//                    if (index != -1){
+//                        Toast.makeText(getActivity(), "" + index, Toast.LENGTH_SHORT).show();
+//                    }
+//                }
+//            }
+//        });
     }
     private void recordDataWater(){
 

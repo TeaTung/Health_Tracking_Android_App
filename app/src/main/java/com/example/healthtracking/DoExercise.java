@@ -53,7 +53,7 @@ public class DoExercise extends AppCompatActivity implements SensorEventListener
         imgStop = findViewById(R.id.imgStop);
         pgbAwardEx = findViewById(R.id.pgbAwardEx);
         exerciseName = getIntent().getStringExtra("Name");
-        isSensorUsed = getIntent().getBooleanExtra("isSensorUsed",isSensorUsed);
+        isSensorUsed = getIntent().getBooleanExtra("isSensorUsed",true);
         timer = new Timer();
         sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         sensor = sensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY);
