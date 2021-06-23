@@ -121,7 +121,7 @@ public class FoodFragment extends Fragment {
         imgPlus = (ImageView) view.findViewById(R.id.imgPlus);
         imgMinus = (ImageView) view.findViewById(R.id.imgMinus);
         tvWaterML = (TextView) view.findViewById(R.id.tvWaterML);
-        imgRecordWater = (ImageButton) view.findViewById(R.id.imgRecordWater);
+        imgRecordWater = (ImageView) view.findViewById(R.id.imgRecordWater);
         tvRecordWater = (TextView) view.findViewById(R.id.tvRecordWater);
         tvFoodName = (AutoCompleteTextView) view.findViewById(R.id.tvFoodName);
         tvUnit = (EditText) view.findViewById(R.id.tvUnit);
