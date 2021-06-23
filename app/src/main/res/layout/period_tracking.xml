@@ -145,7 +145,7 @@
         android:layout_marginStart="4dp"
         android:layout_marginTop="20dp"
         android:fontFamily="sans-serif-black"
-        android:text="Ngầy kinh nguyệt dự đoán tiếp theo:"
+        android:text="Ngày kinh nguyệt dự đoán tiếp theo:"
         android:textSize="20dp"
         app:layout_constraintStart_toStartOf="@+id/textView18"
         app:layout_constraintTop_toBottomOf="@+id/textView23" />

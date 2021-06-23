@@ -9,7 +9,7 @@
     tools:context=".RequestPermission">
 
     <ImageButton
-        android:id="@+id/imgStartEx"
+        android:id="@+id/imgStartPeriod"
         android:layout_width="153dp"
         android:layout_height="50dp"
         android:layout_marginTop="32dp"
@@ -21,7 +21,7 @@
         app:layout_constraintTop_toBottomOf="@+id/tvHowtoUse" />
 
     <TextView
-        android:id="@+id/tvStartEx"
+        android:id="@+id/tvStartPeriod"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="43dp"
@@ -30,10 +30,10 @@
         android:text="BẮT ĐẦU"
         android:textColor="#FFFEFE"
         android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="@+id/imgStartEx"
-        app:layout_constraintEnd_toEndOf="@+id/imgStartEx"
-        app:layout_constraintStart_toStartOf="@+id/imgStartEx"
-        app:layout_constraintTop_toTopOf="@+id/imgStartEx" />
+        app:layout_constraintBottom_toBottomOf="@+id/imgStartPeriod"
+        app:layout_constraintEnd_toEndOf="@+id/imgStartPeriod"
+        app:layout_constraintStart_toStartOf="@+id/imgStartPeriod"
+        app:layout_constraintTop_toTopOf="@+id/imgStartPeriod" />
 
     <TextView
         android:id="@+id/tvTopicEx"

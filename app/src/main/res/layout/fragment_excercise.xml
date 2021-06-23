@@ -96,7 +96,7 @@
             app:layout_constraintTop_toBottomOf="@+id/day_picker" />
 
         <ImageView
-            android:id="@+id/imageView13"
+            android:id="@+id/imgPeriod"
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_marginTop="8dp"
@@ -114,9 +114,9 @@
             android:text="720"
             android:textColor="#373737"
             android:textSize="17dp"
-            app:layout_constraintEnd_toEndOf="@+id/imageView13"
-            app:layout_constraintStart_toStartOf="@+id/imageView13"
-            app:layout_constraintTop_toBottomOf="@+id/imageView13" />
+            app:layout_constraintEnd_toEndOf="@+id/imgPeriod"
+            app:layout_constraintStart_toStartOf="@+id/imgPeriod"
+            app:layout_constraintTop_toBottomOf="@+id/imgPeriod" />
 
         <TextView
             android:id="@+id/textViewWater"
@@ -140,8 +140,8 @@
             android:text="Kalos"
             android:textColor="#070707"
             android:textSize="17dp"
-            app:layout_constraintEnd_toEndOf="@+id/imageView13"
-            app:layout_constraintStart_toStartOf="@+id/imageView13"
+            app:layout_constraintEnd_toEndOf="@+id/imgPeriod"
+            app:layout_constraintStart_toStartOf="@+id/imgPeriod"
             app:layout_constraintTop_toBottomOf="@+id/textViewKalosUse" />
 
         <TextView
@@ -238,7 +238,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
 
-        <com.google.android.material.textfield.MaterialAutoCompleteTextView
+        <Spinner
             android:id="@+id/lvListExercise"
             android:layout_width="355dp"
             android:layout_height="58dp"
@@ -251,7 +251,8 @@
             android:inputType="textCapWords"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView46"></com.google.android.material.textfield.MaterialAutoCompleteTextView>
+            app:layout_constraintTop_toBottomOf="@+id/textView46"/>
+
 
         <ImageButton
             android:id="@+id/imgStart"

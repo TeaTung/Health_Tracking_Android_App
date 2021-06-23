@@ -171,6 +171,7 @@ public class MapRunActivity extends AppCompatActivity implements OnMapReadyCallb
     }
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull @NotNull String[] permissions, @NonNull @NotNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (requestCode == 44) {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 getCurrentLocation();
@@ -289,7 +290,7 @@ public class MapRunActivity extends AppCompatActivity implements OnMapReadyCallb
     }
     @Override
     public void onMapReady(@NonNull @NotNull GoogleMap googleMap) {
-
+        getCurrentLocation();
     }
 
     public void startTrackingStep(){
