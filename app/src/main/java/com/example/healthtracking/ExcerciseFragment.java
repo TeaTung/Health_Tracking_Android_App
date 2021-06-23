@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.example.healthtracking.ClassData.Run;
@@ -50,7 +51,7 @@ public class ExcerciseFragment extends Fragment {
     TextView textViewDate, textViewName, textViewStepCount, textViewKalos, textViewTime, textViewHistory, textViewTimeUnit;
     List<MaterialDayPicker.Weekday> allWeekdays;
     MaterialDayPicker.Weekday currentday;
-    MaterialAutoCompleteTextView lvListExercise;
+    Spinner lvListExercise;
     ImageView imgStart;
     TextView tvStart;
 
@@ -108,11 +109,10 @@ public class ExcerciseFragment extends Fragment {
                 startActivity(intent);
             }
         });
-
-        lvListExercise = (MaterialAutoCompleteTextView) view.findViewById(R.id.lvListExercise);
-        imgStart = (ImageView) view.findViewById(R.id.imgRecordWater);
+      
+        lvListExercise = (Spinner) view.findViewById(R.id.lvListExercise);
+        imgStart = (ImageView) view.findViewById(R.id.imgStart);
         tvStart = (TextView) view.findViewById(R.id.tvStart);
-        lvListExercise.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_CAP_SENTENCES);
         setDayPicker();
         Loaddata();
         setButtonStart();
@@ -313,8 +313,8 @@ public class ExcerciseFragment extends Fragment {
     }
 
     private void startExercise(){
-        if (lvListExercise.getText().toString().equals("") == false){
-            String exercise = lvListExercise.getText().toString();
+        if (lvListExercise.getSelectedItem().toString().equals("") == false){
+            String exercise = lvListExercise.getSelectedItem().toString();
             Intent intent = new Intent(getActivity(),RequestPermission.class);
             intent.putExtra("Name",exercise);
             startActivity(intent);

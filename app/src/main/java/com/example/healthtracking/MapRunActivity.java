@@ -289,7 +289,7 @@ public class MapRunActivity extends AppCompatActivity implements OnMapReadyCallb
     }
     @Override
     public void onMapReady(@NonNull @NotNull GoogleMap googleMap) {
-
+        getCurrentLocation();
     }
 
     public void startTrackingStep(){

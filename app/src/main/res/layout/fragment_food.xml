@@ -74,7 +74,7 @@
             app:layout_constraintTop_toBottomOf="@+id/day_picker" />
 
         <ImageView
-            android:id="@+id/imageView13"
+            android:id="@+id/imgPeriod"
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_marginTop="8dp"
@@ -92,9 +92,9 @@
             android:text="3"
             android:textColor="#373737"
             android:textSize="17dp"
-            app:layout_constraintEnd_toEndOf="@+id/imageView13"
-            app:layout_constraintStart_toStartOf="@+id/imageView13"
-            app:layout_constraintTop_toBottomOf="@+id/imageView13" />
+            app:layout_constraintEnd_toEndOf="@+id/imgPeriod"
+            app:layout_constraintStart_toStartOf="@+id/imgPeriod"
+            app:layout_constraintTop_toBottomOf="@+id/imgPeriod" />
 
         <TextView
             android:id="@+id/textViewWater"
@@ -118,8 +118,8 @@
             android:text="Ngày nữa"
             android:textColor="#070707"
             android:textSize="17dp"
-            app:layout_constraintEnd_toEndOf="@+id/imageView13"
-            app:layout_constraintStart_toStartOf="@+id/imageView13"
+            app:layout_constraintEnd_toEndOf="@+id/imgPeriod"
+            app:layout_constraintStart_toStartOf="@+id/imgPeriod"
             app:layout_constraintTop_toBottomOf="@+id/textViewDayKN" />
 
         <TextView
@@ -197,31 +197,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageButton
-            android:id="@+id/imgRecordWater"
-            android:layout_width="153dp"
-            android:layout_height="50dp"
-            android:layout_marginBottom="12dp"
-            android:layout_weight="1"
-            android:background="#fff"
-            android:src="@drawable/start_button_shape"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <TextView
-            android:id="@+id/tvRecordWater"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="sans-serif-black"
-            android:text="GHI NHẬN"
-            android:textColor="#FFFEFE"
-            android:textSize="16sp"
-            app:layout_constraintBottom_toBottomOf="@+id/imgRecordWater"
-            app:layout_constraintEnd_toEndOf="@+id/imgRecordWater"
-            app:layout_constraintStart_toStartOf="@+id/imgRecordWater"
-            app:layout_constraintTop_toTopOf="@+id/imgRecordWater" />
-
         <ImageView
             android:id="@+id/imageView21"
             android:layout_width="105dp"
@@ -278,6 +253,133 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvWaterML" />
 
+        <ImageView
+            android:layout_width="153dp"
+            android:layout_height="50dp"
+            android:id="@+id/imgRecordWater"
+            android:layout_marginBottom="12dp"
+            android:background="#fff"
+            android:src="@drawable/start_button_shape"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tvRecordWater"
+            android:fontFamily="sans-serif-black"
+            android:text="GHI NHẬN"
+            android:textSize="16sp"
+            android:textColor="#FFFEFE"
+            app:layout_constraintBottom_toBottomOf="@+id/imgRecordWater"
+            app:layout_constraintEnd_toEndOf="@+id/imgRecordWater"
+            app:layout_constraintStart_toStartOf="@+id/imgRecordWater"
+            app:layout_constraintTop_toTopOf="@+id/imgRecordWater" />
+
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cltFood"
+        android:layout_width="match_parent"
+        android:layout_height="260dp"
+        android:background="@drawable/round_border_recyclerview"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:id="@+id/textView48"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="56dp"
+            android:text="Ăn điều độ bạn nhé!"
+            android:textSize="12dp"
+            android:textStyle="italic"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvFoodName" />
+
+        <TextView
+            android:id="@+id/tvFoodKalories"
+            android:layout_width="140dp"
+            android:layout_height="47dp"
+            android:layout_marginTop="9dp"
+            android:background="@drawable/round_border_input_text"
+            android:hint="Lượng kalories"
+            android:inputType="textCapSentences"
+            android:padding="10dp"
+            app:layout_constraintEnd_toEndOf="@+id/tvFoodName"
+            app:layout_constraintTop_toBottomOf="@+id/tvFoodName" />
+
+        <EditText
+            android:id="@+id/tvUnit"
+            android:layout_width="140dp"
+            android:layout_height="47dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/round_border_input_text"
+            android:hint="Khẩu phần"
+            android:inputType="number"
+            android:padding="10dp"
+            app:layout_constraintStart_toStartOf="@+id/tvFoodName"
+            app:layout_constraintTop_toBottomOf="@+id/tvFoodName" />
+
+        <AutoCompleteTextView
+            android:id="@+id/tvFoodName"
+            android:layout_width="313dp"
+            android:layout_height="45dp"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/round_border_input_text"
+
+            android:hint="Khẩu phần ăn"
+            android:inputType="textCapSentences"
+            android:padding="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:fontFamily="sans-serif-black"
+            android:text="Ăn cùng FireFit"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/imgRecordFood"
+            android:layout_width="153dp"
+            android:layout_height="50dp"
+            android:layout_marginBottom="12dp"
+            android:background="#fff"
+            android:src="@drawable/start_button_shape"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/tvRecordFood"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-black"
+            android:text="GHI NHẬN"
+            android:textColor="#FFFEFE"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="@+id/imgRecordFood"
+            app:layout_constraintEnd_toEndOf="@+id/imgRecordFood"
+            app:layout_constraintStart_toStartOf="@+id/imgRecordFood"
+            app:layout_constraintTop_toTopOf="@+id/imgRecordFood" />
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -321,104 +423,6 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/imageView14"
             app:layout_constraintTop_toBottomOf="@+id/textView27" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/cltFood"
-        android:layout_width="match_parent"
-        android:layout_height="260dp"
-        android:background="@drawable/round_border_recyclerview"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent">
-
-        <TextView
-            android:id="@+id/textView48"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="4dp"
-            android:text="Ăn điều độ bạn nhé!"
-            android:textSize="12dp"
-            android:textStyle="italic"
-            app:layout_constraintBottom_toTopOf="@+id/imgRecordFood"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <AutoCompleteTextView
-            android:id="@+id/tvFoodKalories"
-            android:layout_width="140dp"
-            android:layout_height="47dp"
-            android:layout_marginTop="9dp"
-            android:background="@drawable/round_border_input_text"
-            android:hint="Lượng kalories"
-            android:inputType="textCapSentences"
-            android:padding="10dp"
-            app:layout_constraintEnd_toEndOf="@+id/tvFoodName"
-            app:layout_constraintTop_toBottomOf="@+id/tvFoodName" />
-
-        <AutoCompleteTextView
-            android:id="@+id/tvUnit"
-            android:layout_width="140dp"
-            android:layout_height="47dp"
-            android:layout_marginTop="8dp"
-            android:background="@drawable/round_border_input_text"
-            android:hint="Khẩu phần"
-            android:padding="10dp"
-            app:layout_constraintStart_toStartOf="@+id/tvFoodName"
-            app:layout_constraintTop_toBottomOf="@+id/tvFoodName" />
-
-        <AutoCompleteTextView
-            android:id="@+id/tvFoodName"
-            android:layout_width="313dp"
-            android:layout_height="45dp"
-            android:layout_marginTop="15dp"
-            android:background="@drawable/round_border_input_text"
-            android:hint="Nhập món ăn"
-            android:inputType="textCapSentences"
-            android:padding="10dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView" />
-
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:fontFamily="sans-serif-black"
-            android:text="Ăn cùng FireFit"
-            android:textSize="24sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageButton
-            android:id="@+id/imgRecordFood"
-            android:layout_width="153dp"
-            android:layout_height="50dp"
-            android:layout_marginBottom="12dp"
-            android:layout_weight="1"
-            android:background="#fff"
-            android:src="@drawable/start_button_shape"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <TextView
-            android:id="@+id/tvRecordFood"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="sans-serif-black"
-            android:text="GHI NHẬN"
-            android:textColor="#FFFEFE"
-            android:textSize="16sp"
-            app:layout_constraintBottom_toBottomOf="@+id/imgRecordFood"
-            app:layout_constraintEnd_toEndOf="@+id/imgRecordFood"
-            app:layout_constraintStart_toStartOf="@+id/imgRecordFood"
-            app:layout_constraintTop_toTopOf="@+id/imgRecordFood" />
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
