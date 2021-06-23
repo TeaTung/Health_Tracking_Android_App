@@ -106,7 +106,8 @@ public class RequestPermission extends AppCompatActivity {
         });
     }
 
-    private void startExercise(Boolean isUsedSensor){
+    private void startExercise(boolean isUsedSensor){
+
         if (exerciseName.equals("Hít đất")){
             Intent intent = new Intent(this , DoExercise.class);
             intent.putExtra("Name",exerciseName);
@@ -136,6 +137,7 @@ public class RequestPermission extends AppCompatActivity {
             startActivity(intent);
         }
     }
+
     private void setButtonNotUseSensor(){
         tvNotUse.setOnClickListener(new View.OnClickListener() {
             @Override

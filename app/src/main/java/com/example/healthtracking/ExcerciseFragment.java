@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.example.healthtracking.ClassData.Run;
@@ -50,7 +51,7 @@ public class ExcerciseFragment extends Fragment {
     TextView textViewDate, textViewName, textViewStepCount, textViewKalos, textViewTime, textViewHistory, textViewTimeUnit;
     List<MaterialDayPicker.Weekday> allWeekdays;
     MaterialDayPicker.Weekday currentday;
-    MaterialAutoCompleteTextView lvListExercise;
+    Spinner lvListExercise;
     ImageView imgStart;
     TextView tvStart;
 
@@ -108,11 +109,10 @@ public class ExcerciseFragment extends Fragment {
                 startActivity(intent);
             }
         });
-
-        lvListExercise = (MaterialAutoCompleteTextView) view.findViewById(R.id.lvListExercise);
+      
+        lvListExercise = (Spinner) view.findViewById(R.id.lvListExercise);
         imgStart = (ImageView) view.findViewById(R.id.imgStart);
         tvStart = (TextView) view.findViewById(R.id.tvStart);
-        lvListExercise.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_CAP_SENTENCES);
         setDayPicker();
         Loaddata();
         setButtonStart();
@@ -245,11 +245,13 @@ public class ExcerciseFragment extends Fragment {
                                             Run run = snapshot.child("run").getValue(Run.class);
                                             int jogTime =  snapshot.child("jog").child("Time").getValue(Integer.class);
                                             double jogCalo =  snapshot.child("jog").child("Calories").getValue(double.class);
+                                            int exTime =  snapshot.child("exercise").child("Time").getValue(Integer.class);
+                                            double exCalo =  snapshot.child("exercise").child("Calories").getValue(double.class);
                                             textViewStepCount.setText("" + run.StepCount);
-                                            textViewKalos.setText(""+Math.round(run.Calories + jogCalo));
-                                            textViewTime.setText(ConvertTimeToString(jogTime));
-                                            if (jogTime >= 3600)  textViewTimeUnit.setText("Giờ");
-                                            else if (jogTime >= 60)  textViewTimeUnit.setText("Phút");
+                                            textViewKalos.setText(""+Math.round(run.Calories + jogCalo+exCalo));
+                                            textViewTime.setText(ConvertTimeToString(jogTime+exTime));
+                                            if (jogTime + exTime >= 3600)  textViewTimeUnit.setText("Giờ");
+                                            else if (jogTime +exTime >= 60)  textViewTimeUnit.setText("Phút");
                                             else textViewTimeUnit.setText("Giây");
 
                                         }
@@ -311,8 +313,8 @@ public class ExcerciseFragment extends Fragment {
     }
 
     private void startExercise(){
-        if (lvListExercise.getText().toString().equals("") == false){
-            String exercise = lvListExercise.getText().toString();
+        if (lvListExercise.getSelectedItem().toString().equals("") == false){
+            String exercise = lvListExercise.getSelectedItem().toString();
             Intent intent = new Intent(getActivity(),RequestPermission.class);
             intent.putExtra("Name",exercise);
             startActivity(intent);
