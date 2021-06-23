@@ -172,7 +172,7 @@
         android:visibility="visible"
         android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"
-        android:id="@+id/imgStart"
+        android:id="@+id/imgRecordWater"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_marginBottom="44dp"

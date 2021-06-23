@@ -92,23 +92,22 @@ public class RequestPermission extends AppCompatActivity {
     }
 
     private void setButtonStart(){
-        isUsedSensor = true;
         imgStartEx.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startExercise();
+                startExercise(true);
             }
         });
 
         tvStartEx.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startExercise();
+                startExercise(true);
             }
         });
     }
 
-    private void startExercise(){
+    private void startExercise(boolean isUsedSensor){
         if (exerciseName.equals("Hít đất")){
             Intent intent = new Intent(this , DoExercise.class);
             intent.putExtra("Name",exerciseName);
@@ -139,11 +138,11 @@ public class RequestPermission extends AppCompatActivity {
         }
     }
     private void setButtnNotUseSensor(){
-        isUsedSensor = false;
+
         tvNotUse.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startExercise();
+                startExercise(false);
             }
         });
     }

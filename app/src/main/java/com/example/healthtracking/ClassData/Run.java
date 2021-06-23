@@ -7,7 +7,9 @@ public class Run {
 
     public  Run()
     {
-
+       Distance =0;
+       Calories = 0;
+       StepCount = 0;
     }
 
     public Run(int stepCount, double quangDuong, double calories) {

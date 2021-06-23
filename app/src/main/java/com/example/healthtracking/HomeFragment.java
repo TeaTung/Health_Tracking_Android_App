@@ -30,6 +30,7 @@ import com.example.healthtracking.CardView.Food;
 import com.example.healthtracking.CardView.FunFact;
 import com.example.healthtracking.CardView.Item;
 import com.example.healthtracking.CardView.PersonalInformation;
+import com.example.healthtracking.ClassData.Exercise;
 import com.example.healthtracking.ClassData.Jog;
 import com.example.healthtracking.ClassData.Nutrition;
 import com.example.healthtracking.ClassData.OnedayofPractice;
@@ -69,6 +70,8 @@ public class HomeFragment extends Fragment implements SensorEventListener {
     double kalo, distance;
     int sex;
     int check = 0;
+    int water;
+    double foodCalories;
 
 
     // TODO: Rename parameter arguments, choose names that match
@@ -210,7 +213,7 @@ public class HomeFragment extends Fragment implements SensorEventListener {
     public void setInformationCardView(){
         personalInformation = new PersonalInformation(height,weigth,daykn);
         exercises = new Exercises(realStepCounter,progressBarStep,kalo,distance);
-        food = new Food(1,2,progressBarFood);
+        food = new Food(foodCalories,water,progressBarFood);
         funFact = new FunFact("title","quote");
     }
 
@@ -241,6 +244,8 @@ public class HomeFragment extends Fragment implements SensorEventListener {
 
     public  void LoaddataForFirst()
     {
+        long millis = System.currentTimeMillis() ;
+        java.sql.Date date = new java.sql.Date(millis);
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         FirebaseDatabase.getInstance().getReference().child(user.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -252,7 +257,8 @@ public class HomeFragment extends Fragment implements SensorEventListener {
                 if (x.Sex.equals("Nam")) sex = 0;
                 else sex = 1;
                 daykn = x.DayKn;
-
+                water = snapshot.child("practice").child(date.toString()).child("nutrition").child("Water").getValue(Integer.class);
+                foodCalories  = snapshot.child("practice").child(date.toString()).child("nutrition").child("Calories").getValue(double.class);
                 realStepCounter++;
                 distance = Math.round(realStepCounter * 0.7 * 100) / 100;
                 kalo = Math.round(distance * 0.0625);
@@ -292,7 +298,7 @@ public class HomeFragment extends Fragment implements SensorEventListener {
                         }
                         else
                         {
-                            OnedayofPractice onedayofPractice = new OnedayofPractice(run, new Nutrition(),0,new Jog(0,0,0,0));
+                            OnedayofPractice onedayofPractice = new OnedayofPractice(run, new Nutrition(),0,new Jog(), new Exercise());
                             FirebaseDatabase.getInstance().getReference().child(user.getUid()).child("practice").child(date.toString())
                                     .setValue(onedayofPractice);
                         }
