@@ -1,14 +1,11 @@
 package com.example.healthtracking;
 
-import android.media.Image;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,9 +14,7 @@ import android.widget.AutoCompleteTextView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.example.healthtracking.ClassData.Run;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -54,7 +49,8 @@ public class FoodFragment extends Fragment {
     TextView textViewDate, textViewName, textViewWater, textViewCalo, textViewDayKN, tvWaterML, tvRecordWater;
     List<MaterialDayPicker.Weekday> allWeekdays;
     MaterialDayPicker.Weekday currentday;
-    ImageView imageFood, imgWater, imgPlus, imgMinus ,imgRecordWater;
+    ImageView imageFood, imgWater, imgPlus, imgMinus ;
+    ImageButton imgRecordWater;
     List<String> listNameFood,listUnitFood;
     List<Double> listCaloriesFood;
     ConstraintLayout cltFood, cltWater;
@@ -63,6 +59,7 @@ public class FoodFragment extends Fragment {
 
 
     int drinkingWater;
+    int currentDrinkWater;
 
     public FoodFragment() {
         // Required empty public constructor
@@ -113,7 +110,7 @@ public class FoodFragment extends Fragment {
         imgPlus = (ImageView) view.findViewById(R.id.imgPlus);
         imgMinus = (ImageView) view.findViewById(R.id.imgMinus);
         tvWaterML = (TextView) view.findViewById(R.id.tvWaterML);
-        imgRecordWater = (ImageView) view.findViewById(R.id.imgRecordWater);
+        imgRecordWater = (ImageButton) view.findViewById(R.id.imgRecordWater);
         tvRecordWater = (TextView) view.findViewById(R.id.tvRecordWater);
         tvFoodName = (AutoCompleteTextView) view.findViewById(R.id.tvFoodName);
         tvUnit = (TextView) view.findViewById(R.id.tvUnit);
@@ -159,8 +156,7 @@ public class FoodFragment extends Fragment {
         });
         imgRecordWater.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                recordDataWater();
+            public void onClick(View v) { recordDataWater();
             }
         });
         tvRecordWater.setOnClickListener(new View.OnClickListener() {
@@ -274,7 +270,9 @@ public class FoodFragment extends Fragment {
                 for (int j = i; j >= 0; j--)
                     if (selectedday == allWeekdays.get(j)) {
                         long millis = System.currentTimeMillis() - (i - j) * 3600 * 24 * 1000;
+                        long currentmillis = System.currentTimeMillis();
                         java.sql.Date date = new java.sql.Date(millis);
+                        java.sql.Date currentdate = new java.sql.Date(currentmillis);
                         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                         FirebaseDatabase.getInstance().getReference().child(user.getUid()).child("practice").child(date.toString())
                                 .addListenerForSingleValueEvent(new ValueEventListener() {
@@ -284,10 +282,12 @@ public class FoodFragment extends Fragment {
                                         //  OnedayofPractice onedayofPractice = snapshot.getValue(OnedayofPractice.class);
                                         if (snapshot.getValue() != null)
                                         {
-
+                                           if (date.toString().equals(currentdate.toString()))
+                                               currentDrinkWater = snapshot.child("nutrition").child("Water").getValue(Integer.class);
                                            textViewWater.setText(""+snapshot.child("nutrition").child("Water").getValue(Integer.class));
                                            int x = (int) Math.round(snapshot.child("nutrition").child("Calories").getValue(double.class));
                                            textViewCalo.setText(""+x);
+
 
 
                                         }
@@ -369,6 +369,12 @@ public class FoodFragment extends Fragment {
 //        });
     }
     private void recordDataWater(){
-
+        currentDrinkWater += drinkingWater;
+        long millis = System.currentTimeMillis() ;
+        java.sql.Date date = new java.sql.Date(millis);
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        FirebaseDatabase.getInstance().getReference().child(user.getUid()).child("practice").child(date.toString())
+                .child("nutrition").child("Water").setValue(currentDrinkWater);
+        setDayPicker();
     }
 }

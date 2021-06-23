@@ -11,6 +11,7 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.healthtracking.ClassData.Exercise;
 import com.example.healthtracking.ClassData.Jog;
 import com.example.healthtracking.ClassData.Nutrition;
 import com.example.healthtracking.ClassData.OnedayofPractice;
@@ -150,7 +151,7 @@ public class InformationActivity extends AppCompatActivity {
                 User user = new User();
                 Profile profile = new Profile(edittextname.getText().toString(), Integer.parseInt(textViewyear.getText().toString()), spinnersex.getText().toString(),
                         Integer.parseInt(edittextheight.getText().toString()), Integer.parseInt(edittextweight.getText().toString()), 0);
-                OnedayofPractice onedayofPractice1 = new OnedayofPractice(new Run(0, 0,0), new Nutrition(), 0,new Jog(0,0,0,0));
+                OnedayofPractice onedayofPractice1 = new OnedayofPractice(new Run(), new Nutrition(), 0,new Jog(), new Exercise());
                 user.profile = profile;
 
                 long millis = System.currentTimeMillis();

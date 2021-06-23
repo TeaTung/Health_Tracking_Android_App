@@ -44,7 +44,6 @@ import com.google.firebase.database.ValueEventListener;
 import org.jetbrains.annotations.NotNull;
 
 
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Timer;
@@ -97,7 +96,7 @@ public class MapRunActivity extends AppCompatActivity implements OnMapReadyCallb
         });
 
         //Assign implement
-        imgStart = (ImageView) findViewById(R.id.imgStart);
+        imgStart = (ImageView) findViewById(R.id.imgRecordWater);
         btnStop = (Button) findViewById(R.id.btnStop);
         lytNotification = (ConstraintLayout) findViewById(R.id.notification_background);
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
@@ -171,6 +170,7 @@ public class MapRunActivity extends AppCompatActivity implements OnMapReadyCallb
     }
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull @NotNull String[] permissions, @NonNull @NotNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (requestCode == 44) {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 getCurrentLocation();

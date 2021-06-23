@@ -20,7 +20,7 @@
             android:layout_height="138dp"
             android:layout_marginEnd="5dp"
             android:indeterminateOnly="false"
-            android:progress="70"
+            android:progress="0"
             android:progressDrawable="@drawable/circle_progress_step"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
