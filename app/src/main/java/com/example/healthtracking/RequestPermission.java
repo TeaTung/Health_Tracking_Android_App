@@ -16,7 +16,6 @@ public class RequestPermission extends AppCompatActivity {
     TextView tvTopicEx, tvHowtoUse, tvStartEx, tvNotUse;
     ImageView imgEx, imgStartEx;
 
-    boolean isUsedSensor;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,7 +32,7 @@ public class RequestPermission extends AppCompatActivity {
         decorView();
         createDetailExercise();
         setButtonStart();
-        setButtnNotUseSensor();
+        setButtonNotUseSensor();
     }
 
     public void decorView(){
@@ -108,6 +107,7 @@ public class RequestPermission extends AppCompatActivity {
     }
 
     private void startExercise(boolean isUsedSensor){
+
         if (exerciseName.equals("Hít đất")){
             Intent intent = new Intent(this , DoExercise.class);
             intent.putExtra("Name",exerciseName);
@@ -137,8 +137,8 @@ public class RequestPermission extends AppCompatActivity {
             startActivity(intent);
         }
     }
-    private void setButtnNotUseSensor(){
 
+    private void setButtonNotUseSensor(){
         tvNotUse.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
