@@ -9,12 +9,13 @@
     <ImageView
         android:id="@+id/imageView19"
         android:layout_width="480dp"
-        android:layout_height="730dp"
+        android:layout_height="750dp"
         android:adjustViewBounds="true"
         android:scaleType="centerInside"
         android:src="@drawable/food_background"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="-39dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"

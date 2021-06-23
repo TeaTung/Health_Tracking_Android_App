@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AccountGoal">
+
+    <ImageButton
+        android:id="@+id/imageButton2"
+        android:layout_width="153dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="16dp"
+        android:layout_weight="1"
+        android:background="#fff"
+        android:src="@drawable/start_button_shape"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView42"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-black"
+        android:text="THIẾT LẬP"
+        android:textColor="#FFFEFE"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageButton2"
+        app:layout_constraintEnd_toEndOf="@+id/imageButton2"
+        app:layout_constraintStart_toStartOf="@+id/imageButton2"
+        app:layout_constraintTop_toTopOf="@+id/imageButton2" />
+
+    <View
+        android:id="@+id/topView4"
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:background="@color/blue"
+        tools:ignore="MissingConstraints" />
+
+    <ImageView
+        android:id="@+id/imageView19"
+        android:layout_width="wrap_content"
+        android:layout_height="101dp"
+        android:layout_marginTop="80dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/topView4"
+        app:srcCompat="@drawable/ic_wave" />
+
+    <TextView
+        android:id="@+id/textView60"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-condensed-light"
+        android:text="Thiết lập mục tiêu FireFit day!"
+        android:textColor="#FFFFFF"
+        android:textSize="30sp"
+        app:layout_constraintStart_toStartOf="@+id/textView52"
+        app:layout_constraintTop_toBottomOf="@+id/textView52" />
+
+    <TextView
+        android:id="@+id/textView52"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="24dp"
+        android:fontFamily="sans-serif-condensed-medium"
+        android:text="Tài khoản"
+        android:textColor="#FFFFFF"
+        android:textSize="34sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/topView4" />
+
+    <ImageView
+        android:id="@+id/imageView12"
+        android:layout_width="476dp"
+        android:layout_height="230dp"
+        android:layout_marginTop="130dp"
+        android:src="@drawable/healthy_lifestyle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.507"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/topView4" />
+
+    <TextView
+        android:id="@+id/textView38"
+        android:layout_width="340dp"
+        android:layout_height="89dp"
+        android:layout_marginTop="180dp"
+        android:fontFamily="sans-serif-light"
+        android:gravity="center"
+        android:text="Đặt mục tiêu calo tiêu thụ và calo luyện tập hợp lý sẽ giúp bạn giữ được thể trạng khoẻ mạnh. Luyện tập và ăn uống theo mục tiêu để đạt FireFit day bạn nhé!"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.492"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView19" />
+
+    <AutoCompleteTextView
+        android:id="@+id/tfCaloTieuThu"
+        android:layout_width="334dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="14dp"
+        android:background="@drawable/round_border_input_text"
+        android:hint="Kalo luyện tập"
+        android:inputType="textCapSentences"
+        android:padding="10dp"
+        app:layout_constraintEnd_toEndOf="@+id/tfCaloTieuThu2"
+        app:layout_constraintStart_toStartOf="@+id/tfCaloTieuThu2"
+        app:layout_constraintTop_toBottomOf="@+id/tfCaloTieuThu2" />
+
+    <AutoCompleteTextView
+        android:id="@+id/tfCaloTieuThu3"
+        android:layout_width="334dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="14dp"
+        android:background="@drawable/round_border_input_text"
+        android:hint="Lượng nước"
+        android:inputType="textCapSentences"
+        android:padding="10dp"
+        app:layout_constraintEnd_toEndOf="@+id/tfCaloTieuThu"
+        app:layout_constraintStart_toStartOf="@+id/tfCaloTieuThu"
+        app:layout_constraintTop_toBottomOf="@+id/tfCaloTieuThu" />
+
+    <AutoCompleteTextView
+        android:id="@+id/tfCaloTieuThu2"
+        android:layout_width="334dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="18dp"
+        android:background="@drawable/round_border_input_text"
+        android:hint="Kalo tiêu thụ"
+        android:inputType="textCapSentences"
+        android:padding="10dp"
+        app:layout_constraintEnd_toEndOf="@+id/textView38"
+        app:layout_constraintStart_toStartOf="@+id/textView38"
+        app:layout_constraintTop_toBottomOf="@+id/textView38" />
+
+    <TextView
+        android:id="@+id/textView43"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="14dp"
+        android:text="kalo"
+        android:textColor="#2196F3"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/tfCaloTieuThu"
+        app:layout_constraintEnd_toEndOf="@+id/tfCaloTieuThu"
+        app:layout_constraintTop_toTopOf="@+id/tfCaloTieuThu" />
+
+    <TextView
+        android:id="@+id/textView49"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="14dp"
+        android:text="kalo"
+        android:textColor="#2196F3"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/tfCaloTieuThu2"
+        app:layout_constraintEnd_toEndOf="@+id/tfCaloTieuThu2"
+        app:layout_constraintTop_toTopOf="@+id/tfCaloTieuThu2" />
+
+    <TextView
+        android:id="@+id/textView61"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="14dp"
+        android:text="ml"
+        android:textColor="#2196F3"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/tfCaloTieuThu3"
+        app:layout_constraintEnd_toEndOf="@+id/tfCaloTieuThu3"
+        app:layout_constraintTop_toTopOf="@+id/tfCaloTieuThu3" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
