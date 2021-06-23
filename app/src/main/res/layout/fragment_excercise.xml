@@ -255,7 +255,7 @@
 
 
         <ImageButton
-            android:id="@+id/imgStart"
+            android:id="@+id/imgRecordWater"
             android:layout_width="153dp"
             android:layout_height="50dp"
             android:layout_marginBottom="12dp"
@@ -274,10 +274,10 @@
             android:text="BẮT ĐẦU"
             android:textColor="#FFFEFE"
             android:textSize="16sp"
-            app:layout_constraintBottom_toBottomOf="@+id/imgStart"
-            app:layout_constraintEnd_toEndOf="@+id/imgStart"
-            app:layout_constraintStart_toStartOf="@+id/imgStart"
-            app:layout_constraintTop_toTopOf="@+id/imgStart" />
+            app:layout_constraintBottom_toBottomOf="@+id/imgRecordWater"
+            app:layout_constraintEnd_toEndOf="@+id/imgRecordWater"
+            app:layout_constraintStart_toStartOf="@+id/imgRecordWater"
+            app:layout_constraintTop_toTopOf="@+id/imgRecordWater" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

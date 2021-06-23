@@ -7,6 +7,8 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -14,9 +16,24 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.res.ResourcesCompat;
 
+import com.example.healthtracking.ClassData.DetailExercise;
+import com.example.healthtracking.ClassData.DetailJog;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import org.jetbrains.annotations.NotNull;
+
+import java.text.ParseException;
+import java.util.Calendar;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -28,15 +45,16 @@ public class DoExercise extends AppCompatActivity implements SensorEventListener
     ProgressBar pgbAwardEx;
     Timer timer;
     TimerTask timerTask;
-    EditText edtCalories, edtTimeCount ;
+    TextInputEditText edtCalories, edtTimeCount ;
     private SensorManager sensorManager;
     private Sensor sensor;
 
     double calories;
     double caloriesOneTime;
-    double count;
-    double time = 0.0;
+    int count;
+    int time = 0, time1;
     boolean isSensorUsed;
+    String Stime;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +71,8 @@ public class DoExercise extends AppCompatActivity implements SensorEventListener
         imgStop = findViewById(R.id.imgStop);
         pgbAwardEx = findViewById(R.id.pgbAwardEx);
         exerciseName = getIntent().getStringExtra("Name");
-        isSensorUsed = getIntent().getBooleanExtra("isSensorUsed",true);
+
+        isSensorUsed =  getIntent().getBooleanExtra("isSensorUsed",true);
         timer = new Timer();
         sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         sensor = sensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY);
@@ -61,8 +80,10 @@ public class DoExercise extends AppCompatActivity implements SensorEventListener
         edtCalories = findViewById(R.id.edtCalories);
         edtTimeCount = findViewById(R.id.edtTimeCount);
 
+        setEventEditText();
         decorView();
         createDetailExercise();
+        Stime = getStime();
         startTimer();
         createButtonStop();
         setCaloriesOneTime();
@@ -191,11 +212,13 @@ public class DoExercise extends AppCompatActivity implements SensorEventListener
     private void stopDoingEx(){
         if (tvStop.getText().equals("DỪNG TẬP")){
             timerTask.cancel();
-            time = 0.0;
+            time1 =time;
+            time = 0;
             tvStop.setText("GHI NHẬN");
             if (isSensorUsed == false){
                 edtCalories.setVisibility(View.VISIBLE);
                 edtTimeCount.setVisibility(View.VISIBLE);
+                edtCalories.setEnabled(false);
             }
         } else if (tvStop.getText().equals("GHI NHẬN")){
             tvTimeRecordDoingEx.setText(formatTime(0,0,0));
@@ -207,18 +230,22 @@ public class DoExercise extends AppCompatActivity implements SensorEventListener
             tvStop.setText("DỪNG TẬP");
             count = 0;
             calories = 0;
+            Stime = getStime();
             startTimer();
             tvRecordKalos.setText("0 Kalories");
             tvCountTime.setText("0 lần");
+            edtCalories.setText("");
+            edtTimeCount.setText("");
+            edtTimeCount.setFocusable(false);
         }
     }
     private void setCaloriesOneTime(){
         if (exerciseName.equals("Hít đất")){
-            caloriesOneTime = 4;
+            caloriesOneTime = 4.0;
         } else if (exerciseName.equals("Gập bụng")){
-            caloriesOneTime = 3;
+            caloriesOneTime = 3.0;
         } else if (exerciseName.equals("Hít xà")){
-            caloriesOneTime = 4;
+            caloriesOneTime = 4.0;
         }  else if (exerciseName.equals("Khác")) {
 
         }
@@ -232,9 +259,79 @@ public class DoExercise extends AppCompatActivity implements SensorEventListener
             pgbAwardEx.setVisibility(View.INVISIBLE);
         }
     }
-    private void recordExercise(){
-        if (isSensorUsed == false){
 
-        }
+    private  void setEventEditText()
+    {
+        edtTimeCount.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int countt) {
+                    try {
+                        count = Integer.parseInt(edtTimeCount.getText().toString());
+                        calories = count * caloriesOneTime;
+                        edtCalories.setText(calories + " Calories");
+                    } catch (NumberFormatException e)
+                    {
+
+                    }
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+    }
+
+    private void recordExercise(){
+        long millis = System.currentTimeMillis() ;
+        java.sql.Date date = new java.sql.Date(millis);
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+            DetailExercise detailExercise = new DetailExercise(exerciseName,time1 ,count, calories);
+            FirebaseDatabase.getInstance().getReference().child(user.getUid()).child("practice").child(date.toString()).child("exercise")
+                    .child("detail").child(Stime).setValue(detailExercise);
+            ///////
+            FirebaseDatabase.getInstance().getReference().child(user.getUid()).child("practice").child(date.toString()).child("exercise")
+                    .addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
+                            int exTime = snapshot.child("Time").getValue(Integer.class)+time1;
+                            double exCalo = snapshot.child("Calories").getValue(double.class)+ calories;
+
+                            FirebaseDatabase.getInstance().getReference().child(user.getUid()).child("practice").child(date.toString())
+                                    .child("exercise").child("Calories").setValue(exCalo);
+                            FirebaseDatabase.getInstance().getReference().child(user.getUid()).child("practice").child(date.toString())
+                                    .child("exercise").child("Time").setValue(exTime);
+
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull @NotNull DatabaseError error) {
+
+                        }
+                    });
+
+
+    }
+
+    public String getStime()
+    {
+        Calendar calendar = Calendar.getInstance();
+        String hour = (calendar.getTime().getHours() > 9) ?
+                "" + calendar.getTime().getHours() + ""
+                : "0" + calendar.getTime().getHours();
+        String minute = (calendar.getTime().getMinutes() > 9) ?
+                "" + calendar.getTime().getMinutes() + ""
+                : "0" + calendar.getTime().getMinutes();
+        String second = (calendar.getTime().getSeconds() > 9) ?
+                "" + calendar.getTime().getSeconds() + ""
+                : "0" + calendar.getTime().getSeconds();
+        return hour + ":" + minute + ":" + second;
     }
 }

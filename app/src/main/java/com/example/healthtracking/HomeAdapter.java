@@ -166,10 +166,11 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             progressBarFood = itemView.findViewById(R.id.pgbFood);
         }
         void setFoodCard(Food food){
-            tvCaloriesInFood.setText("" + food.getCalories());
-            tvLit.setText("" + food.getLit());
+            tvCaloriesInFood.setText("" + food.getCalories()+" Calories");
+            tvLit.setText("" + food.getLit()+" ml");
             tvFoodCounter.setText("" + food.getCalories());
-            progressBarFood = food.getProgressBar();
+            progressBarFood.setMax(2000);
+            progressBarFood.setProgress((int)Math.round(food.getCalories()));
         }
     }
     static class FunFactViewHolder extends RecyclerView.ViewHolder{

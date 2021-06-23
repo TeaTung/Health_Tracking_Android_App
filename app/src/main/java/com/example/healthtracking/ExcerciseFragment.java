@@ -109,7 +109,7 @@ public class ExcerciseFragment extends Fragment {
                 startActivity(intent);
             }
         });
-
+      
         lvListExercise = (Spinner) view.findViewById(R.id.lvListExercise);
         imgStart = (ImageView) view.findViewById(R.id.imgStart);
         tvStart = (TextView) view.findViewById(R.id.tvStart);
@@ -245,11 +245,13 @@ public class ExcerciseFragment extends Fragment {
                                             Run run = snapshot.child("run").getValue(Run.class);
                                             int jogTime =  snapshot.child("jog").child("Time").getValue(Integer.class);
                                             double jogCalo =  snapshot.child("jog").child("Calories").getValue(double.class);
+                                            int exTime =  snapshot.child("exercise").child("Time").getValue(Integer.class);
+                                            double exCalo =  snapshot.child("exercise").child("Calories").getValue(double.class);
                                             textViewStepCount.setText("" + run.StepCount);
-                                            textViewKalos.setText(""+Math.round(run.Calories + jogCalo));
-                                            textViewTime.setText(ConvertTimeToString(jogTime));
-                                            if (jogTime >= 3600)  textViewTimeUnit.setText("Giờ");
-                                            else if (jogTime >= 60)  textViewTimeUnit.setText("Phút");
+                                            textViewKalos.setText(""+Math.round(run.Calories + jogCalo+exCalo));
+                                            textViewTime.setText(ConvertTimeToString(jogTime+exTime));
+                                            if (jogTime + exTime >= 3600)  textViewTimeUnit.setText("Giờ");
+                                            else if (jogTime +exTime >= 60)  textViewTimeUnit.setText("Phút");
                                             else textViewTimeUnit.setText("Giây");
 
                                         }
