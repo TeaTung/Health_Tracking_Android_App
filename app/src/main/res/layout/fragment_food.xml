@@ -111,7 +111,7 @@
             app:layout_constraintTop_toBottomOf="@+id/imgWater" />
 
         <TextView
-            android:id="@+id/textView24"
+            android:id="@+id/tvInformationHeader"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
@@ -137,7 +137,7 @@
             app:layout_constraintTop_toBottomOf="@+id/textViewWater" />
 
         <TextView
-            android:id="@+id/textView26"
+            android:id="@+id/tvInformationSubHeader"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"

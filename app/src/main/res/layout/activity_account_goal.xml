@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AccountGoal">
+    tools:context=".GoalAccountActivity">
 
     <ImageButton
-        android:id="@+id/imageButton2"
+        android:id="@+id/imgSetupInGoal"
         android:layout_width="153dp"
         android:layout_height="50dp"
         android:layout_marginBottom="16dp"
@@ -19,17 +19,17 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/textView42"
+        android:id="@+id/tvSetupInGoal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif-black"
         android:text="THIẾT LẬP"
         android:textColor="#FFFEFE"
         android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="@+id/imageButton2"
-        app:layout_constraintEnd_toEndOf="@+id/imageButton2"
-        app:layout_constraintStart_toStartOf="@+id/imageButton2"
-        app:layout_constraintTop_toTopOf="@+id/imageButton2" />
+        app:layout_constraintBottom_toBottomOf="@+id/imgSetupInGoal"
+        app:layout_constraintEnd_toEndOf="@+id/imgSetupInGoal"
+        app:layout_constraintStart_toStartOf="@+id/imgSetupInGoal"
+        app:layout_constraintTop_toTopOf="@+id/imgSetupInGoal" />
 
     <View
         android:id="@+id/topView4"
@@ -98,39 +98,39 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView19" />
 
     <AutoCompleteTextView
-        android:id="@+id/tfCaloTieuThu"
+        android:id="@+id/atvCaloriesRelease"
         android:layout_width="334dp"
         android:layout_height="48dp"
         android:layout_marginTop="14dp"
         android:background="@drawable/round_border_input_text"
         android:hint="Kalo luyện tập"
-        android:inputType="textCapSentences"
+        android:inputType="number"
         android:padding="10dp"
-        app:layout_constraintEnd_toEndOf="@+id/tfCaloTieuThu2"
-        app:layout_constraintStart_toStartOf="@+id/tfCaloTieuThu2"
-        app:layout_constraintTop_toBottomOf="@+id/tfCaloTieuThu2" />
+        app:layout_constraintEnd_toEndOf="@+id/atvCaloriesConsumed"
+        app:layout_constraintStart_toStartOf="@+id/atvCaloriesConsumed"
+        app:layout_constraintTop_toBottomOf="@+id/atvCaloriesConsumed" />
 
     <AutoCompleteTextView
-        android:id="@+id/tfCaloTieuThu3"
+        android:id="@+id/atvWaterConsumed"
         android:layout_width="334dp"
         android:layout_height="48dp"
         android:layout_marginTop="14dp"
         android:background="@drawable/round_border_input_text"
         android:hint="Lượng nước"
-        android:inputType="textCapSentences"
+        android:inputType="number"
         android:padding="10dp"
-        app:layout_constraintEnd_toEndOf="@+id/tfCaloTieuThu"
-        app:layout_constraintStart_toStartOf="@+id/tfCaloTieuThu"
-        app:layout_constraintTop_toBottomOf="@+id/tfCaloTieuThu" />
+        app:layout_constraintEnd_toEndOf="@+id/atvCaloriesRelease"
+        app:layout_constraintStart_toStartOf="@+id/atvCaloriesRelease"
+        app:layout_constraintTop_toBottomOf="@+id/atvCaloriesRelease" />
 
     <AutoCompleteTextView
-        android:id="@+id/tfCaloTieuThu2"
+        android:id="@+id/atvCaloriesConsumed"
         android:layout_width="334dp"
         android:layout_height="48dp"
         android:layout_marginTop="18dp"
         android:background="@drawable/round_border_input_text"
         android:hint="Kalo tiêu thụ"
-        android:inputType="textCapSentences"
+        android:inputType="number"
         android:padding="10dp"
         app:layout_constraintEnd_toEndOf="@+id/textView38"
         app:layout_constraintStart_toStartOf="@+id/textView38"
@@ -144,9 +144,9 @@
         android:text="kalo"
         android:textColor="#2196F3"
         android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="@+id/tfCaloTieuThu"
-        app:layout_constraintEnd_toEndOf="@+id/tfCaloTieuThu"
-        app:layout_constraintTop_toTopOf="@+id/tfCaloTieuThu" />
+        app:layout_constraintBottom_toBottomOf="@+id/atvCaloriesRelease"
+        app:layout_constraintEnd_toEndOf="@+id/atvCaloriesRelease"
+        app:layout_constraintTop_toTopOf="@+id/atvCaloriesRelease" />
 
     <TextView
         android:id="@+id/textView49"
@@ -156,9 +156,9 @@
         android:text="kalo"
         android:textColor="#2196F3"
         android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="@+id/tfCaloTieuThu2"
-        app:layout_constraintEnd_toEndOf="@+id/tfCaloTieuThu2"
-        app:layout_constraintTop_toTopOf="@+id/tfCaloTieuThu2" />
+        app:layout_constraintBottom_toBottomOf="@+id/atvCaloriesConsumed"
+        app:layout_constraintEnd_toEndOf="@+id/atvCaloriesConsumed"
+        app:layout_constraintTop_toTopOf="@+id/atvCaloriesConsumed" />
 
     <TextView
         android:id="@+id/textView61"
@@ -168,8 +168,8 @@
         android:text="ml"
         android:textColor="#2196F3"
         android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="@+id/tfCaloTieuThu3"
-        app:layout_constraintEnd_toEndOf="@+id/tfCaloTieuThu3"
-        app:layout_constraintTop_toTopOf="@+id/tfCaloTieuThu3" />
+        app:layout_constraintBottom_toBottomOf="@+id/atvWaterConsumed"
+        app:layout_constraintEnd_toEndOf="@+id/atvWaterConsumed"
+        app:layout_constraintTop_toTopOf="@+id/atvWaterConsumed" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -16,7 +16,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView20"
+        android:id="@+id/tvChartHeader"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -97,8 +97,8 @@
         android:fontFamily="sans-serif-light"
         android:text="0 kalos"
         android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="@+id/textView20"
-        app:layout_constraintTop_toBottomOf="@+id/textView20" />
+        app:layout_constraintStart_toStartOf="@+id/tvChartHeader"
+        app:layout_constraintTop_toBottomOf="@+id/tvChartHeader" />
 
     <TextView
         android:id="@+id/textViewKaloExercise"

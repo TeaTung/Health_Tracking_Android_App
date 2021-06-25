@@ -1,12 +1,16 @@
 package com.example.healthtracking;
 
+import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -14,7 +18,9 @@ import android.view.ViewGroup;
  * create an instance of this fragment.
  */
 public class AccountFragment extends Fragment {
-
+    ImageView imgGoal, imgInformation, imgChart;
+    TextView tvGoalHeader, tvGoalSubHeader, tvInformationHeader, tvInformationSubHeader, tvChartHeader, tvCharSubHeader;
+    ConstraintLayout goal, chart, information;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -58,7 +64,109 @@ public class AccountFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_account, container, false);
+
+        imgChart = view.findViewById(R.id.imgChart);
+        imgGoal = view.findViewById(R.id.imgGoal);
+        imgInformation = view.findViewById(R.id.imgInformation);
+        tvCharSubHeader = view.findViewById(R.id.tvCharSubHeader);
+        tvChartHeader = view.findViewById(R.id.tvChartHeader);
+        tvGoalHeader = view.findViewById(R.id.tvGoalHeader);
+        tvGoalSubHeader = view.findViewById(R.id.tvGoalSubHeader);
+        tvInformationHeader = view.findViewById(R.id.tvInformationHeader);
+        tvInformationSubHeader = view.findViewById(R.id.tvInformationSubHeader);
+        chart = view.findViewById(R.id.chart);
+        goal = view.findViewById(R.id.goal);
+        information = view.findViewById(R.id.information);
+
+        setOnClick();
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_account, container, false);
+        return view;
+    }
+    private void setOnClick(){
+        chart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startChart();
+            }
+        });
+        imgChart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startChart();
+            }
+        });
+        tvChartHeader.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startChart();
+            }
+        });
+        tvCharSubHeader.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startChart();
+            }
+        });
+        information.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startInformation();
+            }
+        });
+        imgInformation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startInformation();
+            }
+        });
+        tvInformationSubHeader.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startInformation();
+            }
+        });
+        tvInformationHeader.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startInformation();;
+            }
+        });
+        goal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startGoal();
+            }
+        });
+        imgGoal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startGoal();
+            }
+        });
+        tvGoalSubHeader.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startGoal();
+            }
+        });
+        tvGoalHeader.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startGoal();
+            }
+        });
+    }
+    private void startChart(){
+        Intent intent = new Intent(getActivity(),GraphAccountActivity.class);
+        startActivity(intent);
+    }
+    private void startGoal(){
+        Intent intent = new Intent(getActivity(), GoalAccountActivity.class);
+        startActivity(intent);
+    }
+    private void startInformation(){
+        Intent intent = new Intent(getActivity(),InformationAccountActivity.class);
+        startActivity(intent);
     }
 }

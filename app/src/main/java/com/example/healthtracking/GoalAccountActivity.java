@@ -1,26 +1,31 @@
 package com.example.healthtracking;
 
-import android.os.Bundle;
-import android.view.View;
-
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.cuberto.liquid_swipe.LiquidPager;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.AutoCompleteTextView;
+import android.widget.ImageView;
+import android.widget.TextView;
 
-public class OnBoarding extends AppCompatActivity {
-    LiquidPager pager;
-    OnBoardingAdapter adapter;
+public class GoalAccountActivity extends AppCompatActivity {
+    AutoCompleteTextView atvCaloriesConsumed, atvCaloriesRelease, atvWaterConsumed;
+    ImageView imgSetupInGoal;
+    TextView tvSetupInGoal;
     View decorateView;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_on_boarding);
+        setContentView(R.layout.activity_account_goal);
 
-        pager = findViewById(R.id.pager);
-        adapter = new OnBoardingAdapter(getSupportFragmentManager(), 1);
-        pager.setAdapter(adapter);
+        atvCaloriesConsumed = findViewById(R.id.atvCaloriesConsumed);
+        atvCaloriesRelease = findViewById(R.id.atvCaloriesRelease);
+        atvWaterConsumed = findViewById(R.id.atvWaterConsumed);
+        imgSetupInGoal = findViewById(R.id.imgSetupInGoal);
+        tvSetupInGoal = findViewById(R.id.tvSetupInGoal);
+
         decorView();
+        setButtonRecord();
     }
     public void decorView(){
         decorateView = getWindow().getDecorView();
@@ -47,5 +52,23 @@ public class OnBoarding extends AppCompatActivity {
                 | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
                 | View.SYSTEM_UI_FLAG_FULLSCREEN
                 | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION;
+    }
+
+    private void setButtonRecord(){
+        imgSetupInGoal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                record();
+            }
+        });
+        tvSetupInGoal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                record();
+            }
+        });
+    }
+    private void record(){
+
     }
 }
