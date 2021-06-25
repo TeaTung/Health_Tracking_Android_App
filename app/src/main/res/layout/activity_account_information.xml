@@ -4,20 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AccountGoal">
-
-    <TextView
-        android:id="@+id/textView62"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="kg"
-        android:textColor="#2196F3"
-        android:textSize="16sp"
-        tools:layout_editor_absoluteX="341dp"
-        tools:layout_editor_absoluteY="544dp" />
+    tools:context=".InformationAccountActivity">
 
     <ImageButton
-        android:id="@+id/imageButton2"
+        android:id="@+id/imgRecordInAccount"
         android:layout_width="153dp"
         android:layout_height="50dp"
         android:layout_marginBottom="16dp"
@@ -29,17 +19,17 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/textView42"
+        android:id="@+id/tvRecordInAccount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif-black"
         android:text="THIẾT LẬP"
         android:textColor="#FFFEFE"
         android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="@+id/imageButton2"
-        app:layout_constraintEnd_toEndOf="@+id/imageButton2"
-        app:layout_constraintStart_toStartOf="@+id/imageButton2"
-        app:layout_constraintTop_toTopOf="@+id/imageButton2" />
+        app:layout_constraintBottom_toBottomOf="@+id/imgRecordInAccount"
+        app:layout_constraintEnd_toEndOf="@+id/imgRecordInAccount"
+        app:layout_constraintStart_toStartOf="@+id/imgRecordInAccount"
+        app:layout_constraintTop_toTopOf="@+id/imgRecordInAccount" />
 
     <View
         android:id="@+id/topView4"
@@ -108,26 +98,26 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView19" />
 
     <AutoCompleteTextView
-        android:id="@+id/tfCaloTieuThu"
+        android:id="@+id/atvWeight"
         android:layout_width="334dp"
         android:layout_height="48dp"
         android:layout_marginTop="14dp"
         android:background="@drawable/round_border_input_text"
         android:hint="Cân nặng"
-        android:inputType="textCapSentences"
+        android:inputType="number"
         android:padding="10dp"
-        app:layout_constraintEnd_toEndOf="@+id/tfCaloTieuThu2"
-        app:layout_constraintStart_toStartOf="@+id/tfCaloTieuThu2"
-        app:layout_constraintTop_toBottomOf="@+id/tfCaloTieuThu2" />
+        app:layout_constraintEnd_toEndOf="@+id/atvHeight"
+        app:layout_constraintStart_toStartOf="@+id/atvHeight"
+        app:layout_constraintTop_toBottomOf="@+id/atvHeight" />
 
     <AutoCompleteTextView
-        android:id="@+id/tfCaloTieuThu2"
+        android:id="@+id/atvHeight"
         android:layout_width="334dp"
         android:layout_height="48dp"
         android:layout_marginTop="18dp"
         android:background="@drawable/round_border_input_text"
         android:hint="Chiều cao"
-        android:inputType="textCapSentences"
+        android:inputType="number"
         android:padding="10dp"
         app:layout_constraintEnd_toEndOf="@+id/textView38"
         app:layout_constraintStart_toStartOf="@+id/textView38"
@@ -143,9 +133,9 @@
         android:text="cm"
         android:textColor="#2196F3"
         android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="@+id/tfCaloTieuThu2"
-        app:layout_constraintEnd_toEndOf="@+id/tfCaloTieuThu2"
-        app:layout_constraintTop_toTopOf="@+id/tfCaloTieuThu2" />
+        app:layout_constraintBottom_toBottomOf="@+id/atvHeight"
+        app:layout_constraintEnd_toEndOf="@+id/atvHeight"
+        app:layout_constraintTop_toTopOf="@+id/atvHeight" />
 
     <TextView
         android:id="@+id/textView40"
@@ -157,19 +147,19 @@
         android:text="kg"
         android:textColor="#2196F3"
         android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="@+id/tfCaloTieuThu"
-        app:layout_constraintEnd_toEndOf="@+id/tfCaloTieuThu"
-        app:layout_constraintTop_toTopOf="@+id/tfCaloTieuThu" />
+        app:layout_constraintBottom_toBottomOf="@+id/atvWeight"
+        app:layout_constraintEnd_toEndOf="@+id/atvWeight"
+        app:layout_constraintTop_toTopOf="@+id/atvWeight" />
 
     <TextView
-        android:id="@+id/textView41"
+        android:id="@+id/tvBMI"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif-black"
         android:text="IBM của bạn là 22 - Vóc dáng cân đối"
-        app:layout_constraintBottom_toTopOf="@+id/imageButton2"
+        app:layout_constraintBottom_toTopOf="@+id/imgRecordInAccount"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tfCaloTieuThu" />
+        app:layout_constraintTop_toBottomOf="@+id/atvWeight" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

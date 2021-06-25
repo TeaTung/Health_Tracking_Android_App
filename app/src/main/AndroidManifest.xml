@@ -14,7 +14,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.HealthTracking">
-        <activity android:name=".InstructionCounterPeriodActivity"></activity>
+        <activity android:name=".GoalAccountActivity"></activity>
+        <activity android:name=".InformationAccountActivity" />
+        <activity android:name=".GraphAccountActivity" />
+        <activity android:name=".InstructionCounterPeriodActivity" />
         <activity android:name=".TrackingPeriodActivity" />
         <activity android:name=".HistoryActivity" />
         <activity android:name=".DoExercise" />
