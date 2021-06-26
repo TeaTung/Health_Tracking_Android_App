@@ -9,6 +9,8 @@ import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,7 +22,9 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.healthtracking.ClassData.DetailNutrition;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -66,7 +70,8 @@ public class FoodFragment extends Fragment {
     AutoCompleteTextView tvFoodName;
     EditText tvUnit;
 
-    double calories;
+    double calories, caloriesOne, currentCalories;
+    String unitFood;
     int drinkingWater;
     int currentDrinkWater;
 
@@ -198,6 +203,30 @@ public class FoodFragment extends Fragment {
                 startActivity(intent);
             }
         });
+        tvUnit.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                try {
+                    calories = caloriesOne * Integer.parseInt(tvUnit.getText().toString());
+                    tvFoodKalories.setText(calories+" Calories");
+                } catch (NumberFormatException e)
+                {
+                    tvFoodKalories.setText("");
+                }
+
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
     }
 
     //// load du lieu  fragment khi moi vao
@@ -315,8 +344,10 @@ public class FoodFragment extends Fragment {
                                         //  OnedayofPractice onedayofPractice = snapshot.getValue(OnedayofPractice.class);
                                         if (snapshot.getValue() != null)
                                         {
-                                           if (date.toString().equals(currentdate.toString()))
+                                           if (date.toString().equals(currentdate.toString())) {
                                                currentDrinkWater = snapshot.child("nutrition").child("Water").getValue(Integer.class);
+                                               currentCalories = snapshot.child("nutrition").child("Calories").getValue(double.class);
+                                           }
                                            textViewWater.setText(""+snapshot.child("nutrition").child("Water").getValue(Integer.class));
                                            int x = (int) Math.round(snapshot.child("nutrition").child("Calories").getValue(double.class));
                                            textViewCalo.setText(""+x);
@@ -349,6 +380,9 @@ public class FoodFragment extends Fragment {
         listUnitFood = new ArrayList<>();
         listCaloriesFood = new ArrayList<>();
 
+        ArrayAdapter<String> adapterFood = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_dropdown_item_1line,listNameFood);
+        tvFoodName.setAdapter(adapterFood);
+
         FirebaseDatabase.getInstance().getReference().child("Food").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
@@ -359,7 +393,7 @@ public class FoodFragment extends Fragment {
                     listCaloriesFood.add(item.child("Calories").getValue(double.class));
                 }
                 ArrayAdapter<String> adapterFood = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_dropdown_item_1line,listNameFood);
-                tvFoodName.setAdapter(adapterFood);
+                adapterFood.notifyDataSetChanged();
             }
 
             @Override
@@ -368,14 +402,16 @@ public class FoodFragment extends Fragment {
             }
         });
 
-        ArrayAdapter<String> adapterFood = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_dropdown_item_1line,listNameFood);
-        tvFoodName.setAdapter(adapterFood);
         tvFoodName.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                calories = listCaloriesFood.get(position);
+                tvUnit.setText("");
+                tvFoodKalories.setText("");
+                position = listNameFood.indexOf(tvFoodName.getText().toString());
+                caloriesOne = listCaloriesFood.get(position);
                 tvUnit.setHint(listUnitFood.get(position));
-                tvFoodKalories.setHint(calories + " Calories");
+                unitFood = listUnitFood.get(position);
+                tvFoodKalories.setHint(caloriesOne + " Calories/1 "+listUnitFood.get(position));
             }
         });
     }
@@ -388,7 +424,20 @@ public class FoodFragment extends Fragment {
                 .child("nutrition").child("Water").setValue(currentDrinkWater);
         setDayPicker();
     }
+
+
+
     private void recordDataFood(){
+
+        DetailNutrition detailNutrition = new DetailNutrition(tvFoodName.getText().toString(),tvUnit.getText().toString()+" "+unitFood,calories);
+        long millis = System.currentTimeMillis() ;
+        java.sql.Date date = new java.sql.Date(millis);
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        FirebaseDatabase.getInstance().getReference().child(user.getUid()).child("practice").child(date.toString())
+                .child("nutrition").child("detail").push().setValue(detailNutrition);
+        FirebaseDatabase.getInstance().getReference().child(user.getUid()).child("practice").child(date.toString())
+                .child("nutrition").child("Calories").setValue(currentCalories + calories);
+        setDayPicker();
 
     }
 }

@@ -46,6 +46,9 @@ import com.google.firebase.database.ValueEventListener;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -67,6 +70,7 @@ public class HomeFragment extends Fragment implements SensorEventListener {
     Food food;
     FunFact funFact;
     int realStepCounter , height,weigth, daykn;
+    long nextDate;
     double kalo, distance;
     int sex;
     int check = 0;
@@ -211,6 +215,7 @@ public class HomeFragment extends Fragment implements SensorEventListener {
     }
 
     public void setInformationCardView(){
+
         personalInformation = new PersonalInformation(height,weigth,daykn);
         exercises = new Exercises(realStepCounter,progressBarStep,kalo,distance);
         food = new Food(foodCalories,water,progressBarFood);
@@ -218,29 +223,6 @@ public class HomeFragment extends Fragment implements SensorEventListener {
     }
 
 
-    public  void Loaddata()
-    {
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        FirebaseDatabase.getInstance().getReference().child(user.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
-
-                Profile x = snapshot.child("profile").getValue(Profile.class);
-                height = x.Height;
-                weigth = x.Weight;
-                if (x.Sex.equals("Nam")) sex = 0;
-                else sex = 1;
-                daykn = x.DayKn;
-
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull @NotNull DatabaseError error) {
-
-            }
-        });
-    }
 
     public  void LoaddataForFirst()
     {
@@ -256,9 +238,19 @@ public class HomeFragment extends Fragment implements SensorEventListener {
                 weigth = x.Weight;
                 if (x.Sex.equals("Nam")) sex = 0;
                 else sex = 1;
-                daykn = x.DayKn;
-                water = snapshot.child("practice").child(date.toString()).child("nutrition").child("Water").getValue(Integer.class);
-                foodCalories  = snapshot.child("practice").child(date.toString()).child("nutrition").child("Calories").getValue(double.class);
+                nextDate = x.DetailPeriod.NextDate;
+                daykn = setDatePeriod();
+                if (snapshot.child("practice").child(date.toString()).getValue() != null) {
+                    water = snapshot.child("practice").child(date.toString()).child("nutrition").child("Water").getValue(Integer.class);
+                    foodCalories = snapshot.child("practice").child(date.toString()).child("nutrition").child("Calories").getValue(double.class);
+                }
+                else {
+                    OnedayofPractice onedayofPractice = new OnedayofPractice(new Run(), new Nutrition(),0,new Jog(), new Exercise());
+                    FirebaseDatabase.getInstance().getReference().child(user.getUid()).child("practice").child(date.toString())
+                            .setValue(onedayofPractice);
+                    water = 0;
+                    foodCalories = 0;
+                }
                 realStepCounter++;
                 distance = Math.round(realStepCounter * 0.7 * 100) / 100;
                 kalo = Math.round(distance * 0.0625);
@@ -310,4 +302,27 @@ public class HomeFragment extends Fragment implements SensorEventListener {
                     }
                 });
     }
+
+    public int setDatePeriod()
+    {
+        if (nextDate != 0 ) {
+            long milis = System.currentTimeMillis();
+            String sdate = (new Date(milis)).toString();
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+            Date date;
+
+            try {
+                date = new Date(format.parse(sdate).getTime());
+                int x = Integer.parseInt("" + nextDate / 100000);
+                int y = Integer.parseInt("" + date.getTime() / 100000);
+                int z = (x - y) / 864;
+                return z;
+
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+        }
+        return 10000;
+    }
+
 }

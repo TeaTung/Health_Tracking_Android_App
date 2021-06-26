@@ -15,6 +15,7 @@ import com.example.healthtracking.ClassData.Exercise;
 import com.example.healthtracking.ClassData.Jog;
 import com.example.healthtracking.ClassData.Nutrition;
 import com.example.healthtracking.ClassData.OnedayofPractice;
+import com.example.healthtracking.ClassData.PeriodTracking;
 import com.example.healthtracking.ClassData.Profile;
 import com.example.healthtracking.ClassData.Run;
 import com.example.healthtracking.ClassData.User;
@@ -150,7 +151,7 @@ public class InformationActivity extends AppCompatActivity {
 
                 User user = new User();
                 Profile profile = new Profile(edittextname.getText().toString(), Integer.parseInt(textViewyear.getText().toString()), spinnersex.getText().toString(),
-                        Integer.parseInt(edittextheight.getText().toString()), Integer.parseInt(edittextweight.getText().toString()), 0);
+                        Integer.parseInt(edittextheight.getText().toString()), Integer.parseInt(edittextweight.getText().toString()), new PeriodTracking());
                 OnedayofPractice onedayofPractice1 = new OnedayofPractice(new Run(), new Nutrition(), 0,new Jog(), new Exercise());
                 user.profile = profile;
 
