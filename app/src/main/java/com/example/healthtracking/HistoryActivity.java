@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.CalendarView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.healthtracking.ClassData.Jog;
 import com.example.healthtracking.ClassData.Run;
@@ -17,6 +18,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import org.jetbrains.annotations.NotNull;
+
+import java.text.SimpleDateFormat;
 
 public class HistoryActivity extends AppCompatActivity {
     TextView textViewKm, textViewKaloUse, textViewKaloExercise, textViewStepCount, textViewSpeed, textViewTime;

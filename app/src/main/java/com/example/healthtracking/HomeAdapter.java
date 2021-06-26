@@ -2,6 +2,7 @@ package com.example.healthtracking;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -253,9 +254,28 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             tvDayInFemale = itemView.findViewById(R.id.tvDayInFemale);
         }
         void setPersonalInformationCard(PersonalInformation personalInformation) {
-            tvHeightInFemale.setText("" + personalInformation.getHeight());
-            tvWeighInFemale.setText("" + personalInformation.getWeight());
-            tvDayInFemale.setText("" + personalInformation.getDay());
+            tvHeightInFemale.setText("" + personalInformation.getHeight()+" cm");
+            tvWeighInFemale.setText("" + personalInformation.getWeight()+" kg");
+            if (personalInformation.getDay() == 10000)
+            {
+                tvDayInFemale.setText("Chưa có dữ liệu");
+            }
+            else
+            if (personalInformation.getDay() == 0) {
+                tvDayInFemale.setText("Hôm nay");
+                tvDayInFemale.setTextColor(Color.RED);
+            }
+            else if (personalInformation.getDay() > 0)
+            {
+                tvDayInFemale.setText("Còn "+personalInformation.getDay()+" ngày");
+                if (personalInformation.getDay() <= 3) tvDayInFemale.setTextColor(Color.RED);
+
+            }
+            else
+            {
+                int x = (0-personalInformation.getDay());
+                tvDayInFemale.setText("Trễ "+ x+" ngày");
+            }
         }
     }
 
