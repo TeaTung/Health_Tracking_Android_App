@@ -130,6 +130,7 @@ public class MapRunActivity extends AppCompatActivity implements OnMapReadyCallb
                     new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 44);
         }
     }
+
     private void getCurrentLocation() {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
                 != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this,
@@ -168,6 +169,7 @@ public class MapRunActivity extends AppCompatActivity implements OnMapReadyCallb
         });
 
     }
+
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull @NotNull String[] permissions, @NonNull @NotNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
@@ -192,7 +194,6 @@ public class MapRunActivity extends AppCompatActivity implements OnMapReadyCallb
                 mGoogleMap.addPolyline(line);
                 mGoogleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(lastLatLng, 17));
                 previousLatLngCallBack = lastLatLng;
-
             }
         }
     };
@@ -204,6 +205,7 @@ public class MapRunActivity extends AppCompatActivity implements OnMapReadyCallb
             decorateView.setSystemUiVisibility(hideSystemBar());
         }
     }
+
     private int hideSystemBar() {
         return View.SYSTEM_UI_FLAG_LAYOUT_STABLE
                 | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
@@ -212,6 +214,7 @@ public class MapRunActivity extends AppCompatActivity implements OnMapReadyCallb
                 | View.SYSTEM_UI_FLAG_FULLSCREEN
                 | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION;
     }
+
     public void callImageStart() {
         imgStart.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -287,9 +290,10 @@ public class MapRunActivity extends AppCompatActivity implements OnMapReadyCallb
             }
         });
     }
+
     @Override
     public void onMapReady(@NonNull @NotNull GoogleMap googleMap) {
-        getCurrentLocation();
+        checkAccessLocationPermission();
     }
 
     public void startTrackingStep(){
@@ -299,11 +303,13 @@ public class MapRunActivity extends AppCompatActivity implements OnMapReadyCallb
         locationRequest.setFastestInterval(5000);
         locationRequest.setPriority(LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY);
 
-        if (ActivityCompat.checkSelfPermission(MapRunActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(MapRunActivity.this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-
+        if (ActivityCompat.checkSelfPermission(MapRunActivity.this, Manifest.permission.ACCESS_FINE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission
+                (MapRunActivity.this, Manifest.permission.ACCESS_COARSE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED) {
             checkAccessLocationPermission();
-            return;
         }
+
         fusedLocationClient.requestLocationUpdates(locationRequest, locationCallback, Looper.myLooper());
         mGoogleMap.setMyLocationEnabled(true);
     }
@@ -331,23 +337,28 @@ public class MapRunActivity extends AppCompatActivity implements OnMapReadyCallb
     }
 
     private void setTextInNotificationBackGround(double dist){
-        distance += Math.round(dist*10) /10;
-        calo = Math.round(distance * 0.0625 * 10) / 10;
-        speed = Math.round((distance / time) * 1000 * 10) / 10;
-        step = Math.round(distance * 0.7 * 10) / 10;
 
-        tvStep.setText(step + " bước chân ");
-        tvDistance.setText(distance + " kms ");
-        tvCalo.setText(calo + " calories ");
-        tvSpeed.setText(speed + " m/s ");
-        pgbAward.setProgress((int)step);
+        distance += dist;
+        calo = calo + (distance / 62.5);
+        speed = (distance / time ) * 1000;
+        step = step + (distance / 0.007);
+
+        double newDistance =(double) (Math.round(distance * 100 * 1000) / 100);
+        double newSpeed = (double)(Math.round(speed * 100) / 100);
+        double newCalo = (double)(Math.round(calo * 100) / 100);
+        double newStep = (double)(Math.round(step));
+
+        tvStep.setText(newStep + " bước chân ");
+        tvDistance.setText(newDistance + " ms ");
+        tvCalo.setText(newCalo + " calories ");
+        tvSpeed.setText(newSpeed + " m/s ");
+        pgbAward.setProgress((int)newStep);
         if (pgbAward.getProgress() == 10000){
             tvFireFit.setVisibility(View.VISIBLE);
         }
     }
 
-    public  void UpdateData()
-    {
+    public  void UpdateData() {
         long millis = System.currentTimeMillis() ;
         java.sql.Date date = new java.sql.Date(millis);
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -385,8 +396,7 @@ public class MapRunActivity extends AppCompatActivity implements OnMapReadyCallb
                 });
     }
 
-    public String getStime()
-    {
+    public String getStime() {
         Calendar calendar = Calendar.getInstance();
         String hour = (calendar.getTime().getHours() > 9) ?
                 "" + calendar.getTime().getHours() + ""
