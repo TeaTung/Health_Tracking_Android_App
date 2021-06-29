@@ -268,49 +268,6 @@ public class TrackingPeriodActivity extends AppCompatActivity {
         FirebaseDatabase.getInstance().getReference().child(user.getUid()).child("profile").child("DetailPeriod").setValue(periodTracking);
     }
 
-    public String daoXau(String s) {
-        String s1 = "";
-        for (int i = s.length() -1; i >=0; i--) {
-            s1 = s1 + String.valueOf(s.charAt(i));
-        }
-        return s1; //chuoi sau khi dao
-    }
-    public String add(String s1, String s2) {
-        String s = "";
 
-        int len1 = s1.length();
-        int len2 = s2.length();
-        int max = Math.max(len1, len2); //ham max length xuat ra gia tri chieu dai lon nhat trong 2 chuoi
-        s1 = daoXau(s1);
-        s2 = daoXau(s2);
-
-        //thuc hien noi them so 0 vao chuoi voi muc dich lam cho 2 chuoi so bang nhau
-        if (max > len1) {
-            for (int i = max; i >= len1; i--) {
-                s1 += "0";
-            }
-        }
-        if (max > len2) {
-            for (int i = max; i >= len2; i--) {
-                s2 += "0";
-            }
-        }
-
-        //thuc hien phep cong
-        int soGhiNho = 0;
-        for (int i = 0; i < max; i++) {
-            int tong = 0;
-            //charAt ky tu tai vi tri thu i trong xau
-            tong = Integer.parseInt("6") +Integer.parseInt(String.valueOf(s2.charAt(i)));
-            s = s + String.valueOf(tong % 10);
-            soGhiNho = tong / 10;
-        }
-        if (soGhiNho == 1) {
-            s = s+ "1";
-        }
-        //thuc hien dao xau truoc khi xuat
-        s = daoXau(s);
-        return s;
-    }
 
 }

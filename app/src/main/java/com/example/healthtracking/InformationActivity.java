@@ -12,6 +12,7 @@ import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.healthtracking.ClassData.Exercise;
+import com.example.healthtracking.ClassData.Goal;
 import com.example.healthtracking.ClassData.Jog;
 import com.example.healthtracking.ClassData.Nutrition;
 import com.example.healthtracking.ClassData.OnedayofPractice;
@@ -151,7 +152,7 @@ public class InformationActivity extends AppCompatActivity {
 
                 User user = new User();
                 Profile profile = new Profile(edittextname.getText().toString(), Integer.parseInt(textViewyear.getText().toString()), spinnersex.getText().toString(),
-                        Integer.parseInt(edittextheight.getText().toString()), Integer.parseInt(edittextweight.getText().toString()), new PeriodTracking());
+                        Integer.parseInt(edittextheight.getText().toString()), Integer.parseInt(edittextweight.getText().toString()), new PeriodTracking(), new Goal(),0);
                 OnedayofPractice onedayofPractice1 = new OnedayofPractice(new Run(), new Nutrition(), 0,new Jog(), new Exercise());
                 user.profile = profile;
 
@@ -171,7 +172,7 @@ public class InformationActivity extends AppCompatActivity {
     public  void changeUserSetting(){
         SharedPreferences sharedPreferences = getSharedPreferences("sharedPrefs",MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
-
+        editor.putBoolean("WAS_LOGOUT",false);
         editor.putBoolean("WAS_INFORMATION",true);
         editor.apply();
     }

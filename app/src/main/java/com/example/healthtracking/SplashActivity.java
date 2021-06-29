@@ -64,7 +64,14 @@ public class SplashActivity extends AppCompatActivity {
                 Intent intent = new Intent(SplashActivity.this, MainActivity.class);
                 startActivity(intent);
                 finish();
-            } else {
+            }
+            else if (userSetting.wasLogout)
+            {
+                Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
+                startActivity(intent);
+                finish();
+            }
+            else {
                 Intent intent = new Intent(SplashActivity.this, OnBoarding.class);
                 startActivity(intent);
                 finish();
@@ -102,6 +109,7 @@ public class SplashActivity extends AppCompatActivity {
         SharedPreferences sharedPreferences = getSharedPreferences("sharedPrefs",MODE_PRIVATE);
         userSetting.wasLogin = sharedPreferences.getBoolean("WAS_LOGIN",false);
         userSetting.wasInformation = sharedPreferences.getBoolean("WAS_INFORMATION",false);
+        userSetting.wasLogout = sharedPreferences.getBoolean("WAS_LOGOUT",false);
         //userSetting.UID = sharedPreferences.getString("UID","");
     }
 
@@ -140,4 +148,6 @@ public class SplashActivity extends AppCompatActivity {
                     });
         }
     }
+
+
 }

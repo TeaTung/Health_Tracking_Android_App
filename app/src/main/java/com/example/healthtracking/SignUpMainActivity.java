@@ -97,8 +97,8 @@ public class SignUpMainActivity extends AppCompatActivity {
         Random random = new Random();
         String code = String.valueOf(random.nextInt(900000)+100000);
         String mEmail = editTextEmail.getText().toString();
-        String mSubject = "Khôi phục tài khoản";
-        String mMessage = "Xin chào, mã khôi phục tài khoản của bạn là: " + code ;
+        String mSubject = "Xác nhận đăng ký tài khoản";
+        String mMessage = "Xin chào, mã xác nhận tài khoản của bạn là: " + code ;
 
         JavaMailAPI javaMailAPI = new JavaMailAPI(SignUpMainActivity.this, mEmail, mSubject, mMessage);
         javaMailAPI.execute();

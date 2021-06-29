@@ -48,7 +48,8 @@ public class ExcerciseFragment extends Fragment {
     private String mParam2;
 
     MaterialDayPicker materialDayPicker;
-    TextView textViewDate, textViewName, textViewStepCount, textViewKalos, textViewTime, textViewHistory, textViewTimeUnit;
+    TextView textViewDate, textViewName, textViewStepCount, textViewKalos, textViewTime,
+            textViewHistory, textViewTimeUnit, textViewStreak;
     List<MaterialDayPicker.Weekday> allWeekdays;
     MaterialDayPicker.Weekday currentday;
     Spinner lvListExercise;
@@ -99,6 +100,7 @@ public class ExcerciseFragment extends Fragment {
         textViewTime = (TextView) view.findViewById(R.id.textViewWater);
         textViewTimeUnit = (TextView) view.findViewById(R.id.textViewTimeUnit);
         textViewHistory = (TextView) view.findViewById(R.id.textViewHistory);
+        textViewStreak = (TextView) view.findViewById(R.id.textViewStreak);
         Loaddata();
         setDayPicker();
      
@@ -126,14 +128,16 @@ public class ExcerciseFragment extends Fragment {
     public void Loaddata() {
         long millis = System.currentTimeMillis();
         java.sql.Date date = new java.sql.Date(millis);
-        textViewDate.setText(date.toString());
+        textViewDate.setText(FormatDate(date.toString()));
         //// set profile name
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        FirebaseDatabase.getInstance().getReference().child(user.getUid()).child("profile").child("Name").addListenerForSingleValueEvent(new ValueEventListener() {
+        FirebaseDatabase.getInstance().getReference().child(user.getUid()).child("profile").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
-                String x = snapshot.getValue(String.class);
+                String x = snapshot.child("Name").getValue(String.class);
                 textViewName.setText(x);
+                int streak = snapshot.child("FireFitStreak").getValue(Integer.class);
+                textViewStreak.setText("Chuỗi "+streak+" Firefit days.");
             }
 
             @Override
@@ -319,5 +323,12 @@ public class ExcerciseFragment extends Fragment {
             intent.putExtra("Name",exercise);
             startActivity(intent);
         }
+    }
+
+    public  String FormatDate(String date)
+    {
+        String[] result = date.split("-");
+
+        return result[2]+"/"+result[1]+"/"+result[0];
     }
 }

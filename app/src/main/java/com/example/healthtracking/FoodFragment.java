@@ -24,6 +24,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.healthtracking.CheckFireFitDay.CheckFireFitDay;
 import com.example.healthtracking.ClassData.DetailNutrition;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -34,6 +35,9 @@ import com.google.firebase.database.ValueEventListener;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -58,7 +62,7 @@ public class FoodFragment extends Fragment {
     MaterialDayPicker materialDayPicker;
     TextView textViewDate, textViewName, textViewWater, textViewCalo
             , textViewDayKN, tvWaterML, tvRecordWater, tvFoodKalories
-            , tvRecordFood;
+            , tvRecordFood, textViewStreak, textViewUnitDayKn;
     List<MaterialDayPicker.Weekday> allWeekdays;
     MaterialDayPicker.Weekday currentday;
 
@@ -69,6 +73,7 @@ public class FoodFragment extends Fragment {
     ConstraintLayout cltFood, cltWater;
     AutoCompleteTextView tvFoodName;
     EditText tvUnit;
+    long nextDate;
 
     double calories, caloriesOne, currentCalories;
     String unitFood;
@@ -117,7 +122,9 @@ public class FoodFragment extends Fragment {
         textViewName = (TextView) view.findViewById(R.id.textViewName);
         textViewWater = (TextView) view.findViewById(R.id.textViewWater);
         textViewDayKN = (TextView) view.findViewById(R.id.textViewDayKN);
+        textViewUnitDayKn = (TextView) view.findViewById(R.id.tvUnitDayKn);
         textViewCalo = (TextView) view.findViewById(R.id.textViewCalo);
+        textViewStreak = (TextView) view.findViewById(R.id.textViewStreak);
         imageFood = (ImageView) view.findViewById(R.id.imageFood);
         imgPeriod = (ImageView) view.findViewById(R.id.imgPeriod);
         cltFood = (ConstraintLayout) view.findViewById(R.id.cltFood);
@@ -233,14 +240,36 @@ public class FoodFragment extends Fragment {
     public void Loaddata() {
         long millis = System.currentTimeMillis();
         java.sql.Date date = new java.sql.Date(millis);
-        textViewDate.setText(date.toString());
+        textViewDate.setText(FormatDate(date.toString()));
         //// set profile name
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        FirebaseDatabase.getInstance().getReference().child(user.getUid()).child("profile").child("Name").addListenerForSingleValueEvent(new ValueEventListener() {
+        FirebaseDatabase.getInstance().getReference().child(user.getUid()).child("profile").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
-                String x = snapshot.getValue(String.class);
+                String x = snapshot.child("Name").getValue(String.class);
                 textViewName.setText(x);
+                nextDate = snapshot.child("DetailPeriod").child("NextDate").getValue(long.class);
+                int daykn = setDatePeriod();
+                if (daykn == 10000)
+                {
+                    textViewDayKN.setText("");
+                    textViewUnitDayKn.setText("Chưa có dữ liệu");
+                }
+                else if (daykn == 0)
+                {
+                    textViewDayKN.setText("");
+                    textViewUnitDayKn.setText("Hôm nay");
+                }
+                else if (daykn > 0)
+                {
+                    textViewDayKN.setText(""+daykn);
+                }
+                else if (daykn < 0)
+                {
+                    textViewDayKN.setText(""+daykn);
+                    textViewUnitDayKn.setText("Ngày trễ");
+                }
+
             }
 
             @Override
@@ -336,24 +365,23 @@ public class FoodFragment extends Fragment {
                         java.sql.Date date = new java.sql.Date(millis);
                         java.sql.Date currentdate = new java.sql.Date(currentmillis);
                         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                        FirebaseDatabase.getInstance().getReference().child(user.getUid()).child("practice").child(date.toString())
+                        FirebaseDatabase.getInstance().getReference().child(user.getUid())
                                 .addListenerForSingleValueEvent(new ValueEventListener() {
                                     @Override
                                     public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
 
                                         //  OnedayofPractice onedayofPractice = snapshot.getValue(OnedayofPractice.class);
-                                        if (snapshot.getValue() != null)
+                                        if (snapshot.child("practice").child(date.toString()).getValue() != null)
                                         {
                                            if (date.toString().equals(currentdate.toString())) {
-                                               currentDrinkWater = snapshot.child("nutrition").child("Water").getValue(Integer.class);
-                                               currentCalories = snapshot.child("nutrition").child("Calories").getValue(double.class);
+                                               currentDrinkWater = snapshot.child("practice").child(date.toString()).child("nutrition").child("Water").getValue(Integer.class);
+                                               currentCalories = snapshot.child("practice").child(date.toString()).child("nutrition").child("Calories").getValue(double.class);
                                            }
-                                           textViewWater.setText(""+snapshot.child("nutrition").child("Water").getValue(Integer.class));
-                                           int x = (int) Math.round(snapshot.child("nutrition").child("Calories").getValue(double.class));
+                                           textViewWater.setText(""+snapshot.child("practice").child(date.toString()).child("nutrition").child("Water").getValue(Integer.class));
+                                           int x = (int) Math.round(snapshot.child("practice").child(date.toString()).child("nutrition").child("Calories").getValue(double.class));
                                            textViewCalo.setText(""+x);
-
-
-
+                                           int streak = snapshot.child("profile").child("FireFitStreak").getValue(Integer.class);
+                                           textViewStreak.setText("Chuỗi "+streak+" Firefit days.");
                                         }
                                         else
 
@@ -418,10 +446,14 @@ public class FoodFragment extends Fragment {
     private void recordDataWater(){
         currentDrinkWater += drinkingWater;
         long millis = System.currentTimeMillis() ;
+        long millis2 = System.currentTimeMillis() - 24*60*60*1000 ;
         java.sql.Date date = new java.sql.Date(millis);
+        java.sql.Date date2 = new java.sql.Date(millis2);
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         FirebaseDatabase.getInstance().getReference().child(user.getUid()).child("practice").child(date.toString())
                 .child("nutrition").child("Water").setValue(currentDrinkWater);
+        CheckFireFitDay checkFireFitDay = new CheckFireFitDay();
+        checkFireFitDay.CheckOneDay(date.toString(), date2.toString());
         setDayPicker();
     }
 
@@ -431,13 +463,46 @@ public class FoodFragment extends Fragment {
 
         DetailNutrition detailNutrition = new DetailNutrition(tvFoodName.getText().toString(),tvUnit.getText().toString()+" "+unitFood,calories);
         long millis = System.currentTimeMillis() ;
+        long millis2 = System.currentTimeMillis() - 24*60*60*1000 ;
         java.sql.Date date = new java.sql.Date(millis);
+        java.sql.Date date2 = new java.sql.Date(millis2);
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         FirebaseDatabase.getInstance().getReference().child(user.getUid()).child("practice").child(date.toString())
                 .child("nutrition").child("detail").push().setValue(detailNutrition);
         FirebaseDatabase.getInstance().getReference().child(user.getUid()).child("practice").child(date.toString())
                 .child("nutrition").child("Calories").setValue(currentCalories + calories);
+        CheckFireFitDay checkFireFitDay = new CheckFireFitDay();
+        checkFireFitDay.CheckOneDay(date.toString(), date2.toString());
         setDayPicker();
 
+    }
+
+    public int setDatePeriod()
+    {
+        if (nextDate != 0 ) {
+            long milis = System.currentTimeMillis();
+            String sdate = (new Date(milis)).toString();
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+            Date date;
+
+            try {
+                date = new Date(format.parse(sdate).getTime());
+                int x = Integer.parseInt("" + nextDate / 100000);
+                int y = Integer.parseInt("" + date.getTime() / 100000);
+                int z = (x - y) / 864;
+                return z;
+
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+        }
+        return 10000;
+    }
+
+    public  String FormatDate(String date)
+    {
+        String[] result = date.split("-");
+
+        return result[2]+"/"+result[1]+"/"+result[0];
     }
 }
