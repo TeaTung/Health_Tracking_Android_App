@@ -1,26 +1,45 @@
 package com.example.healthtracking;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.provider.CalendarContract;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.CalendarView;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 import org.eazegraph.lib.charts.BarChart;
 import org.eazegraph.lib.charts.PieChart;
 import org.eazegraph.lib.models.PieModel;
+import org.jetbrains.annotations.NotNull;
+
+import java.sql.Date;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.List;
 
 public class GraphAccountActivity extends AppCompatActivity {
     View decorateView;
     PieChart piechart;
-    float consumedCalories, releasedCalories, numberOfFireFit;
+    float consumedCalories, releasedCalories;
+    int numberOfFireFit;
     Spinner sprFilter;
     TextView tvConsumedCalories, tvReleasedCalories, tvReceivedFireFit, tvSearch;
     ImageView imgSearch;
+    String arr[] = {"Ngày", "Tuần", "Tháng"};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,7 +55,7 @@ public class GraphAccountActivity extends AppCompatActivity {
 
         setUpSpinner();
         decorView();
-        setUpPieChart();
+       // setUpPieChart();
         setOnClick();
     }
     public void decorView(){
@@ -66,11 +85,11 @@ public class GraphAccountActivity extends AppCompatActivity {
                 | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION;
     }
     private void setUpSpinner(){
-        String arr[] = {"Ngày", "Tuần", "Tháng"};
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line,arr);
         sprFilter.setAdapter(adapter);
     }
     private void setUpPieChart(){
+<<<<<<< HEAD
         consumedCalories = 60;
         releasedCalories = 40;
         numberOfFireFit = 5;
@@ -83,26 +102,53 @@ public class GraphAccountActivity extends AppCompatActivity {
         tvConsumedCalories.setText("Tiêu thụ " + consumedCalories +" calories");
         tvReleasedCalories.setText("Luyện tập " + releasedCalories + " calories");
         tvReceivedFireFit.setText("Đạt " + numberOfFireFit+ " FireFit day");
+=======
+        getDataForDay();
+>>>>>>> 45cbaf91fa31084dc19fcc2eda8fa394a534640a
     }
     private void setOnClick(){
-        tvSearch.setOnClickListener(new View.OnClickListener() {
+
+        sprFilter.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
+<<<<<<< HEAD
             public void onClick(View v) {
                 piechart.clearChart();
                 search();
+=======
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if (sprFilter.getSelectedItem().toString() == "Ngày") {
+                    piechart.clearChart();
+                    getDataForDay();
+                }
+                if (sprFilter.getSelectedItem().toString() == "Tuần") {
+                    piechart.clearChart();
+                    getDataForWeek();
+                }
+                if (sprFilter.getSelectedItem().toString() == "Tháng") {
+                    piechart.clearChart();
+                    getDataForMonth();
+                }
+
+>>>>>>> 45cbaf91fa31084dc19fcc2eda8fa394a534640a
             }
-        });
-        imgSearch.setOnClickListener(new View.OnClickListener() {
+
             @Override
+<<<<<<< HEAD
             public void onClick(View v) {
                 piechart.clearChart();
                 search();
+=======
+            public void onNothingSelected(AdapterView<?> parent) {
+
+>>>>>>> 45cbaf91fa31084dc19fcc2eda8fa394a534640a
             }
         });
+
     }
+
+
+
     private void search(){
-        String filter = sprFilter.getSelectedItem().toString();
-        getData(filter);
 
         piechart.addPieSlice(new PieModel("Consumed Calories", consumedCalories, Color.parseColor("#FE6DA8")));
         piechart.addPieSlice(new PieModel("Released Calories", releasedCalories, Color.parseColor("#56B7F1")));
@@ -121,5 +167,144 @@ public class GraphAccountActivity extends AppCompatActivity {
         } else if (filter == "Tháng"){
 
         }
+    }
+
+    public void getDataForDay()
+    {
+        long millis = System.currentTimeMillis() ;
+        java.sql.Date date = new java.sql.Date(millis);
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        FirebaseDatabase.getInstance().getReference().child(user.getUid()).child("practice").child(date.toString())
+                .addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
+                        int ffday = snapshot.child("firefitday").getValue(Integer.class);
+                        double runcalo = snapshot.child("run").child("Calories").getValue(double.class);
+                        double jogcalo = snapshot.child("jog").child("Calories").getValue(double.class);
+                        double nutricalo = snapshot.child("nutrition").child("Calories").getValue(double.class);
+                        double exercisecalo = snapshot.child("exercise").child("Calories").getValue(double.class);
+                        consumedCalories = Float.parseFloat(""+nutricalo);
+                        double sum = runcalo + jogcalo+exercisecalo;
+                        releasedCalories = Float.parseFloat(""+sum);
+                        numberOfFireFit = ffday;
+                        search();
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull @NotNull DatabaseError error) {
+
+                    }
+                });
+    }
+
+    private void getDataForWeek() {
+        Calendar cal = Calendar.getInstance();
+        int dayofweek = cal.get(Calendar.DAY_OF_WEEK);
+        long milis = System.currentTimeMillis();
+
+        List<String> listDate = new ArrayList<>();
+        if (dayofweek == 1) listDate = getStringDate(milis, 7);
+        else listDate = getStringDate(milis, dayofweek - 1);
+        int N = listDate.size();
+        List<String> finalListDate = listDate;
+
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        FirebaseDatabase.getInstance().getReference().child(user.getUid()).child("practice")
+                .addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
+
+                        int ffday =0;
+                        double runcalo = 0;
+                        double jogcalo = 0;
+                        double nutricalo = 0;
+                        double exercisecalo = 0;
+                        for (int i = 0; i< N-1; i++)
+                        {
+                            if (snapshot.child(finalListDate.get(i)).getValue() != null)
+                            {
+                                ffday += snapshot.child(finalListDate.get(i)).child("firefitday").getValue(Integer.class);
+                                runcalo += snapshot.child(finalListDate.get(i)).child("run").child("Calories").getValue(double.class);
+                                jogcalo += snapshot.child(finalListDate.get(i)).child("jog").child("Calories").getValue(double.class);
+                                nutricalo += snapshot.child(finalListDate.get(i)).child("nutrition").child("Calories").getValue(double.class);
+                                exercisecalo += snapshot.child(finalListDate.get(i)).child("exercise").child("Calories").getValue(double.class);
+                            }
+                        }
+                        consumedCalories = Float.parseFloat(""+nutricalo);
+                        double sum = runcalo + jogcalo+exercisecalo;
+                        releasedCalories = Float.parseFloat(""+sum);
+                        numberOfFireFit = ffday;
+                        search();
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull @NotNull DatabaseError error) {
+
+                    }
+                });
+
+
+    }
+
+    private void getDataForMonth() {
+        Calendar cal = Calendar.getInstance();
+        int dayofmonth = cal.get(Calendar.DAY_OF_MONTH);
+        long milis = System.currentTimeMillis();
+
+        List<String> listDate = new ArrayList<>();
+        listDate = getStringDate(milis, dayofmonth );
+        int N = listDate.size();
+        List<String> finalListDate = listDate;
+
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        FirebaseDatabase.getInstance().getReference().child(user.getUid()).child("practice")
+                .addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
+
+                        int ffday =0;
+                        double runcalo = 0;
+                        double jogcalo = 0;
+                        double nutricalo = 0;
+                        double exercisecalo = 0;
+                        for (int i = 0; i< N-1; i++)
+                        {
+                            if (snapshot.child(finalListDate.get(i)).getValue() != null)
+                            {
+                                ffday += snapshot.child(finalListDate.get(i)).child("firefitday").getValue(Integer.class);
+                                runcalo += snapshot.child(finalListDate.get(i)).child("run").child("Calories").getValue(double.class);
+                                jogcalo += snapshot.child(finalListDate.get(i)).child("jog").child("Calories").getValue(double.class);
+                                nutricalo += snapshot.child(finalListDate.get(i)).child("nutrition").child("Calories").getValue(double.class);
+                                exercisecalo += snapshot.child(finalListDate.get(i)).child("exercise").child("Calories").getValue(double.class);
+                            }
+                        }
+                        consumedCalories = Float.parseFloat(""+nutricalo);
+                        double sum = runcalo + jogcalo+exercisecalo;
+                        releasedCalories = Float.parseFloat(""+sum);
+                        numberOfFireFit = ffday;
+                        search();
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull @NotNull DatabaseError error) {
+
+                    }
+                });
+    }
+
+    public List<String> getStringDate(long currentdate, int amount)
+    {
+        List<String> list = new ArrayList<>();
+
+        for (int i = 0; i < amount; i++)
+        {
+            long milis = currentdate - i*24*60*60*1000;
+            java.sql.Date date = new Date(milis);
+            list.add(date.toString());
+        }
+        return list;
     }
 }

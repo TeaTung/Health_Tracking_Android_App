@@ -269,34 +269,8 @@ public class TrackingPeriodActivity extends AppCompatActivity {
         FirebaseDatabase.getInstance().getReference().child(user.getUid()).child("profile").child("DetailPeriod").setValue(periodTracking);
     }
 
-    public String daoXau(String s) {
-        String s1 = "";
-        for (int i = s.length() -1; i >=0; i--) {
-            s1 = s1 + String.valueOf(s.charAt(i));
-        }
-        return s1; //chuoi sau khi dao
-    }
-    public String add(String s1, String s2) {
-        String s = "";
 
-        int len1 = s1.length();
-        int len2 = s2.length();
-        int max = Math.max(len1, len2); //ham max length xuat ra gia tri chieu dai lon nhat trong 2 chuoi
-        s1 = daoXau(s1);
-        s2 = daoXau(s2);
-
-        //thuc hien noi them so 0 vao chuoi voi muc dich lam cho 2 chuoi so bang nhau
-        if (max > len1) {
-            for (int i = max; i >= len1; i--) {
-                s1 += "0";
-            }
-        }
-        if (max > len2) {
-            for (int i = max; i >= len2; i--) {
-                s2 += "0";
-            }
-        }
-
+<<<<<<< HEAD
         //thuc hien phep cong
         int soGhiNho = 0;
         for (int i = 0; i < max; i++) {
@@ -339,4 +313,7 @@ public class TrackingPeriodActivity extends AppCompatActivity {
                 | View.SYSTEM_UI_FLAG_FULLSCREEN
                 | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION;
     }
+=======
+
+>>>>>>> 45cbaf91fa31084dc19fcc2eda8fa394a534640a
 }

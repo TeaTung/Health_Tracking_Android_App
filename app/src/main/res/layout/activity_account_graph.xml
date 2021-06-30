@@ -131,6 +131,7 @@
 
     <TextView
         android:id="@+id/tvReleasedCalories"
+        android:textColor="#56B7F1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
@@ -144,6 +145,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
+        android:textColor="@color/black"
         android:text="Đạt 5 FireFit day"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="@+id/tvReleasedCalories"
@@ -151,6 +153,7 @@
 
     <TextView
         android:id="@+id/tvConsumedCalories"
+        android:textColor="#FE6DA8"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"

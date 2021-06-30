@@ -194,7 +194,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView18"
+        android:id="@+id/textViewAccoutName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
@@ -214,7 +214,7 @@
         android:fontFamily="sans-serif-thin"
         android:text="ID: 220012"
         android:textColor="#FAFAFA"
-        app:layout_constraintEnd_toEndOf="@+id/textView18"
-        app:layout_constraintStart_toStartOf="@+id/textView18"
-        app:layout_constraintTop_toBottomOf="@+id/textView18" />
+        app:layout_constraintEnd_toEndOf="@+id/textViewAccoutName"
+        app:layout_constraintStart_toStartOf="@+id/textViewAccoutName"
+        app:layout_constraintTop_toBottomOf="@+id/textViewAccoutName" />
 </androidx.constraintlayout.widget.ConstraintLayout>

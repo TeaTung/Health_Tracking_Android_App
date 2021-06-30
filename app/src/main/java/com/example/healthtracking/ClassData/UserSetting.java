@@ -4,6 +4,7 @@ public class UserSetting {
     public boolean wasLogin;
     public String UID = "";
     public  boolean wasInformation;
+    public boolean wasLogout;
 
     public UserSetting(){
 

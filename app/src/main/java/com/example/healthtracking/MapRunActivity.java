@@ -14,6 +14,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 
+import com.example.healthtracking.CheckFireFitDay.CheckFireFitDay;
 import com.example.healthtracking.ClassData.DetailJog;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -360,7 +361,9 @@ public class MapRunActivity extends AppCompatActivity implements OnMapReadyCallb
 
     public  void UpdateData() {
         long millis = System.currentTimeMillis() ;
+        long millis2 = System.currentTimeMillis() - 24*60*60*1000 ;
         java.sql.Date date = new java.sql.Date(millis);
+        java.sql.Date date2 = new java.sql.Date(millis2);
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         //////// Luu du lieu vua moi chay
         FirebaseDatabase.getInstance().getReference().child(user.getUid()).child("practice").child(date.toString()).child("jog")
@@ -394,6 +397,8 @@ public class MapRunActivity extends AppCompatActivity implements OnMapReadyCallb
 
                     }
                 });
+        CheckFireFitDay checkFireFitDay = new CheckFireFitDay();
+        checkFireFitDay.CheckOneDay(date.toString(), date2.toString());
     }
 
     public String getStime() {

@@ -119,8 +119,8 @@ public class ConfirmCodeActivity extends AppCompatActivity {
             StartTime();
             Random random = new Random();
             code = String.valueOf(random.nextInt(900000)+100000);
-            String mSubject = "Khôi phục tài khoản";
-            String mMessage = "Xin chào, mã khôi phục tài khoản của bạn là: " + code ;
+            String mSubject = "Xác nhận đăng ký tài khoản";
+            String mMessage = "Xin chào, mã xác nhận tài khoản của bạn là: " + code ;
 
             JavaMailAPI javaMailAPI = new JavaMailAPI(ConfirmCodeActivity.this, mEmail, mSubject, mMessage);
             javaMailAPI.execute();

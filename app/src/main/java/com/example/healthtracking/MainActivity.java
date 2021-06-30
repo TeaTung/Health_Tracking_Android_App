@@ -86,6 +86,7 @@ public class MainActivity extends AppCompatActivity {
 
         editor.putBoolean("WAS_LOGIN",true);
         editor.putBoolean("WAS_INFORMATION",false);
+        editor.putBoolean("WAS_LOGOUT",false);
         editor.apply();
     }
 }

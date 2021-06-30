@@ -7,18 +7,22 @@ public class Profile {
     public int Height;
     public int Weight;
     public PeriodTracking DetailPeriod;
+    public Goal DayGoal;
+    public  int FireFitStreak;
 
     public  Profile()
     {
 
     }
 
-    public Profile(String name, int age, String sex, int height, int weight, PeriodTracking detailPeriod) {
+    public Profile(String name, int age, String sex, int height, int weight, PeriodTracking detailPeriod, Goal dayGoal, int fireFitStreak) {
         Name = name;
         Age = age;
         Sex = sex;
         Height = height;
         Weight = weight;
         DetailPeriod = detailPeriod;
+        DayGoal = dayGoal;
+        FireFitStreak = fireFitStreak;
     }
 }

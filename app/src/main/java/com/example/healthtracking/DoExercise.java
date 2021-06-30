@@ -20,6 +20,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.res.ResourcesCompat;
 
+import com.example.healthtracking.CheckFireFitDay.CheckFireFitDay;
 import com.example.healthtracking.ClassData.DetailExercise;
 import com.example.healthtracking.ClassData.DetailJog;
 import com.google.android.material.textfield.TextInputEditText;
@@ -290,7 +291,9 @@ public class DoExercise extends AppCompatActivity implements SensorEventListener
 
     private void recordExercise(){
         long millis = System.currentTimeMillis() ;
+        long millis2 = System.currentTimeMillis() - 24*60*60*1000 ;
         java.sql.Date date = new java.sql.Date(millis);
+        java.sql.Date date2 = new java.sql.Date(millis2);
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
             DetailExercise detailExercise = new DetailExercise(exerciseName,time1 ,count, calories);
@@ -316,6 +319,8 @@ public class DoExercise extends AppCompatActivity implements SensorEventListener
 
                         }
                     });
+        CheckFireFitDay checkFireFitDay = new CheckFireFitDay();
+        checkFireFitDay.CheckOneDay(date.toString(), date2.toString());
 
 
     }

@@ -1,5 +1,6 @@
 package com.example.healthtracking;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
@@ -7,6 +8,18 @@ import android.view.View;
 import android.widget.AutoCompleteTextView;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.example.healthtracking.CheckFireFitDay.CheckFireFitDay;
+import com.example.healthtracking.ClassData.DetailJog;
+import com.example.healthtracking.ClassData.Goal;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import org.jetbrains.annotations.NotNull;
 
 public class GoalAccountActivity extends AppCompatActivity {
     AutoCompleteTextView atvCaloriesConsumed, atvCaloriesRelease, atvWaterConsumed;
@@ -23,7 +36,7 @@ public class GoalAccountActivity extends AppCompatActivity {
         atvWaterConsumed = findViewById(R.id.atvWaterConsumed);
         imgSetupInGoal = findViewById(R.id.imgSetupInGoal);
         tvSetupInGoal = findViewById(R.id.tvSetupInGoal);
-
+        Loaddata();
         decorView();
         setButtonRecord();
     }
@@ -68,7 +81,52 @@ public class GoalAccountActivity extends AppCompatActivity {
             }
         });
     }
-    private void record(){
 
+    public void Loaddata()
+    {
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        FirebaseDatabase.getInstance().getReference().child(user.getUid()).child("profile").child("DayGoal")
+                .addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
+                        atvCaloriesConsumed.setText(""+snapshot.child("IntakeCalories").getValue(Integer.class));
+                        atvCaloriesRelease.setText(""+snapshot.child("ExerciseCalories").getValue(Integer.class));
+                        atvWaterConsumed.setText(""+snapshot.child("Water").getValue(Integer.class));
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull @NotNull DatabaseError error) {
+
+                    }
+                });
+    }
+    private void record(){
+        if (atvCaloriesConsumed.getText().toString().equals(""))
+        {
+            atvCaloriesConsumed.setError("Nhập lượng calo nạp vào");
+            return;
+        }
+        if (atvCaloriesRelease.getText().toString().equals(""))
+        {
+            atvCaloriesRelease.setError("Nhập lượng calo tieu thu");
+            return;
+        }
+        if (atvWaterConsumed.getText().toString().equals(""))
+        {
+            atvWaterConsumed.setError("Nhập lượng nước nạp vào");
+            return;
+        }
+
+        Goal goal = new Goal(Integer.parseInt(atvCaloriesConsumed.getText().toString()),
+                Integer.parseInt(atvCaloriesRelease.getText().toString()), Integer.parseInt(atvWaterConsumed.getText().toString()));
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        FirebaseDatabase.getInstance().getReference().child(user.getUid()).child("profile").child("DayGoal").setValue(goal);
+        long millis = System.currentTimeMillis() ;
+        long millis2 = System.currentTimeMillis() - 24*60*60*1000 ;
+        java.sql.Date date = new java.sql.Date(millis);
+        java.sql.Date date2 = new java.sql.Date(millis2);
+        CheckFireFitDay checkFireFitDay = new CheckFireFitDay();
+        checkFireFitDay.CheckOneDay(date.toString(), date2.toString());
     }
 }

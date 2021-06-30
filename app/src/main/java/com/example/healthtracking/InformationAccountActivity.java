@@ -1,5 +1,6 @@
 package com.example.healthtracking;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
@@ -7,6 +8,16 @@ import android.view.View;
 import android.widget.AutoCompleteTextView;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import org.jetbrains.annotations.NotNull;
 
 public class InformationAccountActivity extends AppCompatActivity {
     AutoCompleteTextView atvHeight ,atvWeight;
@@ -25,10 +36,9 @@ public class InformationAccountActivity extends AppCompatActivity {
         imgRecordInAccount = findViewById(R.id.imgRecordInAccount);
         tvRecordInAccount = findViewById(R.id.tvRecordInAccount);
         tvBMI = findViewById(R.id.tvBMI);
-
+        Loaddata();
         decorView();
         setOnClick();
-        setBMI();
     }
     public void decorView(){
         decorateView = getWindow().getDecorView();
@@ -57,8 +67,8 @@ public class InformationAccountActivity extends AppCompatActivity {
                 | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION;
     }
     private void setBMI(){
-        height = 175.0;
-        weight = 65.0;
+        height = Integer.parseInt(atvHeight.getText().toString())*1.0;
+        weight = Integer.parseInt(atvWeight.getText().toString())*1.0;
         BMI = Math.round((weight / ((height/100)*2)*10)/10) ;
 
         if (BMI < 18.5){
@@ -88,8 +98,39 @@ public class InformationAccountActivity extends AppCompatActivity {
         });
     }
     private void setButtonRecord(){
-        if (!atvWeight.getText().toString().equals("") && !atvHeight.getText().toString().equals("")){
-
+        if (atvHeight.getText().toString().equals("") )
+        {
+            atvHeight.setError("Nhập chiều cao");
+            return;
         }
+        if (atvWeight.getText().toString().equals("") )
+        {
+            atvWeight.setError("Nhập cân nặng");
+            return;
+        }
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        FirebaseDatabase.getInstance().getReference().child(user.getUid()).child("profile").child("Height").setValue(Integer.parseInt(atvHeight.getText().toString()));
+        FirebaseDatabase.getInstance().getReference().child(user.getUid()).child("profile").child("Weight").setValue(Integer.parseInt(atvWeight.getText().toString()));
+        setBMI();
+        Toast.makeText(this, "Thiết lập thành công", Toast.LENGTH_SHORT).show();
+    }
+
+    public void Loaddata()
+    {
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        FirebaseDatabase.getInstance().getReference().child(user.getUid()).child("profile")
+                .addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
+                        atvHeight.setText(""+snapshot.child("Height").getValue(Integer.class));
+                        atvWeight.setText(""+snapshot.child("Weight").getValue(Integer.class));
+                        setBMI();
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull @NotNull DatabaseError error) {
+
+                    }
+                });
     }
 }
