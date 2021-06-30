@@ -339,7 +339,7 @@ public class MapRunActivity extends AppCompatActivity implements OnMapReadyCallb
     private void setTextInNotificationBackGround(double dist){
 
         distance += dist;
-        calo = calo + (distance / 62.5);
+        calo = calo + (distance * 62.5);
         speed = (distance / time ) * 1000;
         step = step + (distance / 0.007);
 

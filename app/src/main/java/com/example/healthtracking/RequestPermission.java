@@ -79,6 +79,7 @@ public class RequestPermission extends AppCompatActivity {
             tvHowtoUse.setText("Một hai một hai để có cánh tay khỏe mạnh ôm người yêu");
         } else if (exerciseName.equals("Chạy bộ")){
             tvTopicEx.setText("CHẠY BỘ CÙNG FIREFIT");
+            tvNotUse.setVisibility(View.INVISIBLE);
             Drawable pic = ResourcesCompat.getDrawable(getResources(), R.drawable.running, null);
             imgEx.setImageDrawable(pic);
             tvHowtoUse.setText("Đôi chân khỏe mạnh làm gì để đi khắp thế giới này chứ sao");

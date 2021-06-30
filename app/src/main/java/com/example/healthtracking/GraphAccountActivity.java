@@ -74,6 +74,7 @@ public class GraphAccountActivity extends AppCompatActivity {
         consumedCalories = 60;
         releasedCalories = 40;
         numberOfFireFit = 5;
+
         piechart.addPieSlice(new PieModel("Consumed Calories", consumedCalories, Color.parseColor("#FE6DA8")));
         piechart.addPieSlice(new PieModel("Released Calories", releasedCalories, Color.parseColor("#56B7F1")));
 
@@ -87,12 +88,14 @@ public class GraphAccountActivity extends AppCompatActivity {
         tvSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                piechart.clearChart();
                 search();
             }
         });
         imgSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                piechart.clearChart();
                 search();
             }
         });

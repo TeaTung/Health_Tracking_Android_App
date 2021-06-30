@@ -46,6 +46,7 @@ public class TrackingPeriodActivity extends AppCompatActivity {
     CalendarView calendarView;
     CheckBox checkBox;
     ImageButton imageRecord;
+    View decorateView;
     long recentDate, nextDate, recorDate;
     int period;
     long[] listDate ;
@@ -59,7 +60,7 @@ public class TrackingPeriodActivity extends AppCompatActivity {
         AnhXa();
         LoadDataForFirst();
         Event();
-
+        decorView();
     }
 
     public  void AnhXa()
@@ -312,5 +313,30 @@ public class TrackingPeriodActivity extends AppCompatActivity {
         s = daoXau(s);
         return s;
     }
-
+    public void decorView(){
+        decorateView = getWindow().getDecorView();
+        decorateView.setOnSystemUiVisibilityChangeListener(new View.OnSystemUiVisibilityChangeListener() {
+            @Override
+            public void onSystemUiVisibilityChange(int visibility) {
+                if (visibility == 0) {
+                    decorateView.setSystemUiVisibility(hideSystemBar());
+                }
+            }
+        });
+    }
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+        if (hasFocus) {
+            decorateView.setSystemUiVisibility(hideSystemBar());
+        }
+    }
+    private int hideSystemBar() {
+        return View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
+                | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                | View.SYSTEM_UI_FLAG_FULLSCREEN
+                | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION;
+    }
 }
