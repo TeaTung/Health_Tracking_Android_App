@@ -55,7 +55,7 @@ public class GraphAccountActivity extends AppCompatActivity {
 
         setUpSpinner();
         decorView();
-       // setUpPieChart();
+        // setUpPieChart();
         setOnClick();
     }
     public void decorView(){
@@ -89,32 +89,12 @@ public class GraphAccountActivity extends AppCompatActivity {
         sprFilter.setAdapter(adapter);
     }
     private void setUpPieChart(){
-<<<<<<< HEAD
-        consumedCalories = 60;
-        releasedCalories = 40;
-        numberOfFireFit = 5;
-
-        piechart.addPieSlice(new PieModel("Consumed Calories", consumedCalories, Color.parseColor("#FE6DA8")));
-        piechart.addPieSlice(new PieModel("Released Calories", releasedCalories, Color.parseColor("#56B7F1")));
-
-        piechart.startAnimation();
-
-        tvConsumedCalories.setText("Tiêu thụ " + consumedCalories +" calories");
-        tvReleasedCalories.setText("Luyện tập " + releasedCalories + " calories");
-        tvReceivedFireFit.setText("Đạt " + numberOfFireFit+ " FireFit day");
-=======
         getDataForDay();
->>>>>>> 45cbaf91fa31084dc19fcc2eda8fa394a534640a
     }
     private void setOnClick(){
 
         sprFilter.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-<<<<<<< HEAD
-            public void onClick(View v) {
-                piechart.clearChart();
-                search();
-=======
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 if (sprFilter.getSelectedItem().toString() == "Ngày") {
                     piechart.clearChart();
@@ -129,18 +109,11 @@ public class GraphAccountActivity extends AppCompatActivity {
                     getDataForMonth();
                 }
 
->>>>>>> 45cbaf91fa31084dc19fcc2eda8fa394a534640a
             }
 
             @Override
-<<<<<<< HEAD
-            public void onClick(View v) {
-                piechart.clearChart();
-                search();
-=======
             public void onNothingSelected(AdapterView<?> parent) {
 
->>>>>>> 45cbaf91fa31084dc19fcc2eda8fa394a534640a
             }
         });
 
@@ -236,7 +209,6 @@ public class GraphAccountActivity extends AppCompatActivity {
                         releasedCalories = Float.parseFloat(""+sum);
                         numberOfFireFit = ffday;
                         search();
-
                     }
 
                     @Override

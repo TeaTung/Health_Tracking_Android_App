@@ -40,7 +40,6 @@ import sun.bob.mcalendarview.MCalendarView;
 import static java.lang.Integer.max;
 
 public class TrackingPeriodActivity extends AppCompatActivity {
-
     TextView textViewRecentDate, textViewNextDate, textViewRecordDate, textViewRecord;
     NumberPicker numberPicker;
     CalendarView calendarView;
@@ -60,9 +59,34 @@ public class TrackingPeriodActivity extends AppCompatActivity {
         AnhXa();
         LoadDataForFirst();
         Event();
-        decorView();
-    }
 
+    }
+    public void decorView(){
+        decorateView = getWindow().getDecorView();
+        decorateView.setOnSystemUiVisibilityChangeListener(new View.OnSystemUiVisibilityChangeListener() {
+            @Override
+            public void onSystemUiVisibilityChange(int visibility) {
+                if (visibility == 0) {
+                    decorateView.setSystemUiVisibility(hideSystemBar());
+                }
+            }
+        });
+    }
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+        if (hasFocus) {
+            decorateView.setSystemUiVisibility(hideSystemBar());
+        }
+    }
+    private int hideSystemBar() {
+        return View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
+                | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                | View.SYSTEM_UI_FLAG_FULLSCREEN
+                | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION;
+    }
     public  void AnhXa()
     {
         textViewRecentDate = (TextView) findViewById(R.id.textViewRecentDate);
@@ -104,14 +128,14 @@ public class TrackingPeriodActivity extends AppCompatActivity {
         imageRecord.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-              RecordPeriod();
+                RecordPeriod();
             }
         });
 
         textViewRecord.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-              RecordPeriod();
+                RecordPeriod();
             }
         });
     }
@@ -182,13 +206,13 @@ public class TrackingPeriodActivity extends AppCompatActivity {
         {
             if (index == 1)
             {
-              listDate[0] = ConvertDateToMilisecond(textViewRecordDate.getText().toString());
-              recentDate = listDate[0];
-              long x = (recentDate/100000) + period*24*6*6;
-              nextDate = x*100000;
-              PeriodTracking periodTracking = new PeriodTracking(recentDate, nextDate, period, listDate[0], listDate[1],
-                      listDate[2], listDate[3], listDate[4], listDate[5], isAuto, average);
-              UpdatePeriod(periodTracking);
+                listDate[0] = ConvertDateToMilisecond(textViewRecordDate.getText().toString());
+                recentDate = listDate[0];
+                long x = (recentDate/100000) + period*24*6*6;
+                nextDate = x*100000;
+                PeriodTracking periodTracking = new PeriodTracking(recentDate, nextDate, period, listDate[0], listDate[1],
+                        listDate[2], listDate[3], listDate[4], listDate[5], isAuto, average);
+                UpdatePeriod(periodTracking);
             }
             else
             if (index >= 2)
@@ -251,9 +275,9 @@ public class TrackingPeriodActivity extends AppCompatActivity {
             return  date.getTime();
         } catch (ParseException e)
         {
-          e.printStackTrace();
+            e.printStackTrace();
         }
-            return 0;
+        return 0;
     }
 
     public int FindEmptyDate()
@@ -270,50 +294,5 @@ public class TrackingPeriodActivity extends AppCompatActivity {
     }
 
 
-<<<<<<< HEAD
-        //thuc hien phep cong
-        int soGhiNho = 0;
-        for (int i = 0; i < max; i++) {
-            int tong = 0;
-            //charAt ky tu tai vi tri thu i trong xau
-            tong = Integer.parseInt("6") +Integer.parseInt(String.valueOf(s2.charAt(i)));
-            s = s + String.valueOf(tong % 10);
-            soGhiNho = tong / 10;
-        }
-        if (soGhiNho == 1) {
-            s = s+ "1";
-        }
-        //thuc hien dao xau truoc khi xuat
-        s = daoXau(s);
-        return s;
-    }
-    public void decorView(){
-        decorateView = getWindow().getDecorView();
-        decorateView.setOnSystemUiVisibilityChangeListener(new View.OnSystemUiVisibilityChangeListener() {
-            @Override
-            public void onSystemUiVisibilityChange(int visibility) {
-                if (visibility == 0) {
-                    decorateView.setSystemUiVisibility(hideSystemBar());
-                }
-            }
-        });
-    }
-    @Override
-    public void onWindowFocusChanged(boolean hasFocus) {
-        super.onWindowFocusChanged(hasFocus);
-        if (hasFocus) {
-            decorateView.setSystemUiVisibility(hideSystemBar());
-        }
-    }
-    private int hideSystemBar() {
-        return View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
-                | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                | View.SYSTEM_UI_FLAG_FULLSCREEN
-                | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION;
-    }
-=======
 
->>>>>>> 45cbaf91fa31084dc19fcc2eda8fa394a534640a
 }
