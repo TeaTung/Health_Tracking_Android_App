@@ -5,7 +5,9 @@
     android:id="@+id/cdvInfor"
     android:layout_width="match_parent"
     android:layout_height="180dp"
-    android:background="@drawable/round_border_recyclerview">
+    android:background="@drawable/round_border_recyclerview"
+    app:cardCornerRadius="36dp"
+    app:cardElevation="0dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="360dp"

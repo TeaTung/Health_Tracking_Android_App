@@ -68,6 +68,7 @@
         android:fontFamily="sans-serif-condensed-light"
         android:gravity="center"
         android:text="Ứng dụng dùng cảm biến tiệm cận để ghi nhận quá trình hít đất của bạn. Đặt điện thoại ngang ngực để có thể ghi nhận quá trình luyện tập cũng như đảm bảo tư thế hít đất"
+        android:textColor="#171616"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.493"

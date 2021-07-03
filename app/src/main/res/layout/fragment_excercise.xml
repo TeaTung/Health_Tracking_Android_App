@@ -25,7 +25,7 @@
         android:fontFamily="sans-serif-thin"
         android:text="21/05/2021"
         android:textColor="#FFFFFF"
-        android:textSize="16sp"
+        android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -36,9 +36,19 @@
         android:fontFamily="sans-serif-medium"
         android:text="Dương Tùng"
         android:textColor="#FFFFFF"
-        android:textSize="22sp"
+        android:textSize="24sp"
         app:layout_constraintStart_toStartOf="@+id/textViewDate"
         app:layout_constraintTop_toBottomOf="@+id/textViewDate" />
+
+    <ImageView
+        android:id="@+id/historyBtn"
+        android:layout_width="40sp"
+        android:layout_height="40sp"
+        android:layout_marginTop="22dp"
+        android:layout_marginEnd="28dp"
+        android:src="@drawable/history"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageView6" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
@@ -53,7 +63,7 @@
         <ca.antonious.materialdaypicker.MaterialDayPicker
             android:id="@+id/day_picker"
             android:layout_width="348dp"
-            android:layout_height="44dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.515"
@@ -240,19 +250,19 @@
 
         <Spinner
             android:id="@+id/lvListExercise"
-            android:layout_width="355dp"
-            android:layout_height="58dp"
+            android:layout_width="322dp"
+            android:layout_height="50dp"
             android:layout_gravity="center"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="32dp"
             android:background="@drawable/round_border_input_text"
             android:hint="Chọn bài tập"
-            android:padding="15px"
-            android:textSize="20sp"
             android:inputType="textCapWords"
+            android:padding="15px"
+            android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.494"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView46"/>
-
+            app:layout_constraintTop_toBottomOf="@+id/textView46" />
 
         <ImageButton
             android:id="@+id/imgStart"
@@ -279,21 +289,41 @@
             app:layout_constraintStart_toStartOf="@+id/imgStart"
             app:layout_constraintTop_toTopOf="@+id/imgStart" />
 
+        <ImageView
+            android:id="@+id/imageView20"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginEnd="16dp"
+            android:src="@drawable/triangle"
+            app:layout_constraintBottom_toBottomOf="@+id/lvListExercise"
+            app:layout_constraintEnd_toEndOf="@+id/lvListExercise"
+            app:layout_constraintTop_toTopOf="@+id/lvListExercise"
+            app:layout_constraintVertical_bias="0.533" />
+
+        <TextView
+            android:id="@+id/textView26"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Chọn bài tập và bắt đầu"
+            android:textColor="#3F51B5"
+            app:layout_constraintEnd_toEndOf="@+id/lvListExercise"
+            app:layout_constraintStart_toStartOf="@+id/lvListExercise"
+            app:layout_constraintTop_toBottomOf="@+id/lvListExercise" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView
-        android:id="@+id/textViewHistory"
+        android:id="@+id/textView24"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="History"
-        android:textColor="@color/white"
-        android:textSize="20dp"
-        app:layout_constraintBottom_toBottomOf="@+id/constraintLayout3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.852"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
-        app:layout_constraintVertical_bias="0.028" />
+        android:layout_marginTop="4dp"
+        android:fontFamily="sans-serif-condensed-medium"
+        android:text="Lịch sử"
+        android:textColor="#FDFDFD"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="@+id/historyBtn"
+        app:layout_constraintTop_toBottomOf="@+id/historyBtn" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

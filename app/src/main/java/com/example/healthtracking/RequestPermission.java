@@ -66,27 +66,27 @@ public class RequestPermission extends AppCompatActivity {
             tvTopicEx.setText("HÍT ĐẤT CÙNG FIREFIT");
             Drawable pic = ResourcesCompat.getDrawable(getResources(), R.drawable.pushup, null);
             imgEx.setImageDrawable(pic);
-            tvHowtoUse.setText("gực để có thể ghi nhận quá trình luyện tập cũng như đảm bảo tư thế hít đất");
+            tvHowtoUse.setText("Đặt điện thoại ngang ngực FireFit sẽ dùng cảm biến tiệm cận để có thể ghi nhận quá trình luyện tập cũng như đảm bảo tư thế hít đất");
         } else if (exerciseName.equals("Gập bụng")){
             tvTopicEx.setText("GẬP BỤNG CÙNG FIREFIT");
             Drawable pic = ResourcesCompat.getDrawable(getResources(), R.drawable.crunch, null);
             imgEx.setImageDrawable(pic);
-            tvHowtoUse.setText("Một hai một hai để body 6 múi");
+            tvHowtoUse.setText("Cầm điện thoại và chạm vào màn hình mỗi lần gập bụng để ghi nhận phiên tập");
         } else if (exerciseName.equals("Hít xà")){
             tvTopicEx.setText("HÍT XÀ CÙNG FIREFIT");
             Drawable pic = ResourcesCompat.getDrawable(getResources(), R.drawable.pull_up, null);
             imgEx.setImageDrawable(pic);
-            tvHowtoUse.setText("Một hai một hai để có cánh tay khỏe mạnh ôm người yêu");
+            tvHowtoUse.setText("Đặt điện thoại ngang chân FireFit sẽ dùng cảm biến tiệm cận để có thể ghi nhận quá trình tập. Bạn hoàn toàn có thể ghi nhận thủ công sau phiên tập");
         } else if (exerciseName.equals("Chạy bộ")){
             tvTopicEx.setText("CHẠY BỘ CÙNG FIREFIT");
             Drawable pic = ResourcesCompat.getDrawable(getResources(), R.drawable.running, null);
             imgEx.setImageDrawable(pic);
-            tvHowtoUse.setText("Đôi chân khỏe mạnh làm gì để đi khắp thế giới này chứ sao");
+            tvHowtoUse.setText("Cầm điện thoại lúc chạy bộ để FireFit có thẻ tự động ghi nhận các thông tin luyện tập.");
         } else if (exerciseName.equals("Khác")){
             tvTopicEx.setText("BÀI TẬP THÊM CÙNG FIREFIT");
-            Drawable pic = ResourcesCompat.getDrawable(getResources(), R.drawable.pushup, null);
+            Drawable pic = ResourcesCompat.getDrawable(getResources(), R.drawable.exercise, null);
             imgEx.setImageDrawable(pic);
-            tvHowtoUse.setText("Bạn có bài tập đặc biệt của riêng mình? Oke FireFit chỉ ghi nhận số calories của bạn");
+            tvHowtoUse.setText("Bạn có bài tập đặc biệt của riêng mình? FireFit sẽ giúp bạn ghi nhận phiên tập.");
         }
     }
 

@@ -9,6 +9,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.healthtracking.LoginActivity;
 import com.example.healthtracking.R;
@@ -29,7 +31,8 @@ public class FragmentC extends Fragment {
     private String mParam1;
     private String mParam2;
     ////
-   private  Button buttonStart;
+   private  ImageView buttonStart;
+   private TextView buttonStartTxt;
 
     public FragmentC() {
         // Required empty public constructor
@@ -69,13 +72,21 @@ public class FragmentC extends Fragment {
         // Inflate the layout for this fragment
 
         View view = inflater.inflate(R.layout.fragment_c, container, false);
-        buttonStart = (Button) view.findViewById(R.id.startBtn);
+        buttonStart = (ImageView) view.findViewById(R.id.startBtn);
+        buttonStartTxt = (TextView) view.findViewById(R.id.startTxt);
         buttonStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent =  new Intent(getActivity(), LoginActivity.class);
                 startActivity(intent);
+            }
+        });
 
+        buttonStartTxt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent =  new Intent(getActivity(), LoginActivity.class);
+                startActivity(intent);
             }
         });
         return view;

@@ -5,11 +5,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.graphics.Color;
 import android.os.Bundle;
-import android.provider.CalendarContract;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.CalendarView;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -21,7 +19,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import org.eazegraph.lib.charts.BarChart;
 import org.eazegraph.lib.charts.PieChart;
 import org.eazegraph.lib.models.PieModel;
 import org.jetbrains.annotations.NotNull;
@@ -38,7 +35,7 @@ public class GraphAccountActivity extends AppCompatActivity {
     int numberOfFireFit;
     Spinner sprFilter;
     TextView tvConsumedCalories, tvReleasedCalories, tvReceivedFireFit, tvSearch;
-    ImageView imgSearch;
+    ImageView imgSearch, imgOk;
     String arr[] = {"Ngày", "Tuần", "Tháng"};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,8 +48,13 @@ public class GraphAccountActivity extends AppCompatActivity {
         tvReleasedCalories = findViewById(R.id.tvReleasedCalories);
         tvReceivedFireFit = findViewById(R.id.tvReceivedFireFit);
         tvSearch = findViewById(R.id.tvSearch);
-        imgSearch = findViewById(R.id.imgSearch);
-
+        imgSearch = findViewById(R.id.okBtn);
+        imgSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
         setUpSpinner();
         decorView();
        // setUpPieChart();
