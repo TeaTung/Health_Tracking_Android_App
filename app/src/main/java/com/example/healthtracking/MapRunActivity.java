@@ -349,10 +349,10 @@ public class MapRunActivity extends AppCompatActivity implements OnMapReadyCallb
         double newCalo = (double)(Math.round(calo * 100) / 100);
         double newStep = (double)(Math.round(step));
 
-        tvStep.setText(newStep + " bước chân ");
-        tvDistance.setText(newDistance + " ms ");
-        tvCalo.setText(newCalo + " calories ");
-        tvSpeed.setText(newSpeed + " m/s ");
+        tvStep.setText(Math.round(newStep) + " bước chân ");
+        tvDistance.setText(Math.round(newDistance) + " m ");
+        tvCalo.setText(Math.round(newCalo) + " kcal ");
+        tvSpeed.setText(Math.round(newSpeed) + " m/s ");
         pgbAward.setProgress((int)newStep);
         if (pgbAward.getProgress() == 10000){
             tvFireFit.setVisibility(View.VISIBLE);

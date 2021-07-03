@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.AutoCompleteTextView;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.healthtracking.CheckFireFitDay.CheckFireFitDay;
 import com.example.healthtracking.ClassData.DetailJog;
@@ -122,6 +123,7 @@ public class GoalAccountActivity extends AppCompatActivity {
                 Integer.parseInt(atvCaloriesRelease.getText().toString()), Integer.parseInt(atvWaterConsumed.getText().toString()));
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         FirebaseDatabase.getInstance().getReference().child(user.getUid()).child("profile").child("DayGoal").setValue(goal);
+        Toast.makeText(this, "Thiết lập thành công", Toast.LENGTH_SHORT).show();
         long millis = System.currentTimeMillis() ;
         long millis2 = System.currentTimeMillis() - 24*60*60*1000 ;
         java.sql.Date date = new java.sql.Date(millis);

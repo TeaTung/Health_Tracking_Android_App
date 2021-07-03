@@ -14,6 +14,7 @@
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent">
 
         <TextView
@@ -88,8 +89,8 @@
             app:layout_constraintVertical_bias="0.54"
             app:np_dividerColor="@color/colorPrimary"
             app:np_height="30dp"
-            app:np_max="35"
-            app:np_min="23"
+            app:np_max="100"
+            app:np_min="0"
             app:np_orientation="horizontal"
             app:np_selectedTextColor="@color/colorPrimary"
             app:np_textColor="@color/colorPrimary"

@@ -39,9 +39,11 @@ public class CheckFireFitDay {
                             .child("firefitday").setValue(1);
                     if (snapshot.child("practice").child(time2).getValue() != null)
                     {
-                        int i = snapshot.child("profile").child("FireFitStreak").getValue(Integer.class);
-                        FirebaseDatabase.getInstance().getReference().child(user.getUid()).child("profile").child("FireFitStreak")
-                                .setValue(i+1);
+                        if (ffday == 0) {
+                            int i = snapshot.child("profile").child("FireFitStreak").getValue(Integer.class);
+                            FirebaseDatabase.getInstance().getReference().child(user.getUid()).child("profile").child("FireFitStreak")
+                                    .setValue(i + 1);
+                        }
                     }
                     else
                     {

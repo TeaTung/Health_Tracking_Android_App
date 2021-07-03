@@ -1,5 +1,6 @@
 package com.example.healthtracking;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -161,6 +162,11 @@ public class InformationActivity extends AppCompatActivity {
                 user.practice.put(date.toString(), onedayofPractice1);
                 mDatabase.child(fuser.getUid()).setValue(user);
 
+                String sex = spinnersex.getText().toString();
+                SharedPreferences sharedPreferences = getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString("SEX", sex);
+                editor.apply();
                 Intent intent = new Intent(InformationActivity.this, MainActivity.class);
                 intent.putExtra("UID", getIntent().getStringExtra("UID"));
                 startActivity(intent);
