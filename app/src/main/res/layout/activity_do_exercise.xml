@@ -101,7 +101,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif-black"
         android:text="FireFit Day"
-        android:visibility="invisible"
+        android:visibility="visible"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="@+id/pgbAwardEx"
         app:layout_constraintEnd_toEndOf="@+id/pgbAwardEx"
@@ -141,16 +141,19 @@
         app:layout_constraintStart_toStartOf="@+id/tvRecordKalos"
         app:layout_constraintTop_toBottomOf="@+id/tvRecordKalos" />
 
-    <com.google.android.material.textfield.TextInputEditText
+    <EditText
         android:id="@+id/edtTimeCount"
-        android:layout_width="151dp"
-        android:layout_height="54dp"
+        android:layout_width="102dp"
+        android:layout_height="38dp"
         android:layout_marginStart="32dp"
+        android:layout_marginTop="6dp"
+        android:background="@drawable/round_border_input_text"
         android:ems="10"
         android:fontFamily="sans-serif-light"
         android:inputType="number"
+        android:padding="6dp"
         android:textSize="24sp"
-        android:visibility="invisible"
+        android:visibility="visible"
         app:layout_constraintBottom_toTopOf="@+id/imgStop"
         app:layout_constraintEnd_toStartOf="@+id/pgbAwardEx"
         app:layout_constraintHorizontal_bias="0.0"
@@ -158,16 +161,19 @@
         app:layout_constraintTop_toTopOf="@+id/tvCountTime"
         app:layout_constraintVertical_bias="0.0" />
 
-    <com.google.android.material.textfield.TextInputEditText
+    <EditText
         android:id="@+id/edtCalories"
-        android:layout_width="151dp"
-        android:layout_height="54dp"
+        android:layout_width="102dp"
+        android:layout_height="38dp"
         android:layout_marginStart="32dp"
+        android:layout_marginTop="6dp"
+        android:background="@drawable/round_border_input_text"
         android:ems="10"
         android:fontFamily="sans-serif-light"
         android:inputType="number"
+        android:padding="6dp"
         android:textSize="24sp"
-        android:visibility="invisible"
+        android:visibility="visible"
         app:layout_constraintBottom_toTopOf="@+id/textView54"
         app:layout_constraintEnd_toStartOf="@+id/pgbAwardEx"
         app:layout_constraintHorizontal_bias="0.0"

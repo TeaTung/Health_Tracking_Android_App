@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ctlMain"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".FoodFragment">
@@ -9,11 +10,14 @@
     <ImageView
         android:id="@+id/imageView19"
         android:layout_width="480dp"
-        android:layout_height="750dp"
+        android:layout_height="740dp"
+        android:layout_marginTop="-1dp"
         android:adjustViewBounds="true"
         android:scaleType="centerInside"
         android:src="@drawable/food_background"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.52"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -90,6 +94,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:fontFamily="sans-serif-black"
+            android:text="0"
             android:textColor="#373737"
             android:textSize="17dp"
             app:layout_constraintEnd_toEndOf="@+id/imgPeriod"
@@ -171,7 +176,7 @@
         android:textColor="#FFFFFF"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageView19" />
+        app:layout_constraintTop_toTopOf="@+id/ctlMain" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/cltWater"
@@ -245,7 +250,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="Uống đủ nước để sức khỏe dẻo dai bạn nhé!"
+            android:text="Luôn giữ cơ thể đủ nước!"
             android:textSize="12sp"
             android:textStyle="italic"
             app:layout_constraintEnd_toEndOf="parent"
@@ -253,30 +258,28 @@
             app:layout_constraintTop_toBottomOf="@+id/tvWaterML" />
 
         <ImageView
+            android:id="@+id/imgRecordWater"
             android:layout_width="153dp"
             android:layout_height="50dp"
-            android:id="@+id/imgRecordWater"
             android:layout_marginBottom="12dp"
             android:background="#fff"
             android:src="@drawable/start_button_shape"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"/>
+            app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
+            android:id="@+id/tvRecordWater"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/tvRecordWater"
             android:fontFamily="sans-serif-black"
             android:text="GHI NHẬN"
-            android:textSize="16sp"
             android:textColor="#FFFEFE"
+            android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="@+id/imgRecordWater"
             app:layout_constraintEnd_toEndOf="@+id/imgRecordWater"
             app:layout_constraintStart_toStartOf="@+id/imgRecordWater"
             app:layout_constraintTop_toTopOf="@+id/imgRecordWater" />
-
-
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -286,7 +289,7 @@
         android:layout_width="match_parent"
         android:layout_height="260dp"
         android:background="@drawable/round_border_recyclerview"
-        android:visibility="visible"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
@@ -296,15 +299,15 @@
             android:id="@+id/textView48"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="56dp"
+            android:layout_marginTop="6dp"
             android:text="Ăn điều độ bạn nhé!"
             android:textSize="12dp"
             android:textStyle="italic"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvFoodName" />
+            app:layout_constraintTop_toBottomOf="@+id/tvUnit" />
 
-        <TextView
+        <EditText
             android:id="@+id/tvFoodKalories"
             android:layout_width="140dp"
             android:layout_height="47dp"
@@ -335,7 +338,7 @@
             android:layout_marginTop="15dp"
             android:background="@drawable/round_border_input_text"
 
-            android:hint="Khẩu phần ăn"
+            android:hint="Tên món ăn"
             android:inputType="textCapSentences"
             android:padding="10dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -422,6 +425,29 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/imageView14"
             app:layout_constraintTop_toBottomOf="@+id/textViewStreak" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ImageView
+        android:id="@+id/historyBtn2"
+        android:layout_width="40sp"
+        android:layout_height="40sp"
+        android:layout_marginTop="22dp"
+        android:layout_marginEnd="28dp"
+        android:src="@drawable/history"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/ctlMain" />
+
+    <TextView
+        android:id="@+id/historyTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:fontFamily="sans-serif-condensed-medium"
+        android:text="Lịch sử"
+        android:textColor="#FDFDFD"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="@+id/historyBtn2"
+        app:layout_constraintTop_toBottomOf="@+id/historyBtn2" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

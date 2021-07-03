@@ -7,7 +7,7 @@
     tools:context=".GraphAccountActivity">
 
     <ImageButton
-        android:id="@+id/imgSearch"
+        android:id="@+id/okBtn"
         android:layout_width="153dp"
         android:layout_height="50dp"
         android:layout_marginBottom="16dp"
@@ -26,10 +26,10 @@
         android:text="OK"
         android:textColor="#FFFEFE"
         android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="@+id/imgSearch"
-        app:layout_constraintEnd_toEndOf="@+id/imgSearch"
-        app:layout_constraintStart_toStartOf="@+id/imgSearch"
-        app:layout_constraintTop_toTopOf="@+id/imgSearch" />
+        app:layout_constraintBottom_toBottomOf="@+id/okBtn"
+        app:layout_constraintEnd_toEndOf="@+id/okBtn"
+        app:layout_constraintStart_toStartOf="@+id/okBtn"
+        app:layout_constraintTop_toTopOf="@+id/okBtn" />
 
     <View
         android:id="@+id/topView4"
@@ -85,8 +85,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout6"
-        android:layout_width="295dp"
-        android:layout_height="55dp"
+        android:layout_width="262dp"
+        android:layout_height="53dp"
         android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -106,13 +106,23 @@
 
         <Spinner
             android:id="@+id/sprFilter"
-            android:layout_width="125dp"
+            android:layout_width="96dp"
             android:layout_height="36dp"
             android:layout_marginStart="8dp"
             android:background="@drawable/round_border_input_text"
             app:layout_constraintBottom_toBottomOf="@+id/textView63"
             app:layout_constraintStart_toEndOf="@+id/textView63"
             app:layout_constraintTop_toTopOf="@+id/textView63" />
+
+        <ImageView
+            android:id="@+id/imageView18"
+            android:layout_width="16dp"
+            android:layout_height="20dp"
+            android:layout_marginEnd="12dp"
+            app:layout_constraintBottom_toBottomOf="@+id/sprFilter"
+            app:layout_constraintEnd_toEndOf="@+id/sprFilter"
+            app:layout_constraintTop_toTopOf="@+id/sprFilter"
+            app:srcCompat="@drawable/triangle" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView

@@ -107,7 +107,7 @@
             android:layout_height="55sp"
             android:cursorVisible="false"
             android:editable="false"
-            android:hint="Năm sinh" />
+            android:hint="Năm sinh"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -118,7 +118,6 @@
         app:boxBackgroundColor="@color/white"
         app:boxBackgroundMode="outline"
         app:boxCollapsedPaddingTop="16sp"
-        app:helperText="Đơn vị kg"
         app:helperTextEnabled="true"
         app:helperTextTextColor="@color/blue"
         app:layout_constraintEnd_toEndOf="@+id/textInputLayout2"
@@ -132,17 +131,26 @@
             android:drawablePadding="16sp"
             android:hint="Cân nặng"
             android:inputType="number" />
+
+        <TextView
+            android:id="@+id/textView21"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="right"
+            android:text="Đơn vị kg"
+            android:textColor="#2196F3" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout3"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="160dp"
         android:layout_height="82dp"
         android:layout_marginTop="8dp"
         app:boxBackgroundColor="@color/white"
         app:boxBackgroundMode="outline"
-        app:helperText="Đơn vị cm"
-        app:helperTextEnabled="true"
+        app:helperTextEnabled="false"
         app:helperTextTextColor="@color/blue"
         app:layout_constraintStart_toStartOf="@+id/textInputLayout"
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout">
@@ -155,6 +163,16 @@
             android:drawablePadding="16sp"
             android:hint="Chiều cao"
             android:inputType="number" />
+
+        <TextView
+            android:id="@+id/textView20"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="right"
+            android:text="Đơn vị cm"
+            android:textColor="#2196F3" />
+
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout

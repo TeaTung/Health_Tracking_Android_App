@@ -53,7 +53,7 @@ public class ExcerciseFragment extends Fragment {
     List<MaterialDayPicker.Weekday> allWeekdays;
     MaterialDayPicker.Weekday currentday;
     Spinner lvListExercise;
-    ImageView imgStart;
+    ImageView imgStart, imgHistory;
     TextView tvStart;
 
 
@@ -99,12 +99,12 @@ public class ExcerciseFragment extends Fragment {
         textViewKalos = (TextView) view.findViewById(R.id.textViewKalosUse);
         textViewTime = (TextView) view.findViewById(R.id.textViewWater);
         textViewTimeUnit = (TextView) view.findViewById(R.id.textViewTimeUnit);
-        textViewHistory = (TextView) view.findViewById(R.id.textViewHistory);
+        imgHistory = (ImageView) view.findViewById(R.id.historyBtn);
         textViewStreak = (TextView) view.findViewById(R.id.textViewStreak);
         Loaddata();
         setDayPicker();
-     
-        textViewHistory.setOnClickListener(new View.OnClickListener() {
+
+        imgHistory.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), HistoryActivity.class);

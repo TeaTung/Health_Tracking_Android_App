@@ -61,18 +61,18 @@ public class FoodFragment extends Fragment {
     private String mParam2;
     MaterialDayPicker materialDayPicker;
     TextView textViewDate, textViewName, textViewWater, textViewCalo
-            , textViewDayKN, tvWaterML, tvRecordWater, tvFoodKalories
+            , textViewDayKN, tvWaterML, tvRecordWater
             , tvRecordFood, textViewStreak, textViewUnitDayKn;
     List<MaterialDayPicker.Weekday> allWeekdays;
     MaterialDayPicker.Weekday currentday;
 
     ImageView imageFood, imgWater, imgPlus, imgMinus ,imgRecordWater, imgRecordFood
-            , imgPeriod;
+            , imgPeriod, imgHistory;
     List<String> listNameFood,listUnitFood;
     List<Double> listCaloriesFood;
     ConstraintLayout cltFood, cltWater;
     AutoCompleteTextView tvFoodName;
-    EditText tvUnit;
+    EditText tvUnit,tvFoodKalories;
     long nextDate;
 
     double calories, caloriesOne, currentCalories;
@@ -137,10 +137,17 @@ public class FoodFragment extends Fragment {
         tvRecordWater = (TextView) view.findViewById(R.id.tvRecordWater);
         tvFoodName = (AutoCompleteTextView) view.findViewById(R.id.tvFoodName);
         tvUnit = (EditText) view.findViewById(R.id.tvUnit);
-        tvFoodKalories = (TextView) view.findViewById(R.id.tvFoodKalories);
+        tvFoodKalories = (EditText) view.findViewById(R.id.tvFoodKalories);
         tvRecordFood = (TextView) view.findViewById(R.id.tvRecordFood);
         imgRecordFood = (ImageView) view.findViewById(R.id.imgRecordFood);
-
+        imgHistory = (ImageView) view.findViewById(R.id.historyBtn2);
+        imgHistory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), HistoryActivity.class);
+                startActivity(intent);
+            }
+        });
         createListFood();
         Loaddata();
         setDayPicker();
@@ -220,7 +227,7 @@ public class FoodFragment extends Fragment {
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 try {
                     calories = caloriesOne * Integer.parseInt(tvUnit.getText().toString());
-                    tvFoodKalories.setText(calories+" Calories");
+                    tvFoodKalories.setText(calories+ " Calories");
                 } catch (NumberFormatException e)
                 {
                     tvFoodKalories.setText("");

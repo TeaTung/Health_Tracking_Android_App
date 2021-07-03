@@ -46,14 +46,14 @@ public class DoExercise extends AppCompatActivity implements SensorEventListener
     ProgressBar pgbAwardEx;
     Timer timer;
     TimerTask timerTask;
-    TextInputEditText edtCalories, edtTimeCount ;
+    EditText edtCalories, edtTimeCount ;
     private SensorManager sensorManager;
     private Sensor sensor;
 
     double calories;
     double caloriesOneTime;
-    int count;
-    int time = 0, time1;
+    int count = 0;
+    int time = 0, time1 = 0;
     boolean isSensorUsed;
     String Stime;
 
@@ -80,6 +80,8 @@ public class DoExercise extends AppCompatActivity implements SensorEventListener
         pgbAwardEx.setMax(100);
         edtCalories = findViewById(R.id.edtCalories);
         edtTimeCount = findViewById(R.id.edtTimeCount);
+        edtTimeCount.setVisibility(View.INVISIBLE);
+        edtCalories.setVisibility(View.INVISIBLE);
 
         setEventEditText();
         decorView();
@@ -164,7 +166,7 @@ public class DoExercise extends AppCompatActivity implements SensorEventListener
             imgDoingEx.setImageDrawable(pic);
         }  else if (exerciseName.equals("Khác")) {
             tvTopicDoingEx.setText("ĐANG TẬP...");
-            Drawable pic = ResourcesCompat.getDrawable(getResources(), R.drawable.pushup, null);
+            Drawable pic = ResourcesCompat.getDrawable(getResources(), R.drawable.exercise, null);
             imgDoingEx.setImageDrawable(pic);
         }
     }
@@ -213,9 +215,15 @@ public class DoExercise extends AppCompatActivity implements SensorEventListener
     private void stopDoingEx(){
         if (tvStop.getText().equals("DỪNG TẬP")){
             timerTask.cancel();
-            time1 =time;
+            time1 = time;
             time = 0;
             tvStop.setText("GHI NHẬN");
+            edtCalories.setVisibility(View.VISIBLE);
+            edtTimeCount.setVisibility(View.VISIBLE);
+            tvCountTime.setVisibility(View.INVISIBLE);
+            tvRecordKalos.setVisibility(View.INVISIBLE);
+            edtTimeCount.setText(String.valueOf(count));
+            edtCalories.setText(String.valueOf(calories));
             if (isSensorUsed == false){
                 edtCalories.setVisibility(View.VISIBLE);
                 edtTimeCount.setVisibility(View.VISIBLE);

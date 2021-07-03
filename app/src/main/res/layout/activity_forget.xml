@@ -6,53 +6,99 @@
     android:layout_height="match_parent"
     tools:context=".ForgetActivity">
 
+    <View
+        android:id="@+id/topView5"
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:background="@color/blue"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="-6dp" />
+
+    <ImageView
+        android:id="@+id/imageView13"
+        android:layout_width="wrap_content"
+        android:layout_height="101dp"
+        android:layout_marginTop="79dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_wave" />
+
+    <TextView
+        android:id="@+id/textView16"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="20dp"
+        android:fontFamily="sans-serif-condensed-medium"
+        android:text="Quên mật khẩu?"
+        android:textColor="#FFFFFF"
+        android:textSize="34sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/topView5" />
+
+    <TextView
+        android:id="@+id/textView17"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:fontFamily="sans-serif-condensed-light"
+        android:text="Đừng lo FireFit sẽ giúp bạn!"
+        android:textColor="#FFFFFF"
+        android:textSize="30sp"
+        app:layout_constraintStart_toStartOf="@+id/textView16"
+        app:layout_constraintTop_toBottomOf="@+id/textView16" />
+
     <Button
         android:id="@+id/buttonSendCode"
         android:layout_width="160sp"
         android:layout_height="50sp"
-        android:layout_marginTop="92dp"
+        android:layout_marginTop="44dp"
+        android:layout_marginEnd="4dp"
         android:background="@drawable/round_border_button"
         android:text="Nhận email"
-        app:layout_constraintEnd_toEndOf="@+id/textInputLayout3"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayout3"
+        app:layout_constraintEnd_toEndOf="@+id/editTextEmail"
+        app:layout_constraintTop_toBottomOf="@+id/editTextEmail"
         tools:ignore="MissingConstraints" />
+
 
     <TextView
         android:id="@+id/textViewNotice"
         android:layout_width="275dp"
         android:layout_height="22dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintStart_toStartOf="@+id/textInputLayout3"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayout3" />
+        android:layout_marginTop="12dp"
+        android:textColor="#0800FF"
+        app:layout_constraintEnd_toEndOf="@+id/editTextEmail"
+        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintStart_toStartOf="@+id/editTextEmail"
+        app:layout_constraintTop_toBottomOf="@+id/editTextEmail" />
 
     <Button
         android:id="@+id/buttonBack"
         android:layout_width="160sp"
         android:layout_height="50sp"
-        android:layout_marginTop="92dp"
+        android:layout_marginTop="44dp"
         android:background="@drawable/round_border_button"
         android:text="Quay lại"
-        app:layout_constraintStart_toStartOf="@+id/textInputLayout3"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayout3" />
+        app:layout_constraintStart_toStartOf="@+id/editTextEmail"
+        app:layout_constraintTop_toBottomOf="@+id/editTextEmail" />
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayout3"
+    <EditText
+        android:id="@+id/editTextEmail"
         android:layout_width="350dp"
-        android:layout_height="60dp"
-        android:layout_marginTop="250dp"
-        android:hint="Email"
-        app:boxBackgroundColor="@color/white"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="156dp"
+        android:background="@drawable/round_border"
+        android:drawableStart="@drawable/ic_email"
+        android:drawablePadding="16sp"
+        android:ems="10"
+        android:hint="Email đã đăng ký"
+        android:inputType="textEmailAddress"
+        android:padding="16sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.508"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <EditText
-            android:id="@+id/editTextEmail"
-            android:layout_width="match_parent"
-            android:layout_height="60sp"
-            android:ems="10"
-            android:inputType="textEmailAddress"
-            tools:ignore="MissingConstraints" />
-    </com.google.android.material.textfield.TextInputLayout>
+        app:layout_constraintTop_toBottomOf="@+id/imageView13" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
