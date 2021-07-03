@@ -10,10 +10,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.healthtracking.ClassData.JavaMailAPI;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.SignInMethodQueryResult;
 
 import java.util.Random;
 
@@ -25,6 +29,7 @@ public class SignUpMainActivity extends AppCompatActivity {
     TextView textViewBack;
     ProgressDialog progressDialog;
     View decorateView;
+    boolean result;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -91,7 +96,12 @@ public class SignUpMainActivity extends AppCompatActivity {
         }
         else if (!isValidEmail(email))
         {
-            editTextEmail.setError("Email không tồn tại");
+            editTextEmail.setError("Email không hợp lệ");
+            return;
+        }
+        else if (checkMailwasExist() == false)
+        {
+            editTextEmail.setError("Email đã được đăng ký");
             return;
         }
         Random random = new Random();
@@ -149,5 +159,23 @@ public class SignUpMainActivity extends AppCompatActivity {
                 | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
                 | View.SYSTEM_UI_FLAG_FULLSCREEN
                 | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION;
+    }
+
+    public boolean checkMailwasExist()
+    {
+
+        FirebaseAuth.getInstance().fetchSignInMethodsForEmail(editTextEmail.getText().toString())
+                .addOnCompleteListener(new OnCompleteListener<SignInMethodQueryResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<SignInMethodQueryResult> task) {
+                        if (task.isSuccessful()) {
+                               result = false;
+                        } else {
+                            result = true;
+                        }
+                    }
+
+                });
+        return result;
     }
 }

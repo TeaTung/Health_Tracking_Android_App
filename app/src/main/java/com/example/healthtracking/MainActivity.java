@@ -1,15 +1,24 @@
 package com.example.healthtracking;
 
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.ismaeldivita.chipnavigation.ChipNavigationBar;
+
+import org.jetbrains.annotations.NotNull;
 
 public class MainActivity extends AppCompatActivity {
     FirebaseAuth mAuth;
@@ -17,6 +26,8 @@ public class MainActivity extends AppCompatActivity {
     private ChipNavigationBar chipNavigationBar;
     private Fragment fragment = null;
     View decorateView;
+    String sex;
+    SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,7 +35,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         changeUserSetting();
-
+        sharedPreferences = getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE);
+        sex = sharedPreferences.getString("SEX","");
         decorView();
         chipNavigationBar = findViewById(R.id.bottom_nav_bar);
         chipNavigationBar.setItemSelected(R.id.nav_home, true);
@@ -37,7 +49,9 @@ public class MainActivity extends AppCompatActivity {
                         fragment = new HomeFragment();
                         break;
                     case R.id.nav_food:
-                        fragment = new FoodFragment();
+                        if (sex.equals("Nam"))
+                            fragment = new FoodMale();
+                        else fragment = new FoodFragment();
                         break;
                     case R.id.nav_run:
                         fragment = new ExcerciseFragment();

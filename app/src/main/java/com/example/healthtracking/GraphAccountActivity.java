@@ -130,8 +130,8 @@ public class GraphAccountActivity extends AppCompatActivity {
 
         piechart.startAnimation();
 
-        tvConsumedCalories.setText("Tiêu thụ " + consumedCalories +" calories");
-        tvReleasedCalories.setText("Luyện tập " + releasedCalories + " calories");
+        tvConsumedCalories.setText("Tiêu thụ " + Math.round(consumedCalories) +" calories");
+        tvReleasedCalories.setText("Luyện tập " + Math.round(releasedCalories) + " calories");
         tvReceivedFireFit.setText("Đạt " + numberOfFireFit+ " FireFit day");
     }
     private void getData(String filter){

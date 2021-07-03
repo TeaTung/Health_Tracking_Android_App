@@ -269,5 +269,12 @@ public class TrackingPeriodActivity extends AppCompatActivity {
     }
 
 
+    public  void resetData()
+    {
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        FirebaseDatabase.getInstance().getReference().child(user.getUid()).child("profile").child("DetailPeriod").setValue(new PeriodTracking());
+        LoadDataForFirst();
+    }
+
 
 }

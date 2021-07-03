@@ -79,11 +79,13 @@ public class RequestPermission extends AppCompatActivity {
             tvHowtoUse.setText("Đặt điện thoại ngang chân FireFit sẽ dùng cảm biến tiệm cận để có thể ghi nhận quá trình tập. Bạn hoàn toàn có thể ghi nhận thủ công sau phiên tập");
         } else if (exerciseName.equals("Chạy bộ")){
             tvTopicEx.setText("CHẠY BỘ CÙNG FIREFIT");
+            tvNotUse.setVisibility(View.INVISIBLE);
             Drawable pic = ResourcesCompat.getDrawable(getResources(), R.drawable.running, null);
             imgEx.setImageDrawable(pic);
             tvHowtoUse.setText("Cầm điện thoại lúc chạy bộ để FireFit có thẻ tự động ghi nhận các thông tin luyện tập.");
         } else if (exerciseName.equals("Khác")){
             tvTopicEx.setText("BÀI TẬP THÊM CÙNG FIREFIT");
+            tvNotUse.setVisibility(View.INVISIBLE);
             Drawable pic = ResourcesCompat.getDrawable(getResources(), R.drawable.exercise, null);
             imgEx.setImageDrawable(pic);
             tvHowtoUse.setText("Bạn có bài tập đặc biệt của riêng mình? FireFit sẽ giúp bạn ghi nhận phiên tập.");

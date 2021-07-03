@@ -41,8 +41,8 @@ import java.util.TimerTask;
 public class DoExercise extends AppCompatActivity implements SensorEventListener {
     View decorateView;
     String exerciseName;
-    TextView tvTopicDoingEx, tvTimeRecordDoingEx, tvStop, tvFireFit, tvRecordKalos, tvCountTime;
-    ImageView imgDoingEx, imgStop;
+    TextView tvTopicDoingEx, tvTimeRecordDoingEx, tvStop, tvFireFit, tvRecordKalos, tvCountTime, tvCancel;
+    ImageView imgDoingEx, imgStop, imgCancel;
     ProgressBar pgbAwardEx;
     Timer timer;
     TimerTask timerTask;
@@ -66,10 +66,12 @@ public class DoExercise extends AppCompatActivity implements SensorEventListener
         tvFireFit = findViewById(R.id.tvFireFit);
         tvRecordKalos = findViewById(R.id.tvRecordKalos);
         tvStop = findViewById(R.id.tvStop);
+        tvCancel = findViewById(R.id.tvCancel);
         tvTimeRecordDoingEx = findViewById(R.id.tvTimeRecordDoingEx);
         tvTopicDoingEx = findViewById(R.id.tvTopicDoingEx);
         imgDoingEx = findViewById(R.id.imgDoingEx);
         imgStop = findViewById(R.id.imgStop);
+        imgCancel = findViewById(R.id.imgCancel);
         pgbAwardEx = findViewById(R.id.pgbAwardEx);
         exerciseName = getIntent().getStringExtra("Name");
 
@@ -99,8 +101,8 @@ public class DoExercise extends AppCompatActivity implements SensorEventListener
             if (distance < 5){
                 count ++;
                 calories += caloriesOneTime;
-                tvRecordKalos.setText(calories + "Kalories");
-                tvCountTime.setText(count + "Lần");
+                tvRecordKalos.setText(Math.round(calories) + " kcal");
+                tvCountTime.setText(Math.round(count )+ " Lần");
                 pgbAwardEx.setProgress((int)calories);
                 if (count == 100){
                     tvFireFit.setVisibility(View.VISIBLE);
@@ -211,6 +213,26 @@ public class DoExercise extends AppCompatActivity implements SensorEventListener
                 stopDoingEx();
             }
         });
+
+        imgCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                imgCancel.setVisibility(View.INVISIBLE);
+                tvCancel.setVisibility(View.INVISIBLE);
+                tvStop.setText("BẮT ĐẦU LẠI...");
+                pgbAwardEx.setProgress(0);
+            }
+        });
+
+        tvCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                imgCancel.setVisibility(View.INVISIBLE);
+                tvCancel.setVisibility(View.INVISIBLE);
+                tvStop.setText("BẮT ĐẦU LẠI...");
+                pgbAwardEx.setProgress(0);
+            }
+        });
     }
     private void stopDoingEx(){
         if (tvStop.getText().equals("DỪNG TẬP")){
@@ -218,20 +240,43 @@ public class DoExercise extends AppCompatActivity implements SensorEventListener
             time1 = time;
             time = 0;
             tvStop.setText("GHI NHẬN");
+            imgCancel.setVisibility(View.VISIBLE);
+            tvCancel.setVisibility(View.VISIBLE);
             edtCalories.setVisibility(View.VISIBLE);
             edtTimeCount.setVisibility(View.VISIBLE);
             tvCountTime.setVisibility(View.INVISIBLE);
             tvRecordKalos.setVisibility(View.INVISIBLE);
-            edtTimeCount.setText(String.valueOf(count));
-            edtCalories.setText(String.valueOf(calories));
+            edtTimeCount.setText(String.valueOf(Math.round(count)));
+            edtCalories.setText(String.valueOf(Math.round(calories)));
             if (isSensorUsed == false){
-                edtCalories.setVisibility(View.VISIBLE);
-                edtTimeCount.setVisibility(View.VISIBLE);
-                edtCalories.setEnabled(false);
+                if (exerciseName.equals("Khác"))
+                {
+                    edtCalories.setVisibility(View.VISIBLE);
+                    edtTimeCount.setVisibility(View.VISIBLE);
+                }
+                else {
+                    edtCalories.setVisibility(View.VISIBLE);
+                    edtTimeCount.setVisibility(View.VISIBLE);
+                    edtCalories.setEnabled(false);
+                }
             }
         } else if (tvStop.getText().equals("GHI NHẬN")){
+            if (edtTimeCount.getText().toString().equals(""))
+            {
+                edtTimeCount.setError("Nhập số lần");
+                return;
+            }
+            if (edtCalories.getText().toString().equals(""))
+            {
+                edtCalories.setError("Nhập số kcal");
+                return;
+            }
+
             tvTimeRecordDoingEx.setText(formatTime(0,0,0));
             recordExercise();
+            ///
+            imgCancel.setVisibility(View.INVISIBLE);
+            tvCancel.setVisibility(View.INVISIBLE);
             tvStop.setText("BẮT ĐẦU LẠI...");
             pgbAwardEx.setProgress(0);
             Toast.makeText(DoExercise.this, "Ghi nhận thành công", Toast.LENGTH_SHORT).show();
@@ -241,11 +286,27 @@ public class DoExercise extends AppCompatActivity implements SensorEventListener
             calories = 0;
             Stime = getStime();
             startTimer();
-            tvRecordKalos.setText("0 Kalories");
-            tvCountTime.setText("0 lần");
-            edtCalories.setText("");
-            edtTimeCount.setText("");
-            edtTimeCount.setFocusable(false);
+            if (isSensorUsed == false)
+            {
+                tvRecordKalos.setText("0 Kalories");
+                tvCountTime.setText("0 lần");
+                edtCalories.setVisibility(View.INVISIBLE);
+                edtTimeCount.setVisibility(View.INVISIBLE);
+                edtCalories.setText("");
+                edtTimeCount.setText("");
+                edtTimeCount.setFocusable(false);
+            }
+            else {
+                tvRecordKalos.setText("0 Kalories");
+                tvCountTime.setText("0 lần");
+                edtCalories.setVisibility(View.INVISIBLE);
+                edtTimeCount.setVisibility(View.INVISIBLE);
+                tvRecordKalos.setVisibility(View.VISIBLE);
+                tvCountTime.setVisibility(View.VISIBLE);
+                edtCalories.setText("");
+                edtTimeCount.setText("");
+                edtTimeCount.setFocusable(false);
+            }
         }
     }
     private void setCaloriesOneTime(){
@@ -280,9 +341,15 @@ public class DoExercise extends AppCompatActivity implements SensorEventListener
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int countt) {
                     try {
-                        count = Integer.parseInt(edtTimeCount.getText().toString());
-                        calories = count * caloriesOneTime;
-                        edtCalories.setText(calories + " Calories");
+                        if (exerciseName.equals("Khác"))
+                        {
+                            count = Integer.parseInt(edtTimeCount.getText().toString());
+                        }
+                        else {
+                            count = Integer.parseInt(edtTimeCount.getText().toString());
+                            calories = count * caloriesOneTime;
+                            edtCalories.setText(Math.round(calories) + " kcal");
+                        }
                     } catch (NumberFormatException e)
                     {
 
@@ -347,4 +414,6 @@ public class DoExercise extends AppCompatActivity implements SensorEventListener
                 : "0" + calendar.getTime().getSeconds();
         return hour + ":" + minute + ":" + second;
     }
+
+
 }

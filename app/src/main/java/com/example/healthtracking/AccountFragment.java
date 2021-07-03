@@ -195,6 +195,12 @@ public class AccountFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
+                SharedPreferences sharedPreferences = getActivity().getSharedPreferences("sharedPrefs",MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putBoolean("WAS_LOGIN",false);
+                editor.putBoolean("WAS_INFORMATION",false);
+                editor.putBoolean("WAS_LOGOUT", true);
+                editor.apply();
                 FirebaseAuth.getInstance().signOut();
                 Intent intent = new Intent(getActivity(), LoginActivity.class);
                 startActivity(intent);

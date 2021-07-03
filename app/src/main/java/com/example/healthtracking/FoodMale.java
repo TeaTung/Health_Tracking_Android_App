@@ -115,7 +115,7 @@ public class FoodMale extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_food, container, false);
+        View view = inflater.inflate(R.layout.fragment_food_male, container, false);
 
         materialDayPicker = (MaterialDayPicker) view.findViewById(R.id.day_picker);
         textViewDate = (TextView) view.findViewById(R.id.textViewDate);
@@ -208,13 +208,6 @@ public class FoodMale extends Fragment {
                 recordDataFood();
             }
         });
-        imgPeriod.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(),InstructionCounterPeriodActivity.class );
-                startActivity(intent);
-            }
-        });
         tvUnit.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -254,26 +247,6 @@ public class FoodMale extends Fragment {
                 String x = snapshot.child("Name").getValue(String.class);
                 textViewName.setText(x);
                 nextDate = snapshot.child("DetailPeriod").child("NextDate").getValue(long.class);
-                int daykn = setDatePeriod();
-                if (daykn == 10000)
-                {
-                    textViewDayKN.setText("");
-                    textViewUnitDayKn.setText("Chưa có dữ liệu");
-                }
-                else if (daykn == 0)
-                {
-                    textViewDayKN.setText("");
-                    textViewUnitDayKn.setText("Hôm nay");
-                }
-                else if (daykn > 0)
-                {
-                    textViewDayKN.setText(""+daykn);
-                }
-                else if (daykn < 0)
-                {
-                    textViewDayKN.setText(""+daykn);
-                    textViewUnitDayKn.setText("Ngày trễ");
-                }
 
             }
 
