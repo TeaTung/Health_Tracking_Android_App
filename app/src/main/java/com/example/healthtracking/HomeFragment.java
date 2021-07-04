@@ -70,7 +70,6 @@ public class HomeFragment extends Fragment implements SensorEventListener {
     Exercises exercises;
     Food food;
     FunFact funFact;
-    Toolbar toolbar;
 
     int realStepCounter , height,weigth, daykn;
     long nextDate;
@@ -129,8 +128,6 @@ public class HomeFragment extends Fragment implements SensorEventListener {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         textViewName = (TextView) view.findViewById(R.id.textView14);
         recyclerView = (RecyclerView) view.findViewById(R.id.recycle_view);
-        toolbar = view.findViewById(R.id.toolbar);
-
         setProfileName();
         LoaddataForFirst();
         sharedPreferences = getActivity().getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE);
@@ -187,7 +184,6 @@ public class HomeFragment extends Fragment implements SensorEventListener {
             public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
                 String x = snapshot.getValue(String.class);
                 textViewName.setText(x);
-                toolbar.setTitle(textViewName.getText());
             }
 
             @Override
