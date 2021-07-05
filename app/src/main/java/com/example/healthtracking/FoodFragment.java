@@ -227,7 +227,7 @@ public class FoodFragment extends Fragment {
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 try {
                     calories = caloriesOne * Integer.parseInt(tvUnit.getText().toString());
-                    tvFoodKalories.setText(calories+ " Calories");
+                    tvFoodKalories.setText(calories+ " kcal");
                 } catch (NumberFormatException e)
                 {
                     tvFoodKalories.setText("");
@@ -446,7 +446,7 @@ public class FoodFragment extends Fragment {
                 caloriesOne = listCaloriesFood.get(position);
                 tvUnit.setHint(listUnitFood.get(position));
                 unitFood = listUnitFood.get(position);
-                tvFoodKalories.setHint(caloriesOne + " Calories/1 "+listUnitFood.get(position));
+                tvFoodKalories.setHint(caloriesOne + " kcal/1 "+listUnitFood.get(position));
             }
         });
     }

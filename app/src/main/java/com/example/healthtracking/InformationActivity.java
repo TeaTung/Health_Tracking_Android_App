@@ -153,7 +153,7 @@ public class InformationActivity extends AppCompatActivity {
 
                 User user = new User();
                 Profile profile = new Profile(edittextname.getText().toString(), Integer.parseInt(textViewyear.getText().toString()), spinnersex.getText().toString(),
-                        Integer.parseInt(edittextheight.getText().toString()), Integer.parseInt(edittextweight.getText().toString()), new PeriodTracking(), new Goal(),0);
+                        Integer.parseInt(edittextheight.getText().toString()), Integer.parseInt(edittextweight.getText().toString()), new PeriodTracking(), new Goal(2000,2000,2000),0);
                 OnedayofPractice onedayofPractice1 = new OnedayofPractice(new Run(), new Nutrition(), 0,new Jog(), new Exercise());
                 user.profile = profile;
 

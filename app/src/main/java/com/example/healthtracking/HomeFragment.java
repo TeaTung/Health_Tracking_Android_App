@@ -254,6 +254,9 @@ public class HomeFragment extends Fragment implements SensorEventListener {
                     water = 0;
                     foodCalories = 0;
                 }
+//                if (realStepCounter < 0){
+//                    realStepCounter = 0;
+//                }
                 realStepCounter++;
                 distance = Math.round(realStepCounter * 0.7 * 100) / 100;
                 kalo = Math.round(distance * 0.0625);

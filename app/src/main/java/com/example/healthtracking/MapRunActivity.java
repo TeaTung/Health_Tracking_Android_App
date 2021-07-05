@@ -344,9 +344,9 @@ public class MapRunActivity extends AppCompatActivity implements OnMapReadyCallb
         speed = (distance / time ) * 1000;
         step = step + (distance / 0.007);
 
-        double newDistance =(double) (Math.round(distance * 100 * 1000) / 100);
-        double newSpeed = (double)(Math.round(speed * 100) / 100);
-        double newCalo = (double)(Math.round(calo * 100) / 100);
+        double newDistance =(double) (Math.round(distance * 1000));
+        double newSpeed = (double)(Math.round(speed));
+        double newCalo = (double)(Math.round(calo));
         double newStep = (double)(Math.round(step));
 
         tvStep.setText(Math.round(newStep) + " bước chân ");
@@ -354,6 +354,8 @@ public class MapRunActivity extends AppCompatActivity implements OnMapReadyCallb
         tvCalo.setText(Math.round(newCalo) + " kcal ");
         if (newSpeed >= 1){
             tvSpeed.setText(Math.round(newSpeed) + " m/s ");
+        } else {
+            tvSpeed.setText(0 + " m/s ");
         }
         pgbAward.setProgress((int)newStep);
         if (pgbAward.getProgress() == 10000){

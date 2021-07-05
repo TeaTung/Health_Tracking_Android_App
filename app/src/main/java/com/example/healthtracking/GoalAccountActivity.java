@@ -90,9 +90,9 @@ public class GoalAccountActivity extends AppCompatActivity {
                 .addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
-                        atvCaloriesConsumed.setText(""+snapshot.child("IntakeCalories").getValue(Integer.class));
-                        atvCaloriesRelease.setText(""+snapshot.child("ExerciseCalories").getValue(Integer.class));
-                        atvWaterConsumed.setText(""+snapshot.child("Water").getValue(Integer.class));
+                        atvCaloriesConsumed.setHint("Kcal nạp vào: "+snapshot.child("IntakeCalories").getValue(Integer.class));
+                        atvCaloriesRelease.setHint("Kcal luyện tập: "+snapshot.child("ExerciseCalories").getValue(Integer.class));
+                        atvWaterConsumed.setHint("Lượng nước: "+snapshot.child("Water").getValue(Integer.class));
 
                     }
 

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -13,6 +14,7 @@ import androidx.core.content.res.ResourcesCompat;
 public class RequestPermission extends AppCompatActivity {
     View decorateView;
     String exerciseName;
+    Button button2;
     TextView tvTopicEx, tvHowtoUse, tvStartEx, tvNotUse;
     ImageView imgEx, imgStartEx;
 
@@ -20,7 +22,6 @@ public class RequestPermission extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_request_permission);
-
         tvTopicEx = (TextView) findViewById(R.id.tvTopicEx);
         tvHowtoUse = (TextView) findViewById(R.id.tvHowtoUse);
         tvStartEx = (TextView) findViewById(R.id.tvStartEx);
@@ -109,7 +110,6 @@ public class RequestPermission extends AppCompatActivity {
     }
 
     private void startExercise(boolean isUsedSensor){
-
         if (exerciseName.equals("Hít đất")){
             Intent intent = new Intent(this , DoExercise.class);
             intent.putExtra("Name",exerciseName);
@@ -138,6 +138,7 @@ public class RequestPermission extends AppCompatActivity {
             intent.putExtra("Name",exerciseName);
             startActivity(intent);
         }
+        finish();
     }
 
     private void setButtonNotUseSensor(){
