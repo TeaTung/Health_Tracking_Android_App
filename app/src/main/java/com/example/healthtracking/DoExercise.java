@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -45,6 +46,7 @@ public class DoExercise extends AppCompatActivity implements SensorEventListener
     ImageView imgDoingEx, imgStop, imgCancel;
     ProgressBar pgbAwardEx;
     Timer timer;
+    Button btnExit;
     TimerTask timerTask;
     EditText edtCalories, edtTimeCount ;
     private SensorManager sensorManager;
@@ -62,6 +64,7 @@ public class DoExercise extends AppCompatActivity implements SensorEventListener
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_do_exercise);
 
+        btnExit = findViewById(R.id.btnExit);
         tvCountTime = findViewById(R.id.tvCountTime);
         tvFireFit = findViewById(R.id.tvFireFit);
         tvRecordKalos = findViewById(R.id.tvRecordKalos);
@@ -74,12 +77,11 @@ public class DoExercise extends AppCompatActivity implements SensorEventListener
         imgCancel = findViewById(R.id.imgCancel);
         pgbAwardEx = findViewById(R.id.pgbAwardEx);
         exerciseName = getIntent().getStringExtra("Name");
-
         isSensorUsed =  getIntent().getBooleanExtra("isSensorUsed",true);
         timer = new Timer();
         sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         sensor = sensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY);
-        pgbAwardEx.setMax(100);
+        pgbAwardEx.setMax(20);
         edtCalories = findViewById(R.id.edtCalories);
         edtTimeCount = findViewById(R.id.edtTimeCount);
         edtTimeCount.setVisibility(View.INVISIBLE);
@@ -93,6 +95,15 @@ public class DoExercise extends AppCompatActivity implements SensorEventListener
         createButtonStop();
         setCaloriesOneTime();
         checkUsingSensor();
+        setBtnExit();
+    }
+    void setBtnExit(){
+        btnExit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
     @Override
     public void onSensorChanged(SensorEvent event) {
@@ -104,9 +115,6 @@ public class DoExercise extends AppCompatActivity implements SensorEventListener
                 tvRecordKalos.setText(Math.round(calories) + " kcal");
                 tvCountTime.setText(Math.round(count )+ " Lần");
                 pgbAwardEx.setProgress((int)calories);
-                if (count == 100){
-                    tvFireFit.setVisibility(View.VISIBLE);
-                }
             }
         }
     }
@@ -248,17 +256,8 @@ public class DoExercise extends AppCompatActivity implements SensorEventListener
             tvRecordKalos.setVisibility(View.INVISIBLE);
             edtTimeCount.setText(String.valueOf(Math.round(count)));
             edtCalories.setText(String.valueOf(Math.round(calories)));
-            if (isSensorUsed == false){
-                if (exerciseName.equals("Khác"))
-                {
-                    edtCalories.setVisibility(View.VISIBLE);
-                    edtTimeCount.setVisibility(View.VISIBLE);
-                }
-                else {
-                    edtCalories.setVisibility(View.VISIBLE);
-                    edtTimeCount.setVisibility(View.VISIBLE);
-                    edtCalories.setEnabled(false);
-                }
+            if (!exerciseName.equals("Khác")){
+                edtCalories.setEnabled(false);
             }
         } else if (tvStop.getText().equals("GHI NHẬN")){
             if (edtTimeCount.getText().toString().equals(""))
@@ -288,7 +287,7 @@ public class DoExercise extends AppCompatActivity implements SensorEventListener
             startTimer();
             if (isSensorUsed == false)
             {
-                tvRecordKalos.setText("0 Kalories");
+                tvRecordKalos.setText("0 kcal");
                 tvCountTime.setText("0 lần");
                 edtCalories.setVisibility(View.INVISIBLE);
                 edtTimeCount.setVisibility(View.INVISIBLE);
@@ -297,7 +296,7 @@ public class DoExercise extends AppCompatActivity implements SensorEventListener
                 edtTimeCount.setFocusable(false);
             }
             else {
-                tvRecordKalos.setText("0 Kalories");
+                tvRecordKalos.setText("0 kcal");
                 tvCountTime.setText("0 lần");
                 edtCalories.setVisibility(View.INVISIBLE);
                 edtTimeCount.setVisibility(View.INVISIBLE);
@@ -327,6 +326,7 @@ public class DoExercise extends AppCompatActivity implements SensorEventListener
             edtCalories.setVisibility(View.INVISIBLE);
             edtTimeCount.setVisibility(View.INVISIBLE);
             pgbAwardEx.setVisibility(View.INVISIBLE);
+            tvFireFit.setVisibility(View.INVISIBLE);
         }
     }
 
@@ -340,20 +340,20 @@ public class DoExercise extends AppCompatActivity implements SensorEventListener
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int countt) {
-                    try {
-                        if (exerciseName.equals("Khác"))
-                        {
-                            count = Integer.parseInt(edtTimeCount.getText().toString());
-                        }
-                        else {
-                            count = Integer.parseInt(edtTimeCount.getText().toString());
-                            calories = count * caloriesOneTime;
-                            edtCalories.setText(Math.round(calories) + " kcal");
-                        }
-                    } catch (NumberFormatException e)
+                try {
+                    if (exerciseName.equals("Khác"))
                     {
-
+                        count = Integer.parseInt(edtTimeCount.getText().toString());
                     }
+                    else {
+                        count = Integer.parseInt(edtTimeCount.getText().toString());
+                        calories = count * caloriesOneTime;
+                        edtCalories.setText(Math.round(calories) + " kcal");
+                    }
+                } catch (NumberFormatException e)
+                {
+
+                }
 
             }
 
@@ -371,29 +371,29 @@ public class DoExercise extends AppCompatActivity implements SensorEventListener
         java.sql.Date date2 = new java.sql.Date(millis2);
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
-            DetailExercise detailExercise = new DetailExercise(exerciseName,time1 ,count, calories);
-            FirebaseDatabase.getInstance().getReference().child(user.getUid()).child("practice").child(date.toString()).child("exercise")
-                    .child("detail").child(Stime).setValue(detailExercise);
-            ///////
-            FirebaseDatabase.getInstance().getReference().child(user.getUid()).child("practice").child(date.toString()).child("exercise")
-                    .addListenerForSingleValueEvent(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
-                            int exTime = snapshot.child("Time").getValue(Integer.class)+time1;
-                            double exCalo = snapshot.child("Calories").getValue(double.class)+ calories;
+        DetailExercise detailExercise = new DetailExercise(exerciseName,time1 ,count, calories);
+        FirebaseDatabase.getInstance().getReference().child(user.getUid()).child("practice").child(date.toString()).child("exercise")
+                .child("detail").child(Stime).setValue(detailExercise);
+        ///////
+        FirebaseDatabase.getInstance().getReference().child(user.getUid()).child("practice").child(date.toString()).child("exercise")
+                .addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
+                        int exTime = snapshot.child("Time").getValue(Integer.class)+time1;
+                        double exCalo = snapshot.child("Calories").getValue(double.class)+ calories;
 
-                            FirebaseDatabase.getInstance().getReference().child(user.getUid()).child("practice").child(date.toString())
-                                    .child("exercise").child("Calories").setValue(exCalo);
-                            FirebaseDatabase.getInstance().getReference().child(user.getUid()).child("practice").child(date.toString())
-                                    .child("exercise").child("Time").setValue(exTime);
+                        FirebaseDatabase.getInstance().getReference().child(user.getUid()).child("practice").child(date.toString())
+                                .child("exercise").child("Calories").setValue(exCalo);
+                        FirebaseDatabase.getInstance().getReference().child(user.getUid()).child("practice").child(date.toString())
+                                .child("exercise").child("Time").setValue(exTime);
 
-                        }
+                    }
 
-                        @Override
-                        public void onCancelled(@NonNull @NotNull DatabaseError error) {
+                    @Override
+                    public void onCancelled(@NonNull @NotNull DatabaseError error) {
 
-                        }
-                    });
+                    }
+                });
         CheckFireFitDay checkFireFitDay = new CheckFireFitDay();
         checkFireFitDay.CheckOneDay(date.toString(), date2.toString());
 

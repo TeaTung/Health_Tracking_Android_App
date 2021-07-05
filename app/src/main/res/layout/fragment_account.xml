@@ -199,22 +199,10 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
         android:fontFamily="sans-serif-condensed"
-        android:text="Nguyễn Dương Tùng"
         android:textColor="#FAFAFA"
         android:textSize="28sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView19" />
 
-    <TextView
-        android:id="@+id/textView23"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:fontFamily="sans-serif-thin"
-        android:text="ID: 220012"
-        android:textColor="#FAFAFA"
-        app:layout_constraintEnd_toEndOf="@+id/textViewAccoutName"
-        app:layout_constraintStart_toStartOf="@+id/textViewAccoutName"
-        app:layout_constraintTop_toBottomOf="@+id/textViewAccoutName" />
 </androidx.constraintlayout.widget.ConstraintLayout>

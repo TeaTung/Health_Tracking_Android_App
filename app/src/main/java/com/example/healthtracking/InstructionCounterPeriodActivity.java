@@ -43,6 +43,7 @@ public class InstructionCounterPeriodActivity extends AppCompatActivity {
     private void setStartPeriod(){
         Intent intent = new Intent(this, TrackingPeriodActivity.class);
         startActivity(intent);
+        finish();
     }
     public void decorView(){
         decorateView = getWindow().getDecorView();

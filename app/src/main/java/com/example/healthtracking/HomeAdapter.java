@@ -36,12 +36,13 @@ import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
+import java.util.Random;
 
 public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private List<Item> items;
-    private  int stepcout;
+    private int stepcout;
 
-    public HomeAdapter(List<Item> items){
+    public HomeAdapter(List<Item> items) {
         this.items = items;
     }
 
@@ -65,8 +66,7 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                             false
                     )
             );
-        }
-        else if (viewType == 2) {
+        } else if (viewType == 2) {
             return new ExerciseViewHolder(
                     LayoutInflater.from(parent.getContext()).inflate(
                             R.layout.exercise_card_view,
@@ -93,45 +93,40 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         }
         return null;
     }
+
     @Override
     public void onBindViewHolder(@NonNull @NotNull RecyclerView.ViewHolder holder, int position) {
         if (getItemViewType(position) == 0) {
-            PersonalInformation personalMaleInformation = (PersonalInformation)items.get(position).getObject();
-            ((PersonalMaleInformationHolder)holder).setPersonalInformationCard(personalMaleInformation);
-        }
+            PersonalInformation personalMaleInformation = (PersonalInformation) items.get(position).getObject();
+            ((PersonalMaleInformationHolder) holder).setPersonalInformationCard(personalMaleInformation);
+        } else if (getItemViewType(position) == 1) {
+            PersonalInformation personalFemaleInformation = (PersonalInformation) items.get(position).getObject();
+            ((PersonalFemaleInformationHolder) holder).setPersonalInformationCard(personalFemaleInformation);
+        } else if (getItemViewType(position) == 2) {
+            Exercises exercises = (Exercises) items.get(position).getObject();
+            //  stepcout = exercises.getStepsCounter();
+            ((ExerciseViewHolder) holder).setExerciseCard(exercises);
+        } else if (getItemViewType(position) == 3) {
+            Food food = (Food) items.get(position).getObject();
 
-        else if (getItemViewType(position) == 1) {
-            PersonalInformation personalFemaleInformation = (PersonalInformation)items.get(position).getObject();
-            ((PersonalFemaleInformationHolder)holder).setPersonalInformationCard(personalFemaleInformation);
-        }
-
-        else if (getItemViewType(position) == 2) {
-            Exercises exercises = (Exercises)items.get(position).getObject();
-          //  stepcout = exercises.getStepsCounter();
-            ((ExerciseViewHolder)holder).setExerciseCard(exercises);
-
-        }
-
-        else if (getItemViewType(position) == 3) {
-            Food food = (Food)items.get(position).getObject();
-            ((FoodViewHolder)holder).setFoodCard(food);
-        }
-
-        else if (getItemViewType(position) == 4) {
-            FunFact funFact = (FunFact)items.get(position).getObject();
-            ((FunFactViewHolder)holder).setFundFactCard(funFact);
+            ((FoodViewHolder) holder).setFoodCard(food);
+        } else if (getItemViewType(position) == 4) {
+            FunFact funFact = (FunFact) items.get(position).getObject();
+            ((FunFactViewHolder) holder).setFundFactCard(funFact);
         }
     }
+
     @Override
     public int getItemCount() {
         return items.size();
     }
+
     @Override
     public int getItemViewType(int position) {
         return items.get(position).getType();
     }
 
-    static class ExerciseViewHolder extends RecyclerView.ViewHolder{
+    static class ExerciseViewHolder extends RecyclerView.ViewHolder {
         private TextView tvStepCounter, tvCaloriesInEx, tvDistanceInEx;
         private ProgressBar progressBarExercise;
 
@@ -142,23 +137,24 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             tvDistanceInEx = itemView.findViewById(R.id.tvDistanceInEx);
             progressBarExercise = itemView.findViewById(R.id.pgbStep);
         }
-        void setExerciseCard(Exercises exercise){
+
+        void setExerciseCard(Exercises exercise) {
             tvStepCounter.setText(exercise.getStepsCounter() + "");
-            tvCaloriesInEx.setText((int)exercise.getCalories()+ " Kalos");
-            if (exercise.getDistances() < 1000)
-            {
+            tvCaloriesInEx.setText((int) exercise.getCalories() + " kcal");
+            if (exercise.getDistances() < 1000) {
                 tvDistanceInEx.setText((exercise.getDistances()) + " m");
-            }
-            else tvDistanceInEx.setText(Math.round(exercise.getDistances()/10)/100 + " km");
+            } else tvDistanceInEx.setText(Math.round(exercise.getDistances() / 10) / 100 + " km");
             progressBarExercise.setMax(10000);
             progressBarExercise.setProgress(exercise.getStepsCounter());
 
 
         }
     }
-    static class FoodViewHolder extends RecyclerView.ViewHolder{
-        private TextView tvCaloriesInFood, tvLit,tvFoodCounter;
+
+    static class FoodViewHolder extends RecyclerView.ViewHolder {
+        private TextView tvCaloriesInFood, tvLit, tvFoodCounter;
         private ProgressBar progressBarFood;
+
         public FoodViewHolder(@NonNull @NotNull View itemView) {
             super(itemView);
             tvCaloriesInFood = itemView.findViewById(R.id.tvCaloriesInFood);
@@ -166,35 +162,52 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             tvFoodCounter = itemView.findViewById(R.id.tvFoodCounter);
             progressBarFood = itemView.findViewById(R.id.pgbFood);
         }
-        void setFoodCard(Food food){
-            tvCaloriesInFood.setText("" + food.getCalories()+" Calories");
-            tvLit.setText("" + food.getLit()+" ml");
-            tvFoodCounter.setText("" + food.getCalories());
-            progressBarFood.setMax(2000);
-            progressBarFood.setProgress((int)Math.round(food.getCalories()));
+
+        void setFoodCard(Food food) {
+            tvCaloriesInFood.setText("" + Math.round(food.getCalories()) + " kcal");
+            tvLit.setText("" + food.getLit() + " ml");
+            tvFoodCounter.setText("" + Math.round(food.getCalories()));
+            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+            FirebaseDatabase.getInstance().getReference().child(user.getUid()).child("profile")
+                    .addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
+                            progressBarFood.setMax(snapshot.child("DayGoal").child("IntakeCalories").getValue(Integer.class));
+                            progressBarFood.setProgress((int)Math.round(food.getCalories()));
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull @NotNull DatabaseError error) {
+
+                        }
+                    });
         }
     }
-    static class FunFactViewHolder extends RecyclerView.ViewHolder{
+
+    static class FunFactViewHolder extends RecyclerView.ViewHolder {
         private TextView tvTitle, tvQuote;
         private ShapeableImageView shapeableImageView;
-        String TextFileURL, TextHolder2="",TextHolder="";
-        BufferedReader bufferReader ;
-        URL url ;
+        String TextFileURL, TextHolder2 = "", TextHolder = "";
+        BufferedReader bufferReader;
+        URL url;
+
         public FunFactViewHolder(@NonNull @NotNull View itemView) {
             super(itemView);
             tvTitle = itemView.findViewById(R.id.tvTitle);
             tvQuote = itemView.findViewById(R.id.tvQuote);
             shapeableImageView = itemView.findViewById(R.id.pictureFunFact);
         }
+
         void setFundFactCard(FunFact funFact) {
 //            tvTitle.setText(funFact.getTitle());
 //            tvQuote.setText(funFact.getQuote());
+            int i = new Random().nextInt(4) + 1;
             FirebaseDatabase.getInstance().getReference().child("Picture").addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
-                    String x = snapshot.child("text").getValue(String.class);
+                    String x = snapshot.child("" + i).child("text").getValue(String.class);
                     TextFileURL = x;
-                    Picasso.get().load(snapshot.child("image").getValue(String.class)).into(shapeableImageView);
+                    Picasso.get().load(snapshot.child("" + i).child("image").getValue(String.class)).into(shapeableImageView);
                     new GetNotePadFileFromServer().execute();
 
 
@@ -209,12 +222,15 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         }
 
         public class GetNotePadFileFromServer extends AsyncTask<Void, Void, Void> {
-            @Override protected Void doInBackground(Void... params) {
-                try { url = new URL(TextFileURL);
+            @Override
+            protected Void doInBackground(Void... params) {
+                try {
+                    url = new URL(TextFileURL);
                     bufferReader = new BufferedReader(new InputStreamReader(url.openStream()));
-                    while ((TextHolder2 = bufferReader.readLine()) != null)
-                    {
-                        TextHolder += TextHolder2; } bufferReader.close();
+                    while ((TextHolder2 = bufferReader.readLine()) != null) {
+                        TextHolder += TextHolder2;
+                    }
+                    bufferReader.close();
                 } catch (MalformedURLException malformedURLException) {
 
                     malformedURLException.printStackTrace();
@@ -223,15 +239,19 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
                     iOException.printStackTrace();
                     TextHolder = iOException.toString();
-                } return null;
+                }
+                return null;
             }
-            @Override protected void onPostExecute(Void finalTextHolder) {
+
+            @Override
+            protected void onPostExecute(Void finalTextHolder) {
                 tvQuote.setText(TextHolder);
                 super.onPostExecute(finalTextHolder);
             }
         }
     }
-    static class PersonalMaleInformationHolder extends RecyclerView.ViewHolder{
+
+    static class PersonalMaleInformationHolder extends RecyclerView.ViewHolder {
 
         private TextView tvHeightInMale, tvWeighInMale;
 
@@ -240,44 +260,39 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             tvHeightInMale = itemView.findViewById(R.id.tvHeighInMale);
             tvWeighInMale = itemView.findViewById(R.id.tvWeighInMale);
         }
+
         void setPersonalInformationCard(PersonalInformation personalInformation) {
             tvHeightInMale.setText("" + personalInformation.getHeight());
             tvWeighInMale.setText("" + personalInformation.getWeight());
         }
     }
-    static class PersonalFemaleInformationHolder extends RecyclerView.ViewHolder{
+
+    static class PersonalFemaleInformationHolder extends RecyclerView.ViewHolder {
         private TextView tvHeightInFemale, tvWeighInFemale, tvDayInFemale;
+
         public PersonalFemaleInformationHolder(@NonNull @NotNull View itemView) {
             super(itemView);
             tvHeightInFemale = itemView.findViewById(R.id.tvHeighInFemale);
             tvWeighInFemale = itemView.findViewById(R.id.tvWeighInFemale);
             tvDayInFemale = itemView.findViewById(R.id.tvDayInFemale);
         }
+
         void setPersonalInformationCard(PersonalInformation personalInformation) {
-            tvHeightInFemale.setText("" + personalInformation.getHeight()+" cm");
-            tvWeighInFemale.setText("" + personalInformation.getWeight()+" kg");
-            if (personalInformation.getDay() == 10000)
-            {
+            tvHeightInFemale.setText("" + personalInformation.getHeight() + " cm");
+            tvWeighInFemale.setText("" + personalInformation.getWeight() + " kg");
+            if (personalInformation.getDay() == 10000) {
                 tvDayInFemale.setText("Chưa có dữ liệu");
-            }
-            else
-            if (personalInformation.getDay() == 0) {
+            } else if (personalInformation.getDay() == 0) {
                 tvDayInFemale.setText("Hôm nay");
                 tvDayInFemale.setTextColor(Color.RED);
-            }
-            else if (personalInformation.getDay() > 0)
-            {
-                tvDayInFemale.setText("Còn "+personalInformation.getDay()+" ngày");
+            } else if (personalInformation.getDay() > 0) {
+                tvDayInFemale.setText("Còn " + personalInformation.getDay() + " ngày");
                 if (personalInformation.getDay() <= 3) tvDayInFemale.setTextColor(Color.RED);
 
-            }
-            else
-            {
-                int x = (0-personalInformation.getDay());
-                tvDayInFemale.setText("Trễ "+ x+" ngày");
+            } else {
+                int x = (0 - personalInformation.getDay());
+                tvDayInFemale.setText("Trễ " + x + " ngày");
             }
         }
     }
-
-
 }

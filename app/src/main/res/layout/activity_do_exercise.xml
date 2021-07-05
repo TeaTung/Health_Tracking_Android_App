@@ -40,7 +40,7 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="36dp"
         android:fontFamily="sans-serif-light"
-        android:text="0 Lần"
+        android:text="0 lần"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/textView54" />
@@ -115,7 +115,7 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="24dp"
         android:fontFamily="sans-serif-medium"
-        android:text="Kalos đã đốt:"
+        android:text="Kcal đã đốt:"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvTimeRecordDoingEx" />
@@ -125,7 +125,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif-light"
-        android:text="0 Kalories"
+        android:text="0 kcal"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="@+id/textView31"
         app:layout_constraintTop_toBottomOf="@+id/textView31" />
@@ -206,5 +206,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.95" />
+
+    <Button
+        android:id="@+id/btnExit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="12dp"
+        android:text="Thoát"
+        app:layout_constraintEnd_toStartOf="@+id/imgStop"
+        app:layout_constraintTop_toBottomOf="@+id/edtTimeCount" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

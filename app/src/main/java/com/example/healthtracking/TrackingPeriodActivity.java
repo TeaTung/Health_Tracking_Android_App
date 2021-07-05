@@ -7,6 +7,7 @@ import android.graphics.Color;
 import android.media.Image;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
@@ -46,6 +47,7 @@ public class TrackingPeriodActivity extends AppCompatActivity {
     CheckBox checkBox;
     ImageButton imageRecord;
     View decorateView;
+    Button btnExitPeriod, btnClearData;
     long recentDate, nextDate, recorDate;
     int period;
     long[] listDate ;
@@ -59,7 +61,7 @@ public class TrackingPeriodActivity extends AppCompatActivity {
         AnhXa();
         LoadDataForFirst();
         Event();
-
+        decorView();
     }
     public void decorView(){
         decorateView = getWindow().getDecorView();
@@ -89,6 +91,8 @@ public class TrackingPeriodActivity extends AppCompatActivity {
     }
     public  void AnhXa()
     {
+        btnClearData = (Button) findViewById(R.id.btnClearData);
+        btnExitPeriod = (Button) findViewById(R.id.btnExitPeriod);
         textViewRecentDate = (TextView) findViewById(R.id.textViewRecentDate);
         textViewNextDate = (TextView) findViewById(R.id.textViewNextDate);
         textViewRecordDate = (TextView) findViewById(R.id.textViewDateRecord);
@@ -101,6 +105,12 @@ public class TrackingPeriodActivity extends AppCompatActivity {
 
     public  void Event()
     {
+        btnClearData.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                resetData();
+            }
+        });
         calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
@@ -124,7 +134,12 @@ public class TrackingPeriodActivity extends AppCompatActivity {
                 }
             }
         });
-
+        btnExitPeriod.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
         imageRecord.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

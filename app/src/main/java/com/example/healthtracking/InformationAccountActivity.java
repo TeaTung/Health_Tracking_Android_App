@@ -67,8 +67,6 @@ public class InformationAccountActivity extends AppCompatActivity {
                 | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION;
     }
     private void setBMI(){
-        height = Integer.parseInt(atvHeight.getText().toString())*1.0;
-        weight = Integer.parseInt(atvWeight.getText().toString())*1.0;
         BMI = Math.round((weight / ((height/100)*2)*10)/10) ;
 
         if (BMI < 18.5){
@@ -122,8 +120,10 @@ public class InformationAccountActivity extends AppCompatActivity {
                 .addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
-                        atvHeight.setText(""+snapshot.child("Height").getValue(Integer.class));
-                        atvWeight.setText(""+snapshot.child("Weight").getValue(Integer.class));
+                        height = snapshot.child("Height").getValue(Integer.class) * 1.0;
+                        weight = snapshot.child("Weight").getValue(Integer.class) * 1.0;
+                        atvHeight.setHint("Chiều cao: "+snapshot.child("Height").getValue(Integer.class));
+                        atvWeight.setHint("Cân nặng: "+snapshot.child("Weight").getValue(Integer.class));
                         setBMI();
                     }
 
