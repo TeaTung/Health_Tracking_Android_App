@@ -3,15 +3,21 @@ package com.example.healthtracking;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Dialog;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.media.Image;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -52,7 +58,7 @@ public class TrackingPeriodActivity extends AppCompatActivity {
     int period;
     long[] listDate ;
     int isAuto, average;
-
+    ImageView imgDel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -101,6 +107,8 @@ public class TrackingPeriodActivity extends AppCompatActivity {
         calendarView = (CalendarView) findViewById(R.id.calendarView);
         numberPicker = (NumberPicker) findViewById(R.id.number_picker);
         checkBox = (CheckBox) findViewById(R.id.checkBox);
+
+        imgDel = (ImageView) findViewById(R.id.dltIcon);
     }
 
     public  void Event()
@@ -151,6 +159,46 @@ public class TrackingPeriodActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 RecordPeriod();
+            }
+        });
+
+        imgDel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openDelDialog();
+            }
+        });
+    }
+
+    private void openDelDialog(){
+        final Dialog dialog = new Dialog(this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.delete_period_dialog);
+
+        Window window = dialog.getWindow();
+        if(window == null) return;
+
+        window.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);
+        window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+        WindowManager.LayoutParams windowAttributes = window.getAttributes();
+        windowAttributes.gravity = Gravity.CENTER;
+        window.setAttributes(windowAttributes);
+        dialog.setCancelable(true);
+
+        Button delBtn = dialog.findViewById(R.id.dltBtn);
+        delBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                resetData();
+            }
+        });
+
+        Button cancelBtn = dialog.findViewById(R.id.canBtn);
+        cancelBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
             }
         });
     }

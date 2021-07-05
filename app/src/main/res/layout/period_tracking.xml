@@ -14,7 +14,6 @@
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent">
 
         <TextView
@@ -24,6 +23,7 @@
             android:layout_marginTop="24dp"
             android:fontFamily="sans-serif-black"
             android:text="Ghi nhận chu kì"
+            android:textColor="#000000"
             android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -89,8 +89,8 @@
             app:layout_constraintVertical_bias="0.54"
             app:np_dividerColor="@color/colorPrimary"
             app:np_height="30dp"
-            app:np_max="100"
-            app:np_min="0"
+            app:np_max="35"
+            app:np_min="23"
             app:np_orientation="horizontal"
             app:np_selectedTextColor="@color/colorPrimary"
             app:np_textColor="@color/colorPrimary"
@@ -127,6 +127,7 @@
             app:layout_constraintStart_toEndOf="@+id/textView58"
             app:layout_constraintTop_toTopOf="@+id/textView58" />
 
+
         <Button
             android:id="@+id/btnExitPeriod"
             android:layout_width="wrap_content"
@@ -146,30 +147,17 @@
             android:text="Xóa dữ liệu"
             app:layout_constraintStart_toEndOf="@+id/imageRecord"
             app:layout_constraintTop_toBottomOf="@+id/textView60" />
+        <ImageView
+            android:id="@+id/dltIcon"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/rubber" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <TextView
-        android:id="@+id/textViewNextDate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:text="22/12/2021"
-        android:textSize="20dp"
-        app:layout_constraintStart_toStartOf="@+id/textView51"
-        app:layout_constraintTop_toBottomOf="@+id/textView51" />
-
-    <TextView
-        android:id="@+id/textView51"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="20dp"
-        android:fontFamily="sans-serif-black"
-        android:text="Ngày kinh nguyệt dự đoán tiếp theo:"
-        android:textSize="20dp"
-        app:layout_constraintStart_toStartOf="@+id/textView18"
-        app:layout_constraintTop_toBottomOf="@+id/textViewRecentDate" />
 
     <CalendarView
         android:id="@+id/calendarView"
@@ -181,26 +169,57 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/textView18"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="16dp"
-        android:fontFamily="sans-serif-black"
-        android:text="Ngày kinh nguyệt gần nhất:"
-        android:textSize="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout4"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/calendarView" />
+        app:layout_constraintTop_toBottomOf="@+id/calendarView">
 
-    <TextView
-        android:id="@+id/textViewRecentDate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:text="22/12/2021"
-        android:textSize="20dp"
-        app:layout_constraintStart_toStartOf="@+id/textView18"
-        app:layout_constraintTop_toBottomOf="@+id/textView18" />
+        <TextView
+            android:id="@+id/textView18"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-black"
+            android:text="Ngày kinh nguyệt gần nhất:"
+            android:textColor="#000000"
+            android:textSize="20dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textViewNextDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="22/12/2021"
+            android:textSize="20dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView51" />
+
+        <TextView
+            android:id="@+id/textView51"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:fontFamily="sans-serif-black"
+            android:text="Ngày kinh nguyệt dự đoán tiếp theo:"
+            android:textColor="#000000"
+            android:textSize="20dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewRecentDate" />
+
+        <TextView
+            android:id="@+id/textViewRecentDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="22/12/2021"
+            android:textSize="20dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView18" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
