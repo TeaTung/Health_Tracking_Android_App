@@ -119,7 +119,7 @@ public class LoginActivity extends AppCompatActivity {
         {
             Intent intent = new Intent(LoginActivity.this, ForgetActivity.class);
             startActivity(intent);
-            finish();
+
         }
 
     }
@@ -175,13 +175,13 @@ public class LoginActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
-                            Toast.makeText(LoginActivity.this, "Đăng nhập thành công", Toast.LENGTH_LONG).show();
+                            Toast.makeText(LoginActivity.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
                             FirebaseUser user = mAuth.getCurrentUser();
                             updateUI(user);
                         } else {
                             // If sign in fails, display a message to the user.
 
-                            Toast.makeText(LoginActivity.this, "Đăng nhập không thành công", Toast.LENGTH_LONG).show();
+                            Toast.makeText(LoginActivity.this, "Đăng nhập thất bại", Toast.LENGTH_SHORT).show();
                             updateUI(null);
                         }
                     }
@@ -213,7 +213,7 @@ public class LoginActivity extends AppCompatActivity {
                 firebaseAuthWithGoogle(account.getIdToken());
             } catch (ApiException e) {
                 // Google Sign In failed, update UI appropriately
-                Toast.makeText(LoginActivity.this, "Đăng nhập thất bại", Toast.LENGTH_LONG).show();
+                Toast.makeText(LoginActivity.this, "Đăng nhập thất bại", Toast.LENGTH_SHORT).show();
             }
         }
     }
@@ -272,18 +272,17 @@ public class LoginActivity extends AppCompatActivity {
                         Intent intent = new Intent(LoginActivity.this, InformationActivity.class);
                         intent.putExtra("UID", user.getUid());
                         startActivity(intent);
-                        finish();
+
                     }
-                    else
-                    {
+                    else {
                         String sex = snapshot.child("profile").child("Sex").getValue(String.class);
                         SharedPreferences sharedPreferences = getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE);
                         SharedPreferences.Editor editor = sharedPreferences.edit();
                         editor.putString("SEX", sex);
                         editor.apply();
-                        Intent intent = new Intent(LoginActivity.this,MainActivity.class);
+                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                         startActivity(intent);
-                        finish();
+
                     }
                 }
 
@@ -293,8 +292,9 @@ public class LoginActivity extends AppCompatActivity {
                 }
             });
 
-        } else
-            Toast.makeText(this, "Đăng nhập thất bại! ", Toast.LENGTH_SHORT).show();
+        } else {
+            //Toast.makeText(this, "Đăng nhập thất bại! ", Toast.LENGTH_SHORT).show();
+        }
 
     }
     public void decorView(){
