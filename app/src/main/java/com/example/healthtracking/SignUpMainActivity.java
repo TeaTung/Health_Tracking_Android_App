@@ -149,12 +149,6 @@ public class SignUpMainActivity extends AppCompatActivity {
         return (!TextUtils.isEmpty(target) && Patterns.EMAIL_ADDRESS.matcher(target).matches());
     }
 
-  /*  public void setSharedPreference(String UID){
-        SharedPreferences sharedPreferences = getSharedPreferences("sharedPrefs",MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString("UID",UID);
-        editor.apply();
-    }*/
     public void decorView(){
       decorateView = getWindow().getDecorView();
       decorateView.setOnSystemUiVisibilityChangeListener(new View.OnSystemUiVisibilityChangeListener() {

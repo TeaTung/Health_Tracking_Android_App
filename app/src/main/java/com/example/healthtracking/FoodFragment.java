@@ -152,7 +152,7 @@ public class FoodFragment extends Fragment {
         Loaddata();
         setDayPicker();
         Event();
-
+        tvFoodKalories.setEnabled(false);
         return view;
     }
 

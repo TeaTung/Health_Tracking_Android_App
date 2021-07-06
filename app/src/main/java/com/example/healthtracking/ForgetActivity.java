@@ -35,8 +35,6 @@ public class ForgetActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ForgetActivity.this, LoginActivity.class);
-                //intent.putExtra("email",mEmail);
-                //intent.putExtra("code",code);
                 startActivity(intent);
                 finish();
             }
