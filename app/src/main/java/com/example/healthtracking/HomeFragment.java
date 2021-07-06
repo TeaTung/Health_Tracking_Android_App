@@ -129,9 +129,7 @@ public class HomeFragment extends Fragment implements SensorEventListener {
         textViewName = (TextView) view.findViewById(R.id.textView14);
         recyclerView = (RecyclerView) view.findViewById(R.id.recycle_view);
         setProfileName();
-        LoaddataForFirst();
         sharedPreferences = getActivity().getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE);
-        realStepCounter = sharedPreferences.getInt("REALSTEP",0)-1;
         requestStepCounterPermission();
         createCardView();
         return view;
@@ -156,6 +154,7 @@ public class HomeFragment extends Fragment implements SensorEventListener {
     public void onSensorChanged(SensorEvent event) {
 
         if (check == 1) {
+            realStepCounter = sharedPreferences.getInt("REALSTEP",0);
             realStepCounter++;
             distance = Math.round(realStepCounter * 0.7 * 100) / 100;
             kalo = Math.round(distance * 0.0625);
@@ -254,10 +253,8 @@ public class HomeFragment extends Fragment implements SensorEventListener {
                     water = 0;
                     foodCalories = 0;
                 }
-//                if (realStepCounter < 0){
-//                    realStepCounter = 0;
-//                }
-                realStepCounter++;
+
+                realStepCounter = sharedPreferences.getInt("REALSTEP",0);
                 distance = Math.round(realStepCounter * 0.7 * 100) / 100;
                 kalo = Math.round(distance * 0.0625);
                 SharedPreferences.Editor editor = sharedPreferences.edit();

@@ -3,7 +3,9 @@ package com.example.healthtracking;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
@@ -17,6 +19,7 @@ import com.example.healthtracking.ClassData.JavaMailAPI;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.SignInMethodQueryResult;
 
 import java.util.Random;
@@ -53,6 +56,24 @@ public class SignUpMainActivity extends AppCompatActivity {
                 finish();
             }
         });
+        editTextEmail.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                 if (!editTextEmail.getText().toString().equals("") && isValidEmail(editTextEmail.getText().toString()))
+                     checkMailwasExist();
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
     }
     public  void Anhxa()
     {
@@ -99,7 +120,7 @@ public class SignUpMainActivity extends AppCompatActivity {
             editTextEmail.setError("Email không hợp lệ");
             return;
         }
-        else if (checkMailwasExist() == false)
+        else if (result == true)
         {
             editTextEmail.setError("Email đã được đăng ký");
             return;
@@ -118,7 +139,7 @@ public class SignUpMainActivity extends AppCompatActivity {
         intent.putExtra("password",password);
         intent.putExtra("code",code);
         startActivity(intent);
-        finish();
+
 
 
     }
@@ -161,21 +182,18 @@ public class SignUpMainActivity extends AppCompatActivity {
                 | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION;
     }
 
-    public boolean checkMailwasExist()
+    public void checkMailwasExist()
     {
-
-        FirebaseAuth.getInstance().fetchSignInMethodsForEmail(editTextEmail.getText().toString())
-                .addOnCompleteListener(new OnCompleteListener<SignInMethodQueryResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<SignInMethodQueryResult> task) {
-                        if (task.isSuccessful()) {
-                               result = false;
-                        } else {
-                            result = true;
+            FirebaseAuth.getInstance().fetchSignInMethodsForEmail(editTextEmail.getText().toString())
+                    .addOnCompleteListener(new OnCompleteListener<SignInMethodQueryResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<SignInMethodQueryResult> task) {
+                            result = !task.getResult().getSignInMethods().isEmpty();
                         }
-                    }
 
-                });
-        return result;
+
+                    });
+
+
     }
 }

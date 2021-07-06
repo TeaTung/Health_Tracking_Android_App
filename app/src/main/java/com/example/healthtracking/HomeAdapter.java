@@ -142,8 +142,8 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             tvStepCounter.setText(exercise.getStepsCounter() + "");
             tvCaloriesInEx.setText((int) exercise.getCalories() + " kcal");
             if (exercise.getDistances() < 1000) {
-                tvDistanceInEx.setText((exercise.getDistances()) + " m");
-            } else tvDistanceInEx.setText(Math.round(exercise.getDistances() / 10) / 100 + " km");
+                tvDistanceInEx.setText((Math.round(exercise.getDistances())) + " m");
+            } else tvDistanceInEx.setText((double)Math.floor(exercise.getDistances() / 10)/100 + " km");
             progressBarExercise.setMax(10000);
             progressBarExercise.setProgress(exercise.getStepsCounter());
 

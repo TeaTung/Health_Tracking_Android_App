@@ -462,6 +462,7 @@ public class FoodFragment extends Fragment {
         CheckFireFitDay checkFireFitDay = new CheckFireFitDay();
         checkFireFitDay.CheckOneDay(date.toString(), date2.toString());
         setDayPicker();
+        Toast.makeText(getActivity(), "Ghi nhận thành công", Toast.LENGTH_SHORT).show();
     }
 
 
@@ -481,6 +482,7 @@ public class FoodFragment extends Fragment {
         CheckFireFitDay checkFireFitDay = new CheckFireFitDay();
         checkFireFitDay.CheckOneDay(date.toString(), date2.toString());
         setDayPicker();
+        Toast.makeText(getActivity(), "Ghi nhận thành công", Toast.LENGTH_SHORT).show();
 
     }
 
