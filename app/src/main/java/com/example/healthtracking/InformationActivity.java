@@ -6,7 +6,6 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.InputType;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 
@@ -35,7 +34,7 @@ public class InformationActivity extends AppCompatActivity {
 
     private DatabaseReference mDatabase;
     TextInputEditText edittextname,edittextheight, edittextweight;
-    MaterialAutoCompleteTextView textViewyear, spinnersex;
+    MaterialAutoCompleteTextView textViewyear, textViewSex;
     // Spinner spinnersex;
     Button button;
     String arr[]={"Nam", "Nữ"};
@@ -84,43 +83,17 @@ public class InformationActivity extends AppCompatActivity {
     {
         edittextname = (TextInputEditText) findViewById(R.id.editTextName);
         textViewyear = (MaterialAutoCompleteTextView) findViewById(R.id.textViewYear);
-        spinnersex = (MaterialAutoCompleteTextView) findViewById(R.id.spinnerSex);
+        textViewSex = (MaterialAutoCompleteTextView) findViewById(R.id.spinnerSex);
         edittextheight = (TextInputEditText) findViewById(R.id.editTextHeight);
         edittextweight = (TextInputEditText) findViewById(R.id.editTextWeight);
         button = (Button) findViewById(R.id.buttonStart);
     }
-    public  void setupSpinner()
-    {
-        //Gán Data source (arr) vào Adapter
-        ArrayAdapter<String> adapter=new ArrayAdapter<String>
-                (
-                        this,
-                        android.R.layout.simple_spinner_item,
-                        arr
-                );
-        //phải gọi lệnh này để hiển thị danh sách cho Spinner
-        adapter.setDropDownViewResource
-                (android.R.layout.simple_list_item_single_choice);
-        //Thiết lập adapter cho Spinner
-        spinnersex.setAdapter(adapter);
-        //thiết lập sự kiện chọn phần tử cho Spinner
-        spinnersex.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                Sex = arr[position];
-            }
 
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
-    }
 
     public  void ChooseSex()
     {
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, arr);
-        spinnersex.setAdapter(adapter);
+        textViewSex.setAdapter(adapter);
     }
 
     public void onClick(View v) {
@@ -152,7 +125,7 @@ public class InformationActivity extends AppCompatActivity {
                 edittextname.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_CAP_SENTENCES);
 
                 User user = new User();
-                Profile profile = new Profile(edittextname.getText().toString(), Integer.parseInt(textViewyear.getText().toString()), spinnersex.getText().toString(),
+                Profile profile = new Profile(edittextname.getText().toString(), Integer.parseInt(textViewyear.getText().toString()), textViewSex.getText().toString(),
                         Integer.parseInt(edittextheight.getText().toString()), Integer.parseInt(edittextweight.getText().toString()), new PeriodTracking(), new Goal(2000,2000,2000),0);
                 OnedayofPractice onedayofPractice1 = new OnedayofPractice(new Run(), new Nutrition(), 0,new Jog(), new Exercise());
                 user.profile = profile;
@@ -162,7 +135,7 @@ public class InformationActivity extends AppCompatActivity {
                 user.practice.put(date.toString(), onedayofPractice1);
                 mDatabase.child(fuser.getUid()).setValue(user);
 
-                String sex = spinnersex.getText().toString();
+                String sex = textViewSex.getText().toString();
                 SharedPreferences sharedPreferences = getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.putString("SEX", sex);
@@ -197,9 +170,9 @@ public class InformationActivity extends AppCompatActivity {
             textViewyear.setError("Vui long chọn năm sinh");
             return false;
         }
-        if (spinnersex.getText().toString().equals(""))
+        if (textViewSex.getText().toString().equals(""))
         {
-            spinnersex.setError("Vui long chon gioi tinh");
+            textViewSex.setError("Vui long chon gioi tinh");
             return false;
         }
         if (edittextheight.getText().toString().equals(""))

@@ -184,6 +184,7 @@ public class TrackingPeriodActivity extends AppCompatActivity {
 
                 resetData();
                 Toast.makeText(TrackingPeriodActivity.this, "Xoá dữ liệu cũ thành công", Toast.LENGTH_SHORT).show();
+                dialog.dismiss();
             }
         });
 
