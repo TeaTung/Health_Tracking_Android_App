@@ -59,10 +59,11 @@
             android:id="@+id/textView57"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="44dp"
+            android:layout_marginStart="65dp"
             android:layout_marginTop="16dp"
             android:fontFamily="sans-serif-black"
             android:text="Ngày:"
+            android:textColor="#0C0C0C"
             android:textSize="20dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView" />
@@ -74,6 +75,7 @@
             android:layout_marginTop="20dp"
             android:fontFamily="sans-serif-black"
             android:text="Chu kỳ:"
+            android:textColor="#0C0C0C"
             android:textSize="20dp"
             app:layout_constraintStart_toStartOf="@+id/textView57"
             app:layout_constraintTop_toBottomOf="@+id/textView57" />
@@ -128,34 +130,45 @@
             app:layout_constraintTop_toTopOf="@+id/textView58" />
 
 
-        <Button
-            android:id="@+id/btnExitPeriod"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="52dp"
-            android:layout_marginEnd="16dp"
-            android:text="Thoát"
-            app:layout_constraintEnd_toStartOf="@+id/imageRecord"
-            app:layout_constraintTop_toBottomOf="@+id/textView58" />
-
-        <Button
-            android:id="@+id/btnClearData"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="28dp"
-            android:layout_marginTop="52dp"
-            android:text="Xóa dữ liệu"
-            app:layout_constraintStart_toEndOf="@+id/imageRecord"
-            app:layout_constraintTop_toBottomOf="@+id/textView60" />
         <ImageView
             android:id="@+id/dltIcon"
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
+            android:layout_marginEnd="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/rubber" />
+
+        <TextView
+            android:id="@+id/textView23"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Reset data"
+            android:textSize="10sp"
+            app:layout_constraintEnd_toEndOf="@+id/dltIcon"
+            app:layout_constraintStart_toStartOf="@+id/dltIcon"
+            app:layout_constraintTop_toBottomOf="@+id/dltIcon" />
+
+        <TextView
+            android:id="@+id/textView41"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Thoát"
+            android:textSize="10sp"
+            app:layout_constraintEnd_toEndOf="@+id/exitBtn"
+            app:layout_constraintStart_toStartOf="@+id/exitBtn"
+            app:layout_constraintTop_toBottomOf="@+id/exitBtn" />
+
+        <ImageView
+            android:id="@+id/exitBtn"
+            android:layout_width="23dp"
+            android:layout_height="23dp"
+            android:layout_marginStart="18dp"
+            android:layout_marginTop="9dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/exit" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

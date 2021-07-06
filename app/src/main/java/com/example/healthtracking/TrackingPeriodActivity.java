@@ -53,12 +53,11 @@ public class TrackingPeriodActivity extends AppCompatActivity {
     CheckBox checkBox;
     ImageButton imageRecord;
     View decorateView;
-    Button btnExitPeriod, btnClearData;
     long recentDate, nextDate, recorDate;
     int period;
     long[] listDate ;
     int isAuto, average;
-    ImageView imgDel;
+    ImageView imgDel, imgExit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -97,8 +96,7 @@ public class TrackingPeriodActivity extends AppCompatActivity {
     }
     public  void AnhXa()
     {
-        btnClearData = (Button) findViewById(R.id.btnClearData);
-        btnExitPeriod = (Button) findViewById(R.id.btnExitPeriod);
+        imgExit = (ImageView) findViewById(R.id.exitBtn);
         textViewRecentDate = (TextView) findViewById(R.id.textViewRecentDate);
         textViewNextDate = (TextView) findViewById(R.id.textViewNextDate);
         textViewRecordDate = (TextView) findViewById(R.id.textViewDateRecord);
@@ -113,12 +111,6 @@ public class TrackingPeriodActivity extends AppCompatActivity {
 
     public  void Event()
     {
-        btnClearData.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                resetData();
-            }
-        });
         calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
@@ -142,7 +134,7 @@ public class TrackingPeriodActivity extends AppCompatActivity {
                 }
             }
         });
-        btnExitPeriod.setOnClickListener(new View.OnClickListener() {
+        imgExit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
@@ -185,12 +177,13 @@ public class TrackingPeriodActivity extends AppCompatActivity {
         windowAttributes.gravity = Gravity.CENTER;
         window.setAttributes(windowAttributes);
         dialog.setCancelable(true);
-
         Button delBtn = dialog.findViewById(R.id.dltBtn);
         delBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 resetData();
+                Toast.makeText(TrackingPeriodActivity.this, "Xoá dữ liệu cũ thành công", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -201,6 +194,8 @@ public class TrackingPeriodActivity extends AppCompatActivity {
                 dialog.dismiss();
             }
         });
+
+        dialog.show();
     }
     public void LoadDataForFirst()
     {
