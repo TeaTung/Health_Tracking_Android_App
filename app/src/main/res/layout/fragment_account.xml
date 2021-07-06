@@ -65,6 +65,7 @@
                 android:layout_marginStart="12dp"
                 android:fontFamily="sans-serif-black"
                 android:text="Thống kê "
+                android:textColor="#151414"
                 android:textSize="20sp"
                 app:layout_constraintStart_toEndOf="@+id/imgChart"
                 app:layout_constraintTop_toTopOf="@+id/imgChart" />
@@ -76,6 +77,7 @@
                 android:layout_marginTop="4dp"
                 android:fontFamily="sans-serif-condensed-light"
                 android:text="Tình trạng luyện tập - ăn uống"
+                android:textColor="#151414"
                 android:textSize="14sp"
                 app:layout_constraintStart_toStartOf="@+id/tvChartHeader"
                 app:layout_constraintTop_toBottomOf="@+id/tvChartHeader" />
@@ -116,7 +118,8 @@
                 android:text="Mục tiêu luyện tập"
                 android:textSize="20sp"
                 app:layout_constraintStart_toEndOf="@+id/imgGoal"
-                app:layout_constraintTop_toTopOf="@+id/imgGoal" />
+                app:layout_constraintTop_toTopOf="@+id/imgGoal"
+                android:textColor="#151414" />
 
             <TextView
                 android:id="@+id/tvGoalSubHeader"
@@ -125,6 +128,7 @@
                 android:layout_marginTop="4dp"
                 android:fontFamily="sans-serif-condensed-light"
                 android:text="Đặt mức kalo mục tiêu đạt FireFit day"
+                android:textColor="#151414"
                 android:textSize="14sp"
                 app:layout_constraintStart_toStartOf="@+id/tvGoalHeader"
                 app:layout_constraintTop_toBottomOf="@+id/tvGoalHeader" />
@@ -163,6 +167,7 @@
                 android:layout_marginStart="12dp"
                 android:fontFamily="sans-serif-black"
                 android:text="Ghi nhận thông tin thể trạng"
+                android:textColor="#151414"
                 android:textSize="20sp"
                 app:layout_constraintStart_toEndOf="@+id/imgInformation"
                 app:layout_constraintTop_toTopOf="@+id/imgInformation" />
@@ -174,6 +179,7 @@
                 android:layout_marginTop="4dp"
                 android:fontFamily="sans-serif-condensed-light"
                 android:text="Ghi nhận chiều cao cân nặng tính calo"
+                android:textColor="#151414"
                 android:textSize="14sp"
                 app:layout_constraintStart_toStartOf="@+id/tvInformationHeader"
                 app:layout_constraintTop_toBottomOf="@+id/tvInformationHeader" />

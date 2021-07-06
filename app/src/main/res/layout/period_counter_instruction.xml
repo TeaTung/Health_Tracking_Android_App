@@ -57,6 +57,7 @@
         android:fontFamily="sans-serif-condensed-light"
         android:gravity="center"
         android:text="Firefit sẽ giúp bạn ghi nhận và tính toán chu kỳ kinh nguyệt. Từ đó, dự báo và nhắc nhở bạn khi mùa dâu sắp tới. "
+        android:textColor="#0B0A0A"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

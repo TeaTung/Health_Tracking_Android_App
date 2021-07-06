@@ -38,7 +38,9 @@ public class HistoryActivity extends AppCompatActivity {
         calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
-                if (month +1 < 10) LoadData(year+"-0"+(month+1)+"-"+dayOfMonth);
+                if (month +1 < 10 & dayOfMonth < 10)LoadData(year+"-0"+(month+1)+"-0"+dayOfMonth);
+                else  if (month +1 < 10 & dayOfMonth > 10)LoadData(year+"-0"+(month+1)+"-"+dayOfMonth);
+                else  if (month +1 > 10 & dayOfMonth < 10)LoadData(year+"-"+(month+1)+"-0"+dayOfMonth);
                 else LoadData(year+"-"+(month+1)+"-"+dayOfMonth);
             }
         });
@@ -58,11 +60,11 @@ public class HistoryActivity extends AppCompatActivity {
                             Run run = snapshot.child("run").getValue(Run.class);
                             Jog jog = snapshot.child("jog").getValue(Jog.class);
                             textViewKm.setText(ConvertMetToKilomet(run.Distance+jog.Distance));
-                            textViewTime.setText(ConvertTimeToString(jog.Time) );
+                            textViewTime.setText(ConvertTimeToString(jog.Time+snapshot.child("exercise").child("Time").getValue(Integer.class)) );
                             textViewStepCount.setText((run.StepCount+jog.StepCount) + " bước");
-                            textViewKaloExercise.setText(Math.round(run.Calories + jog.Calories) + " kcal" );
-
-
+                            textViewKaloExercise.setText(Math.round(run.Calories + jog.Calories+snapshot.child("exercise").child("Calories").getValue(double.class)) + " kcal" );
+                            textViewKaloUse.setText(Math.round(snapshot.child("nutrition").child("Calories").getValue(double.class)) + " kcal");
+                            textViewSpeed.setText(snapshot.child("nutrition").child("Water").getValue(Integer.class)+ " ml");
                         }
                         else
                         {
@@ -70,7 +72,8 @@ public class HistoryActivity extends AppCompatActivity {
                             textViewTime.setText(0 +" h");
                             textViewStepCount.setText(0+ " bước");
                             textViewKaloExercise.setText(0+" kcal" );
-                            textViewKaloUse.setText("0 + kcal");
+                            textViewKaloUse.setText(0 + " kcal");
+                            textViewSpeed.setText(0+ " ml");
                         }
                     }
 
@@ -96,7 +99,7 @@ public class HistoryActivity extends AppCompatActivity {
                             textViewKm.setText(ConvertMetToKilomet(run.Distance+jog.Distance));
                             textViewTime.setText(ConvertTimeToString(jog.Time+snapshot.child("exercise").child("Time").getValue(Integer.class)) );
                             textViewStepCount.setText((run.StepCount+jog.StepCount) + " bước");
-                            textViewKaloExercise.setText(Math.round(run.Calories + jog.Calories+snapshot.child("nutrition").child("Calories").getValue(double.class)) + " kcal" );
+                            textViewKaloExercise.setText(Math.round(run.Calories + jog.Calories+snapshot.child("exercise").child("Calories").getValue(double.class)) + " kcal" );
                             textViewKaloUse.setText(Math.round(snapshot.child("nutrition").child("Calories").getValue(double.class)) + " kcal");
                             textViewSpeed.setText(snapshot.child("nutrition").child("Water").getValue(Integer.class)+ " ml");
                         }

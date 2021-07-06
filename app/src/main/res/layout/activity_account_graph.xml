@@ -55,7 +55,7 @@
         android:fontFamily="sans-serif-condensed-light"
         android:text="Thiết lập mục tiêu FireFit day!"
         android:textColor="#FFFFFF"
-        android:textSize="30sp"
+        android:textSize="24sp"
         app:layout_constraintStart_toStartOf="@+id/textView52"
         app:layout_constraintTop_toBottomOf="@+id/textView52" />
 

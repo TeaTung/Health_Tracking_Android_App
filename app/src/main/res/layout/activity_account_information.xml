@@ -55,7 +55,7 @@
         android:fontFamily="sans-serif-condensed-light"
         android:text="Ghi nhận thông tin thể trạng"
         android:textColor="#FFFFFF"
-        android:textSize="30sp"
+        android:textSize="24sp"
         app:layout_constraintStart_toStartOf="@+id/textView52"
         app:layout_constraintTop_toBottomOf="@+id/textView52" />
 
@@ -91,6 +91,7 @@
         android:fontFamily="sans-serif-light"
         android:gravity="center"
         android:text="Cập nhật thông tin thể trạng thường xuyên để FireFit có thể hiểu bạn và tính toán các thông số chính xác!"
+        android:textColor="#171616"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.492"
