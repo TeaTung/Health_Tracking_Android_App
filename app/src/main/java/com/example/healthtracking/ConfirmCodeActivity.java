@@ -101,7 +101,7 @@ public class ConfirmCodeActivity extends AppCompatActivity {
         {
             if (editTextCode.getText().toString().equals(""))
             {
-                textViewNotice.setText("Vui lòng nhập ma xác nhận");
+                textViewNotice.setText("Vui lòng nhập mã xác nhận");
                 return;
             }
             Continue();
@@ -144,7 +144,7 @@ public class ConfirmCodeActivity extends AppCompatActivity {
         timer = new CountDownTimer(150000,1000) {
             @Override
             public void onTick(long millisUntilFinished) {
-                textViewTimer.setText("Thoi gian khả dụng của mã còn: "+String.valueOf(millisUntilFinished/1000));
+                textViewTimer.setText("Thời gian khả dụng của mã còn: "+String.valueOf(millisUntilFinished/1000));
             }
 
             @Override

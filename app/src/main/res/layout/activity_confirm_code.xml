@@ -6,84 +6,116 @@
     android:layout_height="match_parent"
     tools:context=".ConfirmCodeActivity">
 
-    <TextView
-        android:id="@+id/textViewReset"
-        android:layout_width="54dp"
-        android:layout_height="26dp"
-        android:text="Gửi lại "
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/textViewTimer"
-        app:layout_constraintHorizontal_bias="0.607"
+    <View
+        android:id="@+id/topView6"
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:background="@color/blue"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="-6dp" />
+
+    <ImageView
+        android:id="@+id/imageView22"
+        android:layout_width="wrap_content"
+        android:layout_height="101dp"
+        android:layout_marginTop="79dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.453" />
+        app:srcCompat="@drawable/ic_wave" />
+
+    <TextView
+        android:id="@+id/textView42"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="32dp"
+        android:fontFamily="sans-serif-condensed-medium"
+        android:text="Tạo tài khoản"
+        android:textColor="#FFFFFF"
+        android:textSize="34sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/topView6" />
+
+    <TextView
+        android:id="@+id/textView47"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="14dp"
+        android:fontFamily="sans-serif-condensed-light"
+        android:text="Đăng nhập vào FireFit"
+        android:textColor="#FFFFFF"
+        android:textSize="30sp"
+        app:layout_constraintStart_toStartOf="@+id/textView42"
+        app:layout_constraintTop_toBottomOf="@+id/textView42" />
+
+    <TextView
+        android:id="@+id/textViewReset"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Gửi lại "
+        app:layout_constraintStart_toStartOf="@+id/editTextCode"
+        app:layout_constraintTop_toBottomOf="@+id/editTextCode" />
 
     <Button
         android:id="@+id/buttonCoutinue"
         android:layout_width="160sp"
         android:layout_height="50sp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="12dp"
+        android:layout_marginTop="16dp"
         android:background="@drawable/round_border_button"
         android:text="Tiếp tục"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/textInputLayout4"
-        app:layout_constraintTop_toBottomOf="@+id/textViewNotice"
-        app:layout_constraintVertical_bias="0.022" />
+        app:layout_constraintEnd_toEndOf="@+id/textViewTimer"
+        app:layout_constraintTop_toBottomOf="@+id/textViewTimer" />
 
     <TextView
         android:id="@+id/textViewNotice"
-        android:layout_width="277dp"
-        android:layout_height="33dp"
-        android:layout_marginTop="40dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         android:text=""
+        android:textColor="#F30000"
         android:visibility="invisible"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.231"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/textViewReset" />
+        app:layout_constraintEnd_toEndOf="@+id/buttonCoutinue"
+        app:layout_constraintStart_toStartOf="@+id/buttonBack"
+        app:layout_constraintTop_toBottomOf="@+id/buttonBack" />
 
     <TextView
         android:id="@+id/textViewTimer"
-        android:layout_width="276dp"
-        android:layout_height="32dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.777"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.457"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:textColor="#100F0F"
+        app:layout_constraintEnd_toEndOf="@+id/editTextCode"
+        app:layout_constraintTop_toBottomOf="@+id/editTextCode"
         tools:ignore="MissingConstraints" />
+
 
     <Button
         android:id="@+id/buttonBack"
         android:layout_width="160sp"
         android:layout_height="50sp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="16dp"
         android:background="@drawable/round_border_button"
         android:text="Quay lại"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/textInputLayout4"
-        app:layout_constraintTop_toBottomOf="@+id/textViewNotice"
-        app:layout_constraintVertical_bias="0.022" />
+        app:layout_constraintStart_toStartOf="@+id/textViewReset"
+        app:layout_constraintTop_toBottomOf="@+id/textViewReset" />
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayout4"
-        android:layout_width="wrap_content"
+    <EditText
+        android:id="@+id/editTextCode"
+        android:layout_width="350dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="250dp"
-        android:hint="Code"
+        android:layout_marginTop="130dp"
+        android:background="@drawable/round_border"
+        android:drawableStart="@drawable/ic_email"
+        android:drawablePadding="16sp"
+        android:ems="10"
+        android:hint="Nhập mã được gửi về email"
+        android:inputType="numberPassword"
+        android:padding="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <EditText
-            android:id="@+id/editTextCode"
-            android:layout_width="350sp"
-            android:layout_height="match_parent"
-            android:background="@color/white"
-            android:ems="10"
-            android:inputType="numberPassword" />
-    </com.google.android.material.textfield.TextInputLayout>
+        app:layout_constraintTop_toBottomOf="@+id/imageView22" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
