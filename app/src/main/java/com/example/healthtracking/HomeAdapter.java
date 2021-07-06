@@ -262,8 +262,8 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         }
 
         void setPersonalInformationCard(PersonalInformation personalInformation) {
-            tvHeightInMale.setText("" + personalInformation.getHeight());
-            tvWeighInMale.setText("" + personalInformation.getWeight());
+            tvHeightInMale.setText("" + personalInformation.getHeight()+" cm");
+            tvWeighInMale.setText("" + personalInformation.getWeight()+" kg");
         }
     }
 
