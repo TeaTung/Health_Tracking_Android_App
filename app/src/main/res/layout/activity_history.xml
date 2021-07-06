@@ -182,6 +182,7 @@
             android:layout_marginTop="24dp"
             android:fontFamily="sans-serif-black"
             android:text="Đạt FireFit Day"
+            android:textColor="#0C0C0C"
             android:textSize="20sp"
             app:layout_constraintStart_toEndOf="@+id/imageView11"
             app:layout_constraintTop_toTopOf="parent" />
@@ -193,6 +194,7 @@
             android:layout_marginTop="3dp"
             android:fontFamily="sans-serif-thin"
             android:text="Luyện tập chăm chỉ để đạt FireFit Day"
+            android:textColor="#131313"
             app:layout_constraintStart_toStartOf="@+id/textView44"
             app:layout_constraintTop_toBottomOf="@+id/textView44" />
     </androidx.constraintlayout.widget.ConstraintLayout>

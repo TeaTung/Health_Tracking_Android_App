@@ -43,10 +43,9 @@ public class DoExercise extends AppCompatActivity implements SensorEventListener
     View decorateView;
     String exerciseName;
     TextView tvTopicDoingEx, tvTimeRecordDoingEx, tvStop, tvFireFit, tvRecordKalos, tvCountTime, tvCancel;
-    ImageView imgDoingEx, imgStop, imgCancel;
+    ImageView imgDoingEx, imgStop, imgCancel, imgExit;
     ProgressBar pgbAwardEx;
     Timer timer;
-    Button btnExit;
     TimerTask timerTask;
     EditText edtCalories, edtTimeCount ;
     private SensorManager sensorManager;
@@ -64,17 +63,17 @@ public class DoExercise extends AppCompatActivity implements SensorEventListener
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_do_exercise);
 
-        btnExit = findViewById(R.id.btnExit);
+        imgExit = findViewById(R.id.imgExit);
         tvCountTime = findViewById(R.id.tvCountTime);
         tvFireFit = findViewById(R.id.tvFireFit);
         tvRecordKalos = findViewById(R.id.tvRecordKalos);
         tvStop = findViewById(R.id.tvStop);
-        tvCancel = findViewById(R.id.tvCancel);
+        tvCancel = findViewById(R.id.tvCancelRecord);
         tvTimeRecordDoingEx = findViewById(R.id.tvTimeRecordDoingEx);
         tvTopicDoingEx = findViewById(R.id.tvTopicDoingEx);
         imgDoingEx = findViewById(R.id.imgDoingEx);
         imgStop = findViewById(R.id.imgStop);
-        imgCancel = findViewById(R.id.imgCancel);
+        imgCancel = findViewById(R.id.imgCancelRecord);
         pgbAwardEx = findViewById(R.id.pgbAwardEx);
         exerciseName = getIntent().getStringExtra("Name");
         isSensorUsed =  getIntent().getBooleanExtra("isSensorUsed",true);
@@ -98,7 +97,7 @@ public class DoExercise extends AppCompatActivity implements SensorEventListener
         setBtnExit();
     }
     void setBtnExit(){
-        btnExit.setOnClickListener(new View.OnClickListener() {
+        imgExit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();

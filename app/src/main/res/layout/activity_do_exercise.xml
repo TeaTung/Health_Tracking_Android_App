@@ -101,8 +101,8 @@
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif-black"
         android:text="FireFit Day"
-        android:visibility="visible"
         android:textSize="20sp"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="@+id/pgbAwardEx"
         app:layout_constraintEnd_toEndOf="@+id/pgbAwardEx"
         app:layout_constraintStart_toStartOf="@+id/pgbAwardEx"
@@ -143,8 +143,8 @@
 
     <EditText
         android:id="@+id/edtTimeCount"
-        android:layout_width="102dp"
-        android:layout_height="38dp"
+        android:layout_width="131dp"
+        android:layout_height="37dp"
         android:layout_marginStart="32dp"
         android:layout_marginTop="6dp"
         android:background="@drawable/round_border_input_text"
@@ -163,8 +163,8 @@
 
     <EditText
         android:id="@+id/edtCalories"
-        android:layout_width="102dp"
-        android:layout_height="38dp"
+        android:layout_width="131dp"
+        android:layout_height="37dp"
         android:layout_marginStart="32dp"
         android:layout_marginTop="6dp"
         android:background="@drawable/round_border_input_text"
@@ -181,40 +181,47 @@
         app:layout_constraintTop_toTopOf="@+id/tvRecordKalos"
         app:layout_constraintVertical_bias="0.0" />
 
-    <ImageButton
-        android:id="@+id/imgCancel"
-        android:layout_width="71dp"
-        android:layout_height="49dp"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <ImageView
+        android:id="@+id/imgExit"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.902"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.973"
-        app:srcCompat="@drawable/start_button_shape" />
+        app:srcCompat="@drawable/exit" />
 
     <TextView
-        android:id="@+id/tvCancel"
+        android:id="@+id/textView50"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hủy"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.906"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.95" />
-
-    <Button
-        android:id="@+id/btnExit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="12dp"
         android:text="Thoát"
-        app:layout_constraintEnd_toStartOf="@+id/imgStop"
-        app:layout_constraintTop_toBottomOf="@+id/edtTimeCount" />
+        android:textSize="10sp"
+        app:layout_constraintEnd_toEndOf="@+id/imgExit"
+        app:layout_constraintStart_toStartOf="@+id/imgExit"
+        app:layout_constraintTop_toBottomOf="@+id/imgExit" />
+
+    <ImageView
+        android:id="@+id/imgCancelRecord"
+        android:visibility="invisible"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="28dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.475"
+        app:layout_constraintStart_toEndOf="@+id/imgStop"
+        app:layout_constraintTop_toBottomOf="@+id/pgbAwardEx"
+        app:srcCompat="@drawable/cancel_record" />
+
+    <TextView
+        android:id="@+id/tvCancelRecord"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        android:text="Huỷ kết quả"
+        android:textSize="13sp"
+        app:layout_constraintEnd_toEndOf="@+id/imgCancelRecord"
+        app:layout_constraintStart_toStartOf="@+id/imgCancelRecord"
+        app:layout_constraintTop_toBottomOf="@+id/imgCancelRecord" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
