@@ -318,6 +318,7 @@
             android:layout_marginTop="24dp"
             android:fontFamily="sans-serif-black"
             android:text="Ăn cùng FireFit"
+            android:textColor="#000000"
             android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

@@ -237,6 +237,7 @@
             android:layout_marginTop="24dp"
             android:fontFamily="sans-serif-black"
             android:text="Luyện tập cùng FireFit"
+            android:textColor="#040303"
             android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
